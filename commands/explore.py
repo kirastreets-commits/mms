@@ -1,6 +1,7 @@
 from models.creature import Creature
 from systems.save_system import get_or_create_player, save_player
 from data.species import SPECIES_REGISTRY
+from data.resources import ‎RESOURCES
 import random
 import discord
 
@@ -93,17 +94,35 @@ def setup(bot):
 
         player = get_or_create_player(ctx.author)
 
+        def add_to_inventory(player, item_id, amount=1):
+
+            if item_id not in player.inventory:
+                player.inventory[item_id] = 0
+        
+            player.inventory[item_id] += amount
+
         # --------------------------------
         # NO CREATURE FOUND
         # --------------------------------
         if random.randint(1, 100) < 50:
 
+            resource_id = random.choice(list(RESOURCES.keys()))
+            resource = RESOURCES[resource_id]
+        
+            amount = random.randint(1, 3)
+        
+            add_to_inventory(player, resource_id, amount)
+        
             embed = discord.Embed(
                 title="🌿 Exploration Complete",
-                description="You explored the wild… but didn’t find any creatures this time.",
+                description=(
+                    f"You didn't find any creatures today.\n\n"
+                    f"You gathered {resource['emoji']} "
+                    f"**{resource['name']} x{amount}**."
+                ),
                 color=0x6bbf59
             )
-
+    
             await ctx.send(embed=embed)
             return
 
