@@ -6,6 +6,9 @@ from models.creature import Creature
 
 SAVE_FOLDER = "data/saves/players"
 
+def save_player(player):
+    print(f"Saving player {player.user_id}")
+
 
 # ----------------------------
 # CREATE OR LOAD PLAYER
