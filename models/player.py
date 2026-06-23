@@ -33,9 +33,9 @@ class Player:
     # ----------------------------
 
 
-    def add_discovered_species(self, discovered_species):
-        self.discovered_species.append(species)
-        species = species_name
+    def add_discovered_species(self, species_name):
+        if species_name not in self.discovered_species:
+            self.discovered_species.append(species_name)
 
     def add_creature(self, creature):
         self.creatures.append(creature)
