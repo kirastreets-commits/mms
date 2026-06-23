@@ -9,5 +9,6 @@ resources = [
   Sweet Grass,
   Polished Stones,
   Shimmering Feathers,
-  Strange Trinket
+  Strange Trinket,
+  golden coin
   ]
