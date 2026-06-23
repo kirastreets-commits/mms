@@ -73,7 +73,7 @@ class Player:
         self.inventory.append(item)
 
     def add_to_inventory(player, item_id, amount=1):
-    player.inventory[item_id] = player.inventory.get(item_id, 0) + amount
+        player.inventory[item_id] = player.inventory.get(item_id, 0) + amount
 
     def remove_item(self, item):
 
