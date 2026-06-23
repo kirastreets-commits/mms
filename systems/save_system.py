@@ -6,9 +6,6 @@ from models.creature import Creature
 
 SAVE_FOLDER = "data/saves/players"
 
-def save_player(player):
-    print(f"Saving player {player.user_id}")
-
 
 # ----------------------------
 # CREATE OR LOAD PLAYER
@@ -52,6 +49,8 @@ def save_player(player):
 
     file_path = os.path.join(SAVE_FOLDER, f"{player.user_id}.json")
     tmp_path = file_path + ".tmp"
+
+    print(f"Saved to: {file_path}")
 
     # safety: ensure data is serialisable
     data = player.to_dict()
