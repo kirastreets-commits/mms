@@ -18,7 +18,7 @@ class Player:
         self.user_id = user_id
         self.name = name
 
-        self.inventory = inventory or []
+        self.inventory = inventory or {}
         self.creatures = creatures or []
         self.discovered_species = discovered_species or []
         self.journal_entries = journal_entries
