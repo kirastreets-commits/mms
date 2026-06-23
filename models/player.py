@@ -114,19 +114,24 @@ class Player:
 
     @classmethod
     def from_dict(cls, data, Creature):
-
+    
         creatures = [
             Creature.from_dict(c_data)
             for c_data in data.get("creatures", [])
         ]
-
+    
+        inventory = data.get("inventory", {})
+    
+        if not isinstance(inventory, dict):
+            inventory = {}
+    
         return cls(
             user_id=data["user_id"],
             name=data["name"],
-            inventory=data.get("inventory", {}),
+            inventory=inventory,
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
-            journal_entries=data.get("journal_entries") or [], 
+            journal_entries=data.get("journal_entries") or [],
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
             has_starter=data.get("has_starter", False)
