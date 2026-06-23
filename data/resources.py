@@ -10,5 +10,5 @@ resources = [
   Polished Stones,
   Shimmering Feathers,
   Strange Trinket,
-  golden coin
+  Golden Coin
   ]
