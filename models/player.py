@@ -105,7 +105,7 @@ class Player:
             "journal_entries": self.journal_entries,
             "tutorial_stage": self.tutorial_stage,
             "tutorial_complete": self.tutorial_complete,
-            "has_starter": self.has_starter
+            "has_starter": self.has_starter,
             
             "creatures": [
                 creature.to_dict()
