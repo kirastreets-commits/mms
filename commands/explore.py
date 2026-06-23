@@ -1,7 +1,7 @@
 from models.creature import Creature
 from systems.save_system import get_or_create_player, save_player
 from data.species import SPECIES_REGISTRY
-from data.resources import ‎RESOURCES
+from data.resources import RESOURCES
 import random
 import discord
 
