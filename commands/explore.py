@@ -94,13 +94,6 @@ def setup(bot):
 
         player = get_or_create_player(ctx.author)
 
-        def add_to_inventory(player, item_id, amount=1):
-
-            if item_id not in player.inventory:
-                player.inventory[item_id] = 0
-        
-            player.inventory[item_id] += amount
-
         # --------------------------------
         # NO CREATURE FOUND
         # --------------------------------
@@ -112,6 +105,7 @@ def setup(bot):
             amount = random.randint(1, 3)
 
             player.add_to_inventory(resource_id, amount)
+            print("INVENTORY TYPE:", type(player.inventory), player.inventory)
             save_player(player)
         
             embed = discord.Embed(
