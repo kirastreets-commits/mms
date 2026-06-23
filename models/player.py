@@ -113,7 +113,7 @@ class Player:
         return cls(
             user_id=data["user_id"],
             name=data["name"],
-            inventory=data.get("inventory", []),
+            inventory=data.get("inventory", {}),
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
             journal_entries=data.get("journal_entries") or [], 
