@@ -17,7 +17,7 @@ def setup(bot):
         result = creature.feed()
 
         save_player(player)
-        print(f"Saved to: {file_path}")
+    
 
         embed = render_action_embed(
             title="🍖 Feeding Time",
