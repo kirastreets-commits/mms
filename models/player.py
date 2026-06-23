@@ -70,10 +70,13 @@ class Player:
     # ----------------------------
 
     def add_to_inventory(self, item_id, amount=1):
-
-        self.inventory[item_id] = (
-            self.inventory.get(item_id, 0) + amount
-        )
+        if not isinstance(self.inventory, dict):
+            self.inventory = {}
+    
+        if item_id not in self.inventory:
+            self.inventory[item_id] = 0
+    
+        self.inventory[item_id] += amount
     
     def remove_from_inventory(self, item_id, amount=1):
     
