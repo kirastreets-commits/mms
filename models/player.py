@@ -18,10 +18,10 @@ class Player:
         self.user_id = user_id
         self.name = name
 
-        self.inventory = inventory or {}
-        self.creatures = creatures or []
-        self.discovered_species = discovered_species or []
-        self.journal_entries = journal_entries or []
+        self.inventory = inventory if isinstance(inventory, dict) else {}
+        self.creatures = creatures if isinstance(creatures, list) else []
+        self.discovered_species = discovered_species if isinstance(discovered_species, list) else []
+        self.journal_entries = journal_entries if isinstance(journal_entries, list) else []
 
         self.has_starter = has_starter
 
@@ -100,12 +100,13 @@ class Player:
             "user_id": self.user_id,
             "name": self.name,
             "inventory": self.inventory,
+            "creatures": [c.to_dict() for c in self.creatures],
             "discovered_species": self.discovered_species,
             "journal_entries": self.journal_entries,
             "tutorial_stage": self.tutorial_stage,
             "tutorial_complete": self.tutorial_complete,
-            "has_starter": self.has_starter,
-
+            "has_starter": self.has_starter
+            
             "creatures": [
                 creature.to_dict()
                 for creature in self.creatures
@@ -116,22 +117,21 @@ class Player:
     def from_dict(cls, data, Creature):
     
         creatures = [
-            Creature.from_dict(c_data)
-            for c_data in data.get("creatures", [])
+            Creature.from_dict(c)
+            for c in data.get("creatures", [])
         ]
     
         inventory = data.get("inventory", {})
-    
         if not isinstance(inventory, dict):
             inventory = {}
     
         return cls(
-            user_id=data["user_id"],
+            user_id=str(data["user_id"]),
             name=data["name"],
             inventory=inventory,
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
-            journal_entries=data.get("journal_entries") or [],
+            journal_entries=data.get("journal_entries", []),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
             has_starter=data.get("has_starter", False)
