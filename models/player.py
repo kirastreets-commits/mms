@@ -9,7 +9,7 @@ class Player:
         inventory=None,
         creatures=None,
         discovered_species=None,
-        journal_entries= [],
+        journal_entries= None,
         tutorial_stage=0,
         tutorial_complete=False,
         has_starter=False
@@ -21,7 +21,7 @@ class Player:
         self.inventory = inventory or {}
         self.creatures = creatures or []
         self.discovered_species = discovered_species or []
-        self.journal_entries = journal_entries
+        self.journal_entries = journal_entries or []
 
         self.has_starter = has_starter
 
