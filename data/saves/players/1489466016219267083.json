@@ -1,0 +1,188 @@
+{
+    "user_id": 1489466016219267083,
+    "name": "goku_luffy2213_55057",
+    "inventory": [],
+    "discovered_species": [
+        "Thornhare",
+        "Fire Dragon",
+        "Frosthopper",
+        "Emberfox"
+    ],
+    "journal_entries": [
+        "Discovered a new species: Emberfox",
+        "Loony joined the sanctuary."
+    ],
+    "tutorial_stage": 0,
+    "tutorial_complete": false,
+    "has_starter": false,
+    "creatures": [
+        {
+            "name": "Koala",
+            "species": "Frosthopper",
+            "trust": 61,
+            "personality": "calm",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 80,
+            "energy": 40,
+            "hunger": 100,
+            "happiness": 98
+        },
+        {
+            "name": "Clean",
+            "species": "Thornhare",
+            "trust": 28,
+            "personality": "playful",
+            "mood": "lonely",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 35,
+            "hunger": 40,
+            "happiness": 36
+        },
+        {
+            "name": "Mamacoco",
+            "species": "Fire Dragon",
+            "trust": 25,
+            "personality": "mischievous",
+            "mood": "lonely",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 40,
+            "energy": 45,
+            "hunger": 40,
+            "happiness": 25
+        },
+        {
+            "name": "Luvya",
+            "species": "Thornhare",
+            "trust": 20,
+            "personality": "curious",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        },
+        {
+            "name": "Frosty",
+            "species": "Frosthopper",
+            "trust": 20,
+            "personality": "shy",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        },
+        {
+            "name": "Loony",
+            "species": "Emberfox",
+            "trust": 20,
+            "personality": "protective",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        }
+    ]
+}

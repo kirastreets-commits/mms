@@ -1,0 +1,57 @@
+{
+    "user_id": 1489441396967604405,
+    "name": "littledrizzy_",
+    "inventory": [],
+    "discovered_species": [
+        "Fire Dragon"
+    ],
+    "tutorial_stage": 0,
+    "tutorial_complete": false,
+    "has_starter": false,
+    "creatures": [
+        {
+            "name": "coco",
+            "species": "Mossling",
+            "trust": 53,
+            "personality": "curious",
+            "mood": "happy",
+            "health": 40,
+            "energy": 50,
+            "hunger": 90,
+            "happiness": 100
+        },
+        {
+            "name": "dumboo",
+            "species": "Cindercub",
+            "trust": 35,
+            "personality": "playful",
+            "mood": "neutral",
+            "health": 40,
+            "energy": 35,
+            "hunger": 60,
+            "happiness": 41
+        },
+        {
+            "name": "the fire king",
+            "species": "Fire Dragon",
+            "trust": 20,
+            "personality": "protective",
+            "mood": "neutral",
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        },
+        {
+            "name": "king",
+            "species": "Fire Dragon",
+            "trust": 60,
+            "personality": "lazy",
+            "mood": "neutral",
+            "health": 20,
+            "energy": 55,
+            "hunger": 40,
+            "happiness": 27
+        }
+    ]
+}

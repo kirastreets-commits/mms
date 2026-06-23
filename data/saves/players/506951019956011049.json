@@ -1,0 +1,21 @@
+{
+    "user_id": 506951019956011049,
+    "name": "wyrmwoodsentinel",
+    "inventory": [],
+    "tutorial_stage": 0,
+    "tutorial_complete": false,
+    "has_starter": false,
+    "creatures": [
+        {
+            "name": "Hoarfrost",
+            "species": "Frosthopper",
+            "trust": 21,
+            "personality": "curious",
+            "mood": "hungry",
+            "health": 20,
+            "energy": 5,
+            "hunger": 20,
+            "happiness": 30
+        }
+    ]
+}

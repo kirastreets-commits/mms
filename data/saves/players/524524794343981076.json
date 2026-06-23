@@ -1,0 +1,324 @@
+{
+    "user_id": 524524794343981076,
+    "name": "dreamfoxii",
+    "inventory": [],
+    "discovered_species": [
+        "Emberfox",
+        "Ice Dragon",
+        "Frostfox",
+        "Stonehorn",
+        "Fernpaw"
+    ],
+    "journal_entries": [
+        "Discovered a new species: Fernpaw",
+        "Monstera joined the sanctuary."
+    ],
+    "tutorial_stage": 0,
+    "tutorial_complete": false,
+    "has_starter": false,
+    "creatures": [
+        {
+            "name": "Blaze",
+            "species": "Emberfox",
+            "trust": 90,
+            "personality": "playful",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 100,
+            "energy": 40,
+            "hunger": 100,
+            "happiness": 100
+        },
+        {
+            "name": "Flame",
+            "species": "Fire Dragon",
+            "trust": 38,
+            "personality": "curious",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 75,
+            "energy": 55,
+            "hunger": 60,
+            "happiness": 73
+        },
+        {
+            "name": "Henry",
+            "species": "Stonehorn",
+            "trust": 76,
+            "personality": "protective",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 53
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 60,
+            "energy": 70,
+            "hunger": 50,
+            "happiness": 100
+        },
+        {
+            "name": "Bugs",
+            "species": "Frosthopper",
+            "trust": 93,
+            "personality": "shy",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [
+                        "neutral",
+                        {
+                            "success": true,
+                            "mood": "neutral"
+                        },
+                        "happy",
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        },
+                        "happy",
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ],
+                    "play": [
+                        {
+                            "success": true,
+                            "mood": "neutral"
+                        },
+                        {
+                            "success": true,
+                            "mood": "neutral"
+                        }
+                    ],
+                    "heal": [
+                        {
+                            "success": true,
+                            "mood": "neutral"
+                        },
+                        {
+                            "success": true,
+                            "mood": "neutral"
+                        }
+                    ]
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 75
+                },
+                "experience": {
+                    "healing_good": 3,
+                    "healing_bad": 0
+                }
+            },
+            "health": 70,
+            "energy": 75,
+            "hunger": 80,
+            "happiness": 100
+        },
+        {
+            "name": "MalICE",
+            "species": "Ice Dragon",
+            "trust": 100,
+            "personality": "curious",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [
+                        "happy",
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ],
+                    "play": [
+                        "happy"
+                    ],
+                    "heal": [
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        },
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        },
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        },
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ]
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 70
+                },
+                "experience": {
+                    "healing_good": 6,
+                    "healing_bad": 0
+                }
+            },
+            "health": 100,
+            "energy": 90,
+            "hunger": 90,
+            "happiness": 100
+        },
+        {
+            "name": "Drift",
+            "species": "Frostfox",
+            "trust": 100,
+            "personality": "playful",
+            "mood": "happy",
+            "memory": {
+                "interactions": {
+                    "feed": [
+                        "happy",
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ],
+                    "play": [
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        },
+                        {
+                            "success": true,
+                            "mood": "happy"
+                        }
+                    ],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 61
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 80,
+            "energy": 95,
+            "hunger": 60,
+            "happiness": 100
+        },
+        {
+            "name": "bob",
+            "species": "Frostfox",
+            "trust": 20,
+            "personality": "lazy",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        },
+        {
+            "name": "Monstera",
+            "species": "Fernpaw",
+            "trust": 20,
+            "personality": "shy",
+            "mood": "neutral",
+            "memory": {
+                "interactions": {
+                    "feed": [],
+                    "play": [],
+                    "heal": []
+                },
+                "events": [],
+                "flags": {},
+                "emotional": {
+                    "stress_level": 0,
+                    "comfort_level": 50
+                },
+                "experience": {
+                    "healing_good": 0,
+                    "healing_bad": 0
+                }
+            },
+            "health": 20,
+            "energy": 20,
+            "hunger": 20,
+            "happiness": 10
+        }
+    ]
+}
