@@ -109,7 +109,7 @@ def setup(bot):
             resource_id = random.choice(list(RESOURCES.keys()))
             resource = RESOURCES[resource_id]
         
-            amount = random.randint(1, 3
+            amount = random.randint(1, 3)
 
             player.add_to_inventory(resource_id, amount)
             save_player(player)
