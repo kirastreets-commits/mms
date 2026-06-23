@@ -265,34 +265,6 @@
             "happiness": 100
         },
         {
-            "name": "bob",
-            "species": "Frostfox",
-            "trust": 20,
-            "personality": "lazy",
-            "mood": "neutral",
-            "memory": {
-                "interactions": {
-                    "feed": [],
-                    "play": [],
-                    "heal": []
-                },
-                "events": [],
-                "flags": {},
-                "emotional": {
-                    "stress_level": 0,
-                    "comfort_level": 50
-                },
-                "experience": {
-                    "healing_good": 0,
-                    "healing_bad": 0
-                }
-            },
-            "health": 20,
-            "energy": 20,
-            "hunger": 20,
-            "happiness": 10
-        },
-        {
             "name": "Monstera",
             "species": "Fernpaw",
             "trust": 20,
