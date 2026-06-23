@@ -69,16 +69,23 @@ class Player:
     # 🎒 INVENTORY SYSTEM
     # ----------------------------
 
-    def add_item(self, item):
-        self.inventory.append(item)
+    def add_to_inventory(self, item_id, amount=1):
 
-    def add_to_inventory(player, item_id, amount=1):
-        player.inventory[item_id] = player.inventory.get(item_id, 0) + amount
-
-    def remove_item(self, item):
-
-        if item in self.inventory:
-            self.inventory.remove(item)
+        self.inventory[item_id] = (
+            self.inventory.get(item_id, 0) + amount
+        )
+    
+    def remove_from_inventory(self, item_id, amount=1):
+    
+        if item_id not in self.inventory:
+            return False
+    
+        self.inventory[item_id] -= amount
+    
+        if self.inventory[item_id] <= 0:
+            del self.inventory[item_id]
+    
+        return True
 
     # ----------------------------
     # 💾 SAVE SYSTEM
