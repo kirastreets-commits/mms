@@ -112,6 +112,8 @@ def setup(bot):
             amount = random.randint(1, 3)
         
             add_to_inventory(player, resource_id, amount)
+
+            save_player(player)
         
             embed = discord.Embed(
                 title="🌿 Exploration Complete",
