@@ -9,4 +9,4 @@ def setup(bot):
     async def start(ctx):
         print("🔥 start command triggered")
         player = get_or_create_player(ctx.author)
-        await start_intro(ctx, play)
+        await start_intro(ctx, player)
