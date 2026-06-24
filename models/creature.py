@@ -219,7 +219,7 @@ class Creature:
 
         self.hunger = min(100, self.hunger + hunger_gain)
         self.happiness = min(100, self.happiness + happiness_gain)
-        self.trust = min(100, self.energy + trust_gain)
+        self.trust = min(100, self.trust + trust_gain)
 
         result["stat_changes"].extend([
             ("Hunger", hunger_gain),
