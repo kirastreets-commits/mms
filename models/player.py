@@ -96,17 +96,17 @@ class Player:
 
     def to_dict(self):
 
-    return {
-        "user_id": self.user_id,
-        "name": self.name,
-        "inventory": self.inventory,
-        "creatures": [c.to_dict() for c in self.creatures],
-        "discovered_species": self.discovered_species,
-        "journal_entries": self.journal_entries,
-        "tutorial_stage": self.tutorial_stage,
-        "tutorial_complete": self.tutorial_complete,
-        "has_starter": self.has_starter
-    }
+        return {
+            "user_id": self.user_id,
+            "name": self.name,
+            "inventory": self.inventory,
+            "creatures": [c.to_dict() for c in self.creatures],
+            "discovered_species": self.discovered_species,
+            "journal_entries": self.journal_entries,
+            "tutorial_stage": self.tutorial_stage,
+            "tutorial_complete": self.tutorial_complete,
+            "has_starter": self.has_starter
+        }
 
     @classmethod
     def from_dict(cls, data, Creature):
