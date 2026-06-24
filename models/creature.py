@@ -28,7 +28,7 @@ class Creature:
         self.species = species
 
         # ALWAYS pulled from registry
-        self.species_data = get_species(species) or 
+        self.species_data = get_species_data(species)
         self.shelter = {
             "type": get_species(species)["shelter"],
             "level": 1,
