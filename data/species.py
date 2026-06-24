@@ -82,7 +82,7 @@ SPECIES_REGISTRY = {
             "rarity": "common",
             "habitat": "forest",
             "diet": "carnivore",
-            "is_starter": True,
+            "is_starter": False,
             "emoji": "🔥",
             "button_style": discord.ButtonStyle.red,
 
@@ -107,7 +107,7 @@ SPECIES_REGISTRY = {
         "rarity": "common",
         "habitat": "volcanic",
         "diet": "carnivore",
-        "is_starter": True,
+        "is_starter": False,
         "emoji": "🔥",
         "button_style": discord.ButtonStyle.red,
 
@@ -206,7 +206,7 @@ SPECIES_REGISTRY = {
         "rarity": "common",
         "habitat": "forest",
         "diet": "herbivore",
-        "is_starter": True,
+        "is_starter": False,
         "emoji": "🌿",
         "button_style": discord.ButtonStyle.green,
 
@@ -230,7 +230,7 @@ SPECIES_REGISTRY = {
         "rarity": "common",
         "habitat": "forest",
         "diet": "omnivore",
-        "is_starter": True,
+        "is_starter": False,
         "emoji": "🌿",
         "button_style": discord.ButtonStyle.green,
 
