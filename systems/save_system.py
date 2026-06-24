@@ -46,6 +46,10 @@ def get_or_create_player(user):
 def save_player(player):
 
     print(f"Saving player {player.user_id}")
+    print("💾 SAVING STATE SNAPSHOT")
+    print("CREATURE COUNT:", len(player.creatures))
+    print("INVENTORY:", player.inventory)
+    print("CALLER:", __import__("traceback").format_stack()[-3])
 
     conn = get_connection()
     cur = conn.cursor()
