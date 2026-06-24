@@ -3,6 +3,7 @@ import os
 
 from models.player import Player
 from models.creature import Creature
+from systems.database import get_connection
 
 SAVE_FOLDER = "data/saves/players"
 
