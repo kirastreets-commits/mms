@@ -12,17 +12,20 @@ def get_or_create_player(user):
     user_id = str(user.id)
     player = load_player(user_id)
 
-    # ----------------------------
-    # IF PLAYER EXISTS → RETURN
-    # ----------------------------
     if player is not None:
-
-        # 🔧 patch missing fields safely
-        if not hasattr(player, "has_starter"):
-            player.has_starter = False
-            save_player(player)  # persist fix to disk
-
+        print("LOADED EXISTING PLAYER")
         return player
+
+    print("CREATING NEW PLAYER")
+
+    player = Player(
+        user_id=user_id,
+        name=user.name,
+        has_starter=False
+    )
+
+    save_player(player)
+    return player
 
     # ----------------------------
     # CREATE NEW PLAYER
