@@ -115,6 +115,8 @@ class Player:
 
     @classmethod
     def from_dict(cls, data, Creature):
+
+        print("RAW CREATURE DATA:", data.get("creatures"))
     
         creatures = [
             Creature.from_dict(c)
