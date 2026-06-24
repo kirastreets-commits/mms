@@ -782,7 +782,7 @@ class Creature:
         creature = cls(
         name=data["name"],
         species=data["species"],
-        shelter = data.get("shelter")
+        shelter = data.get("shelter"),
         personality=data.get("personality", "neutral"),
         mood=data.get("mood", "neutral"),
         trust=data.get("trust", 20),
