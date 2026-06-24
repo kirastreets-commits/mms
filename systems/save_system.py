@@ -1,12 +1,8 @@
 import json
-import os
 
 from models.player import Player
 from models.creature import Creature
 from systems.database import get_connection
-
-SAVE_FOLDER = "data/saves/players"
-
 
 # ----------------------------
 # CREATE OR LOAD PLAYER
@@ -46,43 +42,49 @@ def get_or_create_player(user):
 # ----------------------------
 def save_player(player):
 
-    os.makedirs(SAVE_FOLDER, exist_ok=True)
+    print(f"Saving player {player.user_id}")
 
-    file_path = os.path.join(SAVE_FOLDER, f"{player.user_id}.json")
-    tmp_path = file_path + ".tmp"
+    conn = get_connection()
+    cur = conn.cursor()
 
-    print(f"Saved to: {file_path}")
+    cur.execute("""
+        INSERT INTO players (user_id, data)
+        VALUES (%s, %s)
+        ON CONFLICT (user_id)
+        DO UPDATE SET data = EXCLUDED.data
+    """, (
+        str(player.user_id),
+        json.dumps(player.to_dict())
+    ))
 
-    # safety: ensure data is serialisable
-    data = player.to_dict()
-
-    with open(tmp_path, "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4)
-
-    # atomic replace (prevents corrupted saves)
-    os.replace(tmp_path, file_path)
+    conn.commit()
+    cur.close()
+    conn.close()
 
 
 # ----------------------------
 # LOAD PLAYER
 # ----------------------------
 def load_player(user_id):
+    
+    print(f"Loading player {user_id}")
 
-    file_path = os.path.join(SAVE_FOLDER, f"{str(user_id)}.json")
+    conn = get_connection()
+    cur = conn.cursor()
 
-    if not os.path.exists(file_path):
+    cur.execute(
+        "SELECT data FROM players WHERE user_id = %s",
+        (str(user_id),)
+    )
+
+    result = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    if result is None:
         return None
 
-    with open(file_path, "r", encoding="utf-8") as file:
-        data = json.load(file)
+    data = result[0]
 
-    player = Player.from_dict(data, Creature)
-
-    # safety check (prevents broken data types slipping through)
-    if not isinstance(player.inventory, dict):
-        player.inventory = {}
-
-    if not isinstance(player.discovered_species, list):
-        player.discovered_species = []
-
-    return player
+    return Player.from_dict(data, Creature)
