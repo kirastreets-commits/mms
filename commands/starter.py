@@ -55,6 +55,9 @@ class StarterNameModal(discord.ui.Modal):
         )
 
         player.add_creature(creature)
+        self.player.journal_entries.append(f"{creature.name} joined the sanctuary.")
+        player.discovered_species.append(species_name)
+        player.journal_entries.append(f"Discovered a new species: {species_name}")
 
         player.tutorial_complete = True
         player.tutorial_stage = 3
