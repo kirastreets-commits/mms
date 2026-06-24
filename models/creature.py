@@ -28,7 +28,13 @@ class Creature:
         self.species = species
 
         # ALWAYS pulled from registry
-        self.species_data = get_species(species) or {}
+        self.species_data = get_species(species) or 
+        self.shelter = {
+            "type": get_species(species)["shelter"],
+            "level": 1,
+            "comfort": 0,
+            "decorations": []
+        }
 
         self.personality = personality if personality else random.choice(list(PERSONALITIES.keys()))
         self.mood = mood
@@ -59,9 +65,6 @@ class Creature:
         self.happiness = max(0, min(self.max_happiness, self.happiness))
         self.trust = max(0, min(self.max_trust, self.trust))
 
-    @property
-    def shelter(self):
-        return self.species_data.get("shelter", "shelter")
 
    
 # ----------------------------
@@ -731,6 +734,7 @@ class Creature:
         return {
             "name": self.name,
             "species": self.species,
+            "shelter": self.shelter,
             "trust": self.trust,
             "personality": self.personality,
             "mood": self.mood,
@@ -778,6 +782,7 @@ class Creature:
         creature = cls(
         name=data["name"],
         species=data["species"],
+        shelter = data.get("shelter")
         personality=data.get("personality", "neutral"),
         mood=data.get("mood", "neutral"),
         trust=data.get("trust", 20),
