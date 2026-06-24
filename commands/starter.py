@@ -40,12 +40,14 @@ class StarterNameModal(discord.ui.Modal):
 
         player = get_or_create_player(interaction.user)
 
-        if player.has_starter:
+        if player.creatures:
             await interaction.response.send_message(
                 "You already have a creature.",
                 ephemeral=True
             )
             return
+
+        species_data = get_species(self.species)
 
         creature = Creature(
             name=self.name_input.value,
@@ -54,16 +56,6 @@ class StarterNameModal(discord.ui.Modal):
 
         player.add_creature(creature)
 
-        player.journal_entries.append(
-            f"{creature.name} joined the sanctuary."
-        )
-
-        if self.species not in player.discovered_species:
-            player.discovered_species.append(self.species)
-            player.journal_entries.append(
-                f"Discovered a new species: {self.species}"
-            )
-
         player.tutorial_complete = True
         player.tutorial_stage = 3
         player.has_starter = True
@@ -71,7 +63,7 @@ class StarterNameModal(discord.ui.Modal):
         save_player(player)
 
         await interaction.response.send_message(
-            f"🌿 You adopted **{creature.name}** the **{self.species}**!",
+            f"🌿 You adopted **{creature.name}** the {self.species}!",
             ephemeral=True
         )
 
@@ -118,14 +110,14 @@ class StarterButton(discord.ui.Button):
 
 def setup(bot):
 
-    
     @bot.command()
     async def starter(ctx):
 
         player = get_or_create_player(ctx.author)
 
-        if player.has_starter:
-            await ctx.send("You have already chosen a starter.")
+        # optional: prevent re-using starter system
+        if player.creatures:
+            await ctx.send("You already have a creature.")
             return
 
         await ctx.send(
