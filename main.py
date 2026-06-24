@@ -7,6 +7,16 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
+from systems.database import get_connection
+
+
+try:
+    conn = get_connection()
+    print("✅ Database connected")
+    conn.close()
+
+except Exception as e:
+    print(f"❌ Database error: {e}")
 
 
 
