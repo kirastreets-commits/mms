@@ -17,7 +17,7 @@ class Creature:
         name: str,
         species: str,
         personality=None,
-        shelter=None
+        shelter=None,
         mood="neutral",
         trust: int = 20,
         health: int = 20,
