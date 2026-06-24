@@ -22,7 +22,6 @@ def setup(bot):
             title="💤 Resting Time",
             creature=creature,
             result=result,
-            action_text=f"You bring **{creature.name}** to its {creature.shelter}."
-        )
+            action_text=f"You bring **{creature.name}** to its {creature.shelter_name()}."
 
         await ctx.send(embed=embed)
