@@ -48,14 +48,14 @@ class IntroView(discord.ui.View):
             view=StarterView()
         )
 
-def start_intro(ctx, player):
+async def start_intro(ctx, player):
 
     if player.tutorial_complete:
         return
 
     view = IntroView()
 
-    return ctx.send(
+    await ctx.send(
         "🌿 **Welcome to Moonlit Meadow's Sanctuary**🌿\n"
         "It was once a thriving refuge for magical creatures, but it was abandoned and left to decay.\n"
         "You have been given the opportunity to be one of the new caretakers...\n"
