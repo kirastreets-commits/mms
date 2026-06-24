@@ -12,19 +12,14 @@ def get_or_create_player(user):
     user_id = str(user.id)
     player = load_player(user_id)
 
-    if player is not None:
-        print("LOADED EXISTING PLAYER")
-        return player
+    if player is None:
+        player = Player(
+            user_id=user_id,
+            name=user.name,
+            has_starter=False
+        )
+        save_player(player)
 
-    print("CREATING NEW PLAYER")
-
-    player = Player(
-        user_id=user_id,
-        name=user.name,
-        has_starter=False
-    )
-
-    save_player(player)
     return player
 
     # ----------------------------
@@ -73,9 +68,6 @@ def save_player(player):
 # LOAD PLAYER
 # ----------------------------
 def load_player(user_id):
-    
-    print(f"Loading player {user_id}")
-    print("RAW DB DATA:", data)
 
     conn = get_connection()
     cur = conn.cursor()
@@ -90,9 +82,12 @@ def load_player(user_id):
     cur.close()
     conn.close()
 
-    if result is None:
+    if not result or not result[0]:
         return None
 
     data = result[0]
+
+    if isinstance(data, str):
+        data = json.loads(data)
 
     return Player.from_dict(data, Creature)
