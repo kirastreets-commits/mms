@@ -75,6 +75,7 @@ def save_player(player):
 def load_player(user_id):
     
     print(f"Loading player {user_id}")
+    print("RAW DB DATA:", data)
 
     conn = get_connection()
     cur = conn.cursor()
