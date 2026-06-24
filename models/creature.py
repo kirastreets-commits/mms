@@ -69,6 +69,11 @@ class Creature:
 
    
 # ----------------------------
+    def shelter_name(self):
+        return self.shelter["type"]
+
+
+    
 # 🧠 STATE UPDATES
 # ----------------------------
     def play(self):
