@@ -16,7 +16,12 @@ def get_starters():
         if data.get("is_starter")
     }
 
+async def show_starter_selection(ctx):
 
+    await ctx.send(
+        "🌿 **Choose your first rescued creature:**",
+        view=StarterView()
+    )
 # ----------------------------
 # MODAL (NAME INPUT)
 # ----------------------------
