@@ -16,7 +16,8 @@ def setup(bot):
                 "`!feed <creature>`\n"
                 "`!play <creature>`\n"
                 "`!rest <creature>`\n"
-                "`!heal <creature>`"
+                "`!heal <creature>`\n"
+                "`!gift <creature> <item_name>`"
             ),
             inline=False
         )
