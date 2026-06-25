@@ -13,10 +13,13 @@ def setup(bot):
 
         result = gift_creature(player, creature, item_id)
 
-        if not result["success"]:
-            return await ctx.send(result["message"])
+        if not result.get("success"):
+            return await ctx.send(result.get("message", "Something went wrong."))
+
+        save_player(player)
 
         await ctx.send(
-            f"{creature.name} {result['reaction']} the gift!\n"
-            f"+{result['bond_gain']} bond"
-    )
+            f"🎁 {creature.name} {result.get('reaction', 'accepted')} the gift!\n"
+            f"🤝 Bond: {result.get('bond_gain', 0):+}\n"
+            f"🏡 Comfort: {result.get('comfort_gain', 0):+}"
+        )
