@@ -1,4 +1,4 @@
-def setup(bot)
+def setup(bot):
 
     @bot.command()
     async def reset_tutorial(ctx):
