@@ -4,23 +4,18 @@ from systems.gift_system import gift_creature
 def setup(bot):
 
     @bot.command()
-    async def gift(ctx, creature_name: str, item_id: str):
-        player = get_or_create_player(ctx.author)
-        creature = player.get_creature(creature_name)
+async def gift(ctx, creature_name: str, item_id: str):
+    player = get_or_create_player(ctx.author)
+    creature = player.get_creature(creature_name)
 
-        if not creature:
-            return await ctx.send("You don't have that creature.")
+    if not creature:
+        return await ctx.send("You don't have that creature.")
 
-        result = gift_creature(player, creature, item_id)
+    result = gift_creature(player, creature, item_id)
 
-        if not result.get("success"):
-            return await ctx.send(result.get("message", "Something went wrong."))
+    if not result["success"]:
+        return await ctx.send(result["message"])
 
-        save_player(player)
+    embed = build_gift_embed(creature, item_id, result)
 
-        await ctx.send(
-            f"🎁 {creature.name} {result['reaction']} the gift!\n"
-            f"🤝 Bond: {result['bond_gain']:+}\n"
-            f"🏡 Comfort: {result['comfort_gain']:+}\n\n"
-            f"{result['message']}"
-        )
+    await ctx.send(embed=embed)
