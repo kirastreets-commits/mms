@@ -1,11 +1,13 @@
 import discord
 from data.gift_responses import get_gift_message
+from systems.save_system import get_or_create_player, save_player
+
 
 def get_shelter_text(result):
     return {
         "favorite": "It places the item somewhere special in its shelter.",
-        "kept": "It adds the item to its shelter.",
-        "ignored": "It leaves the item in its shelter without much interest.",
+        "kept": "It adds the item to its {creature.shelter_name()}.",
+        "ignored": "It leaves the item in its {creature.shelter_name()} without much interest.",
         "rejected": "It refuses to keep the gift."
     }.get(result["shelter_action"], "")
 
