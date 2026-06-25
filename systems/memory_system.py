@@ -1,9 +1,8 @@
-
-
-def default_memory():
-    VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
+ VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
         if action_type not in VALID_ACTIONS:
             return
+
+def default_memory():
             
     return {
         "interactions": {
