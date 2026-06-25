@@ -196,3 +196,4 @@ RESOURCES = {
     "comfort": 2,
     "tags": ["soft", "shiny"]
     }
+}
