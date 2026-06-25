@@ -1,6 +1,6 @@
- VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
-        if action_type not in VALID_ACTIONS:
-            return
+VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
+    if action_type not in VALID_ACTIONS:
+        return
 
 def default_memory():
             
