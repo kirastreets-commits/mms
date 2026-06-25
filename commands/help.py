@@ -51,6 +51,7 @@ def setup(bot):
         embed.add_field(
             name="🏡 Sanctuary",
             value=(
+                "`!headcaretaker`\n"
                 "`!overview`\n"
                 "`!inspect <creature>`"
             ),
