@@ -42,8 +42,6 @@ class Creature:
         self.preferences_learned = {}
         self.recent_gifts = []
         self.memory = default_memory()
-        creature.memory = data.get("memory", default_memory())
-        ensure_memory(creature.memory)
 
         # ----------------------------
         # MAX STAT LIMITS
@@ -820,6 +818,9 @@ class Creature:
     # MEMORY PATCH (IMPORTANT)
     # ----------------------------
         creature.memory = data.get("memory", default_memory())
+
+        from systems.memory_system import ensure_memory
+        ensure_memory(creature.memory)
 
         return creature
 
