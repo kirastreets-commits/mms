@@ -6,6 +6,10 @@ from systems.personality_system import apply_personality
 from systems.mood_system import update_mood
 from systems.memory_system import default_memory
 from systems.memory_system import update_memory 
+from systems.memory_system import ensure_memory
+
+creature.memory = data.get("memory", default_memory())
+ensure_memory(creature.memory)
 
 
 
