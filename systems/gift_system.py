@@ -75,21 +75,14 @@ def give_item(creature, item_id, player_id=None):
     )
 
     # ----------------------------
-    # ADD ITEM TO SHELTER (AFTER REACTION)
-    # ----------------------------
-    creature.shelter.setdefault("items", []).append({
-        "item": item_id,
-        "reaction": result["reaction"]
-    })
-
-    # ----------------------------
     # MEMORY UPDATE (MANDATORY)
     # ----------------------------
     add_gift_memory(creature, item_id, result["reaction"], player_id)
 
     return result
-
+from systems.memory_system import ensure_memory
 def add_gift_memory(creature, item_id, reaction, player_id=None):
+    ensure_memory(creature.memory)
     mem = creature.memory
 
     # ----------------------------
