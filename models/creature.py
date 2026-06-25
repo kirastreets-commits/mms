@@ -1,6 +1,5 @@
 # CREATURE
 import random
-from urllib import response
 from data.species import SPECIES_REGISTRY, get_species_data, get_species, get_species_stat
 from data.personality import PERSONALITIES
 from systems.personality_system import apply_personality
@@ -11,13 +10,11 @@ from systems.memory_system import update_memory
 
 
 class Creature:
-
     def __init__(
         self,
         name: str,
         species: str,
         personality=None,
-        shelter=None,
         mood="neutral",
         trust: int = 20,
         health: int = 20,
@@ -28,18 +25,19 @@ class Creature:
         self.name = name
         self.species = species
 
-        # ALWAYS pulled from registry
-        self.species_data = get_species_data(species)
+        self.species_data = get_species_data(species) or {}
+
         self.shelter = {
-            "type": get_species(species)["shelter"],
+            "type": self.species_data.get("shelter", "basic"),
             "level": 1,
-            "comfort": 0,
             "items": []
         }
 
-        self.personality = personality if personality else random.choice(list(PERSONALITIES.keys()))
+        self.personality = personality or random.choice(list(PERSONALITIES.keys()))
         self.mood = mood
 
+        self.preferences_learned = {}
+        self.recent_gifts = []
         self.memory = default_memory()
 
         # ----------------------------
@@ -720,6 +718,7 @@ class Creature:
 
     from collections import defaultdict
 
+    @staticmethod
     def merge_stat_changes(changes):
         merged = defaultdict(int)
 
@@ -729,6 +728,7 @@ class Creature:
         return merged
 
 # ----------------------------
+    @staticmethod
     def get_random_species():
         return random.choice(list(SPECIES_REGISTRY))
     
@@ -740,15 +740,20 @@ class Creature:
         return {
             "name": self.name,
             "species": self.species,
-            "shelter": self.shelter,
             "trust": self.trust,
             "personality": self.personality,
             "mood": self.mood,
+            "preferences_learned": self.preferences_learned,
+            "recent_gifts": self.recent_gifts,
             "memory": self.memory,
             "health": self.health,
             "energy": self.energy,
             "hunger": self.hunger,
             "happiness": self.happiness,
+            "shelter": {
+            "level": self.shelter.get("level", 1),
+            "items": self.shelter.get("items", [])
+            }
         }
     def compare_stats(self, before):
         changes = []
@@ -788,8 +793,7 @@ class Creature:
         creature = cls(
         name=data["name"],
         species=data["species"],
-        shelter = data.get("shelter"),
-        personality=data.get("personality", "neutral"),
+        personality=data.get("personality") or random.choice(list(PERSONALITIES.keys())),
         mood=data.get("mood", "neutral"),
         trust=data.get("trust", 20),
         health=data.get("health", 20),
@@ -797,6 +801,15 @@ class Creature:
         hunger=data.get("hunger", 20),
         happiness=data.get("happiness", 10),
     )
+
+        creature.preferences_learned = data.get("preferences_learned", {})
+        creature.recent_gifts = data.get("recent_gifts", [])
+
+        creature.shelter = {
+        "type": get_species_data(creature.species).get("shelter", "basic"),
+        "level": data.get("shelter", {}).get("level", 1),
+        "items": data.get("shelter", {}).get("items", [])
+    }
 
     # ----------------------------
     # MEMORY PATCH (IMPORTANT)
