@@ -29,3 +29,15 @@ FAVORITE_MESSAGES = [
     "{name} treasures the gift and proudly displays it.",
     "{name} seems absolutely delighted and makes the gift a centerpiece of its shelter."
 ]
+
+def get_gift_message(creature, result):
+    pool_map = {
+        "loves": LOVE_MESSAGES,
+        "likes": LIKE_MESSAGES,
+        "neutral": NEUTRAL_MESSAGES,
+        "dislikes": DISLIKE_MESSAGES
+    }
+
+    pool = pool_map.get(result["reaction"], NEUTRAL_MESSAGES)
+
+    return random.choice(pool).format(name=creature.name)
