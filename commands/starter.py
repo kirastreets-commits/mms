@@ -41,12 +41,16 @@ class StarterNameModal(discord.ui.Modal):
 
         self.add_item(self.name_input)
 
+    
     async def on_submit(self, interaction: discord.Interaction):
 
         player = get_or_create_player(interaction.user)
 
         if player.has_starter:
-            await ctx.send("You have already chosen your starter creature.")
+            await interaction.response.send_message(
+                "You have already chosen your starter creature.",
+                ephemeral=True
+            )
             return
 
         species_data = get_species(self.species)
@@ -68,6 +72,7 @@ class StarterNameModal(discord.ui.Modal):
             f"🌿 You adopted **{creature.name}** the {self.species}!",
             ephemeral=True
         )
+
 
 
 # ----------------------------
