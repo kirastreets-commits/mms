@@ -1,19 +1,15 @@
-from data.gift_responses import (
-    LOVE_MESSAGES,
-    LIKE_MESSAGES,
-    NEUTRAL_MESSAGES,
-    DISLIKE_MESSAGES
-)
-from data.gift_responses import get_gift_message
-
+import discord
+from systems.narrative_system import get_gift_message
 
 def build_gift_embed(creature, result):
-    embed = discord.Embed()
-
-    embed.description = get_gift_message(creature, result)
+    embed = discord.Embed(
+        title=f"{creature.name} received a gift!",
+        description=get_gift_message(creature, result),
+        color=discord.Color.green()
+    )
 
     embed.add_field(
-        name="Bond",
+        name="Bond Change",
         value=f"+{result['bond_gain']}",
         inline=True
     )
@@ -25,4 +21,3 @@ def build_gift_embed(creature, result):
     )
 
     return embed
-
