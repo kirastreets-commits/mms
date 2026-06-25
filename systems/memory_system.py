@@ -1,47 +1,86 @@
+
+
 def default_memory():
     return {
         "interactions": {
-            "feed": [],
             "play": [],
-            "heal": []
+            "feed": [],
+            "heal": [],
+            "rest": [],
+            "gift": []
         },
-        "events": [],
-        "flags": {},
         "emotional": {
-            "stress_level": 0,
-            "comfort_level": 50
+            "comfort_level": 0,
+            "stress_level": 0
         },
         "experience": {
             "healing_good": 0,
             "healing_bad": 0
-        }
+        },
+        "preferences": {
+            "liked_items": {},
+            "disliked_items": {}
+        },
+        "flags": {
+            "afraid_of_healing": False,
+            "favorite_player": None
+        },
+        "events": []
     }
 
 def update_memory(creature, action_type, result):
     memory = creature.memory
 
     # ----------------------------
-    # 1. INTERACTIONS LOG
+    # SAFE INITIALISATION
+    # ----------------------------
+    memory.setdefault("interactions", {})
+    memory["interactions"].setdefault(action_type, [])
+
+    memory.setdefault("emotional", {})
+    memory.setdefault("experience", {})
+    memory.setdefault("flags", {})
+    memory.setdefault("events", [])
+
+    memory["emotional"].setdefault("comfort_level", 0)
+    memory["emotional"].setdefault("stress_level", 0)
+
+    memory["experience"].setdefault("healing_good", 0)
+    memory["experience"].setdefault("healing_bad", 0)
+
+    # ----------------------------
+    # INTERACTION LOG
     # ----------------------------
     memory["interactions"][action_type].append({
         "success": result.get("success", True),
-        "mood": creature.mood
+        "mood": creature.mood,
+        "reaction": result.get("reaction")
     })
 
     # ----------------------------
-    # 2. EMOTIONAL SYSTEM
+    # EMOTION SCALING
     # ----------------------------
+    emotion_scale = {
+        "feed": (2, 1),
+        "play": (3, 0),
+        "heal": (1, 4),
+        "rest": (2, -1),
+        "gift": (3, 2)
+    }
+
+    comfort_gain, stress_gain = emotion_scale.get(action_type, (2, 2))
+
     if result.get("success", True):
-        memory["emotional"]["comfort_level"] += 3
+        memory["emotional"]["comfort_level"] += comfort_gain
         memory["emotional"]["stress_level"] = max(
             0,
-            memory["emotional"]["stress_level"] - 2
+            memory["emotional"]["stress_level"] - stress_gain
         )
     else:
-        memory["emotional"]["stress_level"] += 8
+        memory["emotional"]["stress_level"] += stress_gain * 2
 
     # ----------------------------
-    # 3. EXPERIENCE SYSTEM (HEAL EXAMPLE)
+    # EXPERIENCE TRACKING
     # ----------------------------
     if action_type == "heal":
         if result.get("success", True):
@@ -50,13 +89,16 @@ def update_memory(creature, action_type, result):
             memory["experience"]["healing_bad"] += 1
 
     # ----------------------------
-    # 4. FLAGS (BEHAVIOUR CHANGES)
+    # FEAR FLAG
     # ----------------------------
     if memory["experience"]["healing_bad"] >= 3:
         memory["flags"]["afraid_of_healing"] = True
 
     # ----------------------------
-    # 5. RARE EVENTS STORAGE
+    # RARE EVENTS (LIMITED)
     # ----------------------------
     if result.get("rare_event"):
         memory["events"].append(result["rare_event"])
+
+        if len(memory["events"]) > 20:
+            memory["events"].pop(0)
