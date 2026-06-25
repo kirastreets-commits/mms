@@ -1,6 +1,10 @@
 
 
 def default_memory():
+    VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
+        if action_type not in VALID_ACTIONS:
+            return
+            
     return {
         "interactions": {
             "play": [],
@@ -54,6 +58,14 @@ def update_memory(creature, action_type, result):
     # ----------------------------
     # INTERACTION LOG
     # ----------------------------
+    # ----------------------------
+    # SAFE INTERACTIONS (ROBUST)
+    # ----------------------------
+    memory.setdefault("interactions", {})
+    
+    for action in ["play", "feed", "heal", "rest", "gift"]:
+        memory["interactions"].setdefault(action, [])
+    
     memory["interactions"][action_type].append({
         "success": result.get("success", True),
         "mood": creature.mood,
