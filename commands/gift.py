@@ -17,6 +17,6 @@ def setup(bot):
         if not result["success"]:
             return await ctx.send(result["message"])
     
-        embed = build_gift_embed(creature, item_id, result)
+        embed = build_gift_embed(creature, result)
     
         await ctx.send(embed=embed)
