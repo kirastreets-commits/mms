@@ -9,7 +9,7 @@ async def continue_tutorial(ctx, player):
         await start_intro(ctx, player)
 
     elif stage == 1:
-        await show_starter_selection(ctx, player)
+        await show_starter_selection(ctx)
 
-    elif stage == 2:
-        await first_care_task(ctx, player)
+    else:
+        await ctx.send("Tutorial stage not implemented yet.")
