@@ -1,3 +1,10 @@
+from data.gift_responses import (
+    LOVE_MESSAGES,
+    LIKE_MESSAGES,
+    NEUTRAL_MESSAGES,
+    DISLIKE_MESSAGES
+)
+
 def build_gift_embed(creature, result):
     embed = discord.Embed()
 
@@ -16,3 +23,4 @@ def build_gift_embed(creature, result):
     )
 
     return embed
+
