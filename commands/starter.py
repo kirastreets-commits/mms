@@ -72,7 +72,7 @@ class StarterNameModal(discord.ui.Modal):
         if not hasattr(player, "journal_entries") or player.journal_entries is None:
             player.journal_entries = []
         
-        player.journal_entries.append(entry
+        player.journal_entries.append(entry)
 
         if self.species not in player.discovered_species:
             player.discovered_species.append(self.species)
