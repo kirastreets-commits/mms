@@ -250,43 +250,6 @@ SPECIES_REGISTRY = {
     }
 }
 
-SPECIES = {
-
-    "Fire Dragon": {
-        "description": "Aggressive dragons with burning breath.",
-        "shelter": "nest"
-    },
-
-    "Ice Dragon": {
-        "description": "Calm dragons from frozen lands.",
-        "shelter": "nest"
-
-    },
-
-    "Crystal Dragon": {
-        "description": "Elegant dragons with crystal magic.",
-        "shelter": "nest"
-
-
-    }
-}
-
-STARTER_SPECIES = {
-    "Emberfox": {
-        "description": "A fox-like creature with warm glowing fur. Curious, playful, and always getting into trouble.",
-        "shelter": "den"
-    },
-
-    "Frosthopper": {
-        "description": "A small, agile creature that can leap great distances. It has a coat of fine, frost-covered fur.",
-        "shelter": "den"
-    },
-
-    "Mossling": {
-        "description": "A small woodland creature covered in soft moss and tiny sprouts.",
-        "shelter": "burrow"
-    }
-}
 
 def get_species_data(species_name):
     if species_name in SPECIES_REGISTRY:
