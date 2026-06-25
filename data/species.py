@@ -8,11 +8,10 @@ SPECIES_REGISTRY = {
     "Fire Dragon": {
         "description": "Aggressive dragons with burning breath.",
         "shelter": "nest",
-            "liked_shelter_items": [
-                "warm pebbles",
-                "obsidian shards",
-                "lava rock",
-                "heat crystal"
+            "shelter_preferences": [
+                "warm",
+                "stone",
+                "crystal"
             ],
         "rarity": "rare",
         "habitat": "volcanic",
@@ -37,11 +36,10 @@ SPECIES_REGISTRY = {
     "Ice Dragon": {
         "description": "Calm dragons from frozen lands.",
         "shelter": "nest",
-        "liked_shelter_items": [
-            "ice crystal",
-            "packed snow",
-            "frost flowers",
-            "glacial stone"
+        "shelter_preferences": [
+            "cold",
+            "crystal",
+            "soft"
         ],
         "rarity": "rare",
         "habitat": "arctic",
@@ -66,11 +64,10 @@ SPECIES_REGISTRY = {
     "Emberfox": {
         "description": "A fox-like creature with glowing warm fur.",
         "shelter": "den",
-        "liked_shelter_items": [
-            "warm pebbles",
-            "fluffy tuffs",
-            "soft bedding",
-            "glowing mushrooms"
+        "shelter_preferences": [
+            "warm",
+            "soft",
+            "cozy"
         ],
         "rarity": "common",
         "habitat": "forest",
@@ -97,10 +94,10 @@ SPECIES_REGISTRY = {
     "Cinderware": {
             "description": "Bear-like creatures that leave glowing pawprints wherever they walk.",
             "shelter": "den",
-            "liked_shelter_items": [
-                "warm pebbles",
-                "large cushions",
-                "glowing mushrooms"
+            "shelter_preferences": [
+                "warm",
+                "soft",
+                "large"
             ],
             "rarity": "common",
             "habitat": "forest",
@@ -127,10 +124,10 @@ SPECIES_REGISTRY = {
     "Stonehorn": {
         "description": "Goat-like creatures with volcanic stone horns.",
         "shelter": "den",
-        "liked_shelter_items": [
-            "lava rock",
-            "obsidian shards",
-            "mineral salt block"
+        "shelter_preferences": [
+            "stone",
+            "mineral",
+            "sturdy"
         ],
         "rarity": "common",
         "habitat": "volcanic",
@@ -158,10 +155,10 @@ SPECIES_REGISTRY = {
         "description": "A small, agile creature that can leap great distances. It has a coat of fine, frost-covered fur..",
         "shelter": "den",
         "rarity": "common",
-        "liked_shelter_items": [
-            "frost flowers",
-            "snow puff moss",
-            "ice crystal"
+        "shelter_preferences": [
+            "cold",
+            "soft",
+            "flower"
         ],
         "habitat": "artic",
         "diet": "omnivore",
@@ -187,11 +184,10 @@ SPECIES_REGISTRY = {
     "Frostfox": {
             "description": "Fox-like creatures with tails resembling drifting snowfall.",
             "shelter": "den",
-            "liked_shelter_items": [
-                "snow puff moss",
-                "frost flowers",
-                "soft bedding",
-                "ice crystal"
+            "shelter_preferences": [
+                "cold",
+                "soft",
+                "shiny"
             ],
             "rarity": "common",
             "habitat": "artic",
@@ -218,10 +214,10 @@ SPECIES_REGISTRY = {
     "Mossling": {
         "description": "A small woodland creature covered in soft moss and tiny sprouts.",
         "shelter": "burrow",
-        "liked_shelter_items": [
-            "soft moss",
-            "glowing mushrooms",
-            "tree roots"
+        "shelter_preferences": [
+            "plant",
+            "soft",
+            "natural"
         ],
         "rarity": "common",
         "habitat": "forest",
@@ -247,10 +243,10 @@ SPECIES_REGISTRY = {
         "Thornhare": {
         "description": "Rabbit-like creatures with thorny vines growing through their fur.",
         "shelter": "den",
-        "liked_shelter_items": [
-            "vines",
-            "soft moss",
-            "thorn branches"
+        "shelter_preferences": [
+            "plant",
+            "thorny",
+            "natural"
         ],
         "rarity": "common",
         "habitat": "forest",
@@ -276,9 +272,10 @@ SPECIES_REGISTRY = {
         "Fernpaw": {
         "description": "Feline creatures with leafy tails and glowing green eyes.",
         "shelter": "den",
-        "liked_shelter_items": [
-            "soft moss",
-            "glowing mushrooms",
+        "shelter_preferences": [
+            "plant",
+            "soft",
+            "glowing"
         ],
         "rarity": "common",
         "habitat": "forest",
@@ -319,12 +316,6 @@ def get_species_description(species_description):
     
     return {}
 
-def get_species_shelter(species_shelter):
-    if species_shelter in SPECIES_REGISTRY:
-        return SPECIES_REGISTRY[species_shelter]
-    
-    return {}
-
 def get_species_stat(species_name, key, default=100):
     species = get_species(species_name)
     if not species:
@@ -338,3 +329,19 @@ def get_starters():
         for name, data in SPECIES_REGISTRY.items()
         if data.get("is_starter")
     }
+
+def get_species_preferences(species_name):
+    species = get_species(species_name)
+
+    if not species:
+        return []
+
+    return species.get("shelter_preferences", [])
+
+def get_species_shelter(species_name):
+    species = get_species(species_name)
+
+    if not species:
+        return "shelter"
+
+    return species.get("shelter", "shelter")
