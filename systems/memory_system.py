@@ -131,26 +131,18 @@ def ensure_memory(memory):
     for key in ["play", "feed", "heal", "rest", "gift"]:
         memory["interactions"].setdefault(key, [])
 
-    memory.setdefault("emotional", {
-        "comfort_level": 0,
-        "stress_level": 0
-    })
+    memory.setdefault("preferences", {})
+    memory["preferences"].setdefault("liked_items", {})
+    memory["preferences"].setdefault("disliked_items", {})
 
-    memory.setdefault("experience", {
-        "healing_good": 0,
-        "healing_bad": 0
-    })
+    memory.setdefault("favorites", {})
+    memory["favorites"].setdefault("items", [])
 
-    memory.setdefault("preferences", {
-        "liked_items": {},
-        "disliked_items": {}
-    })
+    memory.setdefault("emotional", {})
+    memory["emotional"].setdefault("comfort_level", 0)
+    memory["emotional"].setdefault("stress_level", 0)
 
-    memory.setdefault("favorites", {"items": []})
-
-    memory.setdefault("flags", {
-        "afraid_of_healing": False,
-        "favorite_player": None
-    })
+    memory.setdefault("flags", {})
+    memory["flags"].setdefault("favorite_player", None)
 
     memory.setdefault("events", [])
