@@ -34,7 +34,7 @@ class Creature:
             "type": get_species(species)["shelter"],
             "level": 1,
             "comfort": 0,
-            "decorations": []
+            "items": []
         }
 
         self.personality = personality if personality else random.choice(list(PERSONALITIES.keys()))
