@@ -34,7 +34,7 @@ def setup(bot):
             name="🌍 Exploration",
             value=(
                 "`!explore`\n"
-                "`!explore_sanctuary`"
+                "`!explore_sanctuary <creature>`"
             ),
             inline=False
         )
