@@ -62,6 +62,18 @@ class StarterNameModal(discord.ui.Modal):
 
         player.add_creature(creature)
 
+        # 🟢 JOURNAL ENTRY
+        entry = {
+            "title": "First Companion Adopted",
+            "content": f"You adopted {creature.name} the {self.species}. The sanctuary feels a little more alive now.",
+            "type": "starter_adoption"
+        }
+        
+        if not hasattr(player, "journal_entries") or player.journal_entries is None:
+            player.journal_entries = []
+        
+        player.journal_entries.append(entry)
+
         player.tutorial_complete = True
         player.tutorial_stage = 3
         player.has_starter = True
