@@ -19,7 +19,8 @@ def setup(bot):
         save_player(player)
 
         await ctx.send(
-            f"🎁 {creature.name} {result.get('reaction', 'accepted')} the gift!\n"
-            f"🤝 Bond: {result.get('bond_gain', 0):+}\n"
-            f"🏡 Comfort: {result.get('comfort_gain', 0):+}"
+            f"🎁 {creature.name} {result['reaction']} the gift!\n"
+            f"🤝 Bond: {result['bond_gain']:+}\n"
+            f"🏡 Comfort: {result['comfort_gain']:+}\n\n"
+            f"{result['message']}"
         )
