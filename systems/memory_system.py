@@ -55,15 +55,19 @@ def update_memory(creature, action_type, result):
     memory["experience"].setdefault("healing_bad", 0)
 
     # ----------------------------
-    # INTERACTION LOG
+    # SAFE INTERACTIONS (FULL STRUCTURE GUARANTEE)
     # ----------------------------
-    # ----------------------------
-    # SAFE INTERACTIONS (ROBUST)
-    # ----------------------------
-    memory.setdefault("interactions", {})
+    memory.setdefault("interactions", {
+        "play": [],
+        "feed": [],
+        "heal": [],
+        "rest": [],
+        "gift": []
+    })
     
-    for action in ["play", "feed", "heal", "rest", "gift"]:
-        memory["interactions"].setdefault(action, [])
+    # hard guarantee (protect old saves)
+    for key in ["play", "feed", "heal", "rest", "gift"]:
+        memory["interactions"].setdefault(key, [])
     
     memory["interactions"][action_type].append({
         "success": result.get("success", True),
