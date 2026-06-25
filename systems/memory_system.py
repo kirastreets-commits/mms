@@ -21,6 +21,9 @@ def default_memory():
             "liked_items": {},
             "disliked_items": {}
         },
+        "favorites": {   # 👈 ADD IT HERE
+            "items": []
+        },
         "flags": {
             "afraid_of_healing": False,
             "favorite_player": None
