@@ -1,3 +1,11 @@
+from data.gift_responses import (
+    LOVE_MESSAGES,
+    LIKE_MESSAGES,
+    NEUTRAL_MESSAGES,
+    DISLIKE_MESSAGES,
+    FAVORITE_MESSAGES
+)
+
 def give_item(creature, item_id, player_id=None):
     from data.resources import RESOURCES
     from data.species import get_species_preferences
@@ -66,6 +74,27 @@ def give_item(creature, item_id, player_id=None):
         result["bond_gain"] = -2
         result["comfort_gain"] = -1
 
+    import random
+
+    if result["reaction"] == "loves":
+        result["message"] = random.choice(LOVE_MESSAGES).format(
+            name=creature.name
+        )
+    
+    elif result["reaction"] == "likes":
+        result["message"] = random.choice(LIKE_MESSAGES).format(
+            name=creature.name
+        )
+    
+    elif result["reaction"] == "neutral":
+        result["message"] = random.choice(NEUTRAL_MESSAGES).format(
+            name=creature.name
+        )
+    
+    else:
+        result["message"] = random.choice(DISLIKE_MESSAGES).format(
+            name=creature.name
+    )
     # ----------------------------
     # APPLY STAT CHANGES
     # ----------------------------
@@ -166,15 +195,15 @@ def apply_gift_outcome(creature, item_id, result):
     # ❤️ FAVORITE ITEMS
     # ----------------------------
     if reaction == "loves":
-        creature.memory.setdefault("favorites", {}).setdefault("items", [])
 
+        creature.memory.setdefault("favorites", {}).setdefault("items", [])
+    
         if item_id not in creature.memory["favorites"]["items"]:
             creature.memory["favorites"]["items"].append(item_id)
-
-        creature.shelter["items"].append({
-            "item": item_id,
-            "state": "favorite"
-        })
+        
+            result["message"] = random.choice(
+                FAVORITE_MESSAGES
+            ).format(name=creature.name)
 
     # ----------------------------
     # 😊 LIKES → KEEP IN SHELTER
