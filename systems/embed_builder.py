@@ -1,5 +1,5 @@
 import discord
-from systems.narrative_system import get_gift_message
+from systems.gift_responses import get_gift_message
 
 def build_gift_embed(creature, result):
     embed = discord.Embed(
