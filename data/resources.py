@@ -46,8 +46,7 @@ RESOURCES = {
             "Frostfox",
             "Emberfox"
         ]
-    }
-        },
+    },
     "obsidian_shards": {
         "name": "Obsidian Shards",
         "emoji": "❔",
@@ -58,8 +57,7 @@ RESOURCES = {
             "Fire Dragon",
             "Stonehorn"
         ]
-    }
-        },
+    },
     "lava_rock": {
         "name": "Lava Rock",
         "emoji": "❔",
@@ -70,8 +68,7 @@ RESOURCES = {
             "Fire Dragon",
             "Stonehorn"
         ]
-    }
-        },
+    },
     "heat_crystal": {
         "name": "Heat Crystal",
         "emoji": "❔",
@@ -81,8 +78,7 @@ RESOURCES = {
         "liked_by": [
             "Fire Dragon"
         ]
-    }
-        },
+    },
     "soft_bedding": {
         "name": "Soft Bedding",
         "emoji": "❔",
@@ -93,8 +89,7 @@ RESOURCES = {
             "Emberfox",
             "Frostfox",
         ]
-    }
-        },
+    },
     "glowing_mushrooms": {
         "name": "Glowing Mushrooms",
         "emoji": "❔",
@@ -107,8 +102,7 @@ RESOURCES = {
             "Mossling",
             "Fernpaw"
         ]
-    }
-        },
+    },
     "large_cushions": {
         "name": "Large Cushions",
         "emoji": "❔",
@@ -120,8 +114,7 @@ RESOURCES = {
             "x",
             "x"
         ]
-    }
-        },
+    },
     "mineral_salt_block": {
         "name": "Mineral Salt Block",
         "emoji": "❔",
@@ -131,8 +124,7 @@ RESOURCES = {
         "liked_by": [
             "Cinderware"
         ]
-    }
-        },
+    },
     "frost_flowers": {
         "name": "Frost Flowers",
         "emoji": "❔",
@@ -144,8 +136,7 @@ RESOURCES = {
             "Ice Dragon",
             "Frostfox"
         ]
-    }
-        },
+    },
     "ice_crystal": {
         "name": "Ice Crystal",
         "emoji": "❔",
@@ -157,8 +148,7 @@ RESOURCES = {
             "Ice Dragon",
             "Frostfox"
         ]
-    }
-        },
+    },
     "packed_snow": {
         "name": "Packed Snow",
         "emoji": "❔",
@@ -168,8 +158,7 @@ RESOURCES = {
         "liked_by": [
             "Ice Dragon",
         ]
-    }
-        },
+    },
     "snow_puff_moss": {
         "name": "Snow Puff Moss",
         "emoji": "❔",
@@ -180,8 +169,7 @@ RESOURCES = {
             "Frosthopper",
             "Frostfox"
         ]
-    }
-        },
+    },
     "soft_moss": {
         "name": "Soft Moss",
         "emoji": "❔",
@@ -192,8 +180,7 @@ RESOURCES = {
             "Mossling",
             "Thornhare"
         ]
-    }
-        },
+    },
     "tree_roots": {
         "name": "Tree Roots",
         "emoji": "❔",
@@ -203,8 +190,7 @@ RESOURCES = {
         "liked_by": [
             "Mossling",
         ]
-    }
-        },
+    },
     "vines": {
         "name": "Vines",
         "emoji": "❔",
@@ -214,8 +200,7 @@ RESOURCES = {
         "liked_by": [
             "Thornhare"
         ]
-    }
-        },
+    },
     "thorn_branches": {
         "name": "Thorn Branches",
         "emoji": "❔",
@@ -225,8 +210,7 @@ RESOURCES = {
         "liked_by": [
             "Thornhare"
         ]
-    }
-        },
+    },
     "wildflowers": {
         "name": "Wildflowers",
         "emoji": "🌸",
