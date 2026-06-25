@@ -125,3 +125,32 @@ def update_memory(creature, action_type, result):
 
         if len(memory["events"]) > 20:
             memory["events"].pop(0)
+
+def ensure_memory(memory):
+    memory.setdefault("interactions", {})
+    for key in ["play", "feed", "heal", "rest", "gift"]:
+        memory["interactions"].setdefault(key, [])
+
+    memory.setdefault("emotional", {
+        "comfort_level": 0,
+        "stress_level": 0
+    })
+
+    memory.setdefault("experience", {
+        "healing_good": 0,
+        "healing_bad": 0
+    })
+
+    memory.setdefault("preferences", {
+        "liked_items": {},
+        "disliked_items": {}
+    })
+
+    memory.setdefault("favorites", {"items": []})
+
+    memory.setdefault("flags", {
+        "afraid_of_healing": False,
+        "favorite_player": None
+    })
+
+    memory.setdefault("events", [])
