@@ -17,96 +17,53 @@ def give_item(creature, item_id, player_id=None):
             "message": "That item doesn't exist."
         }
 
-    # ----------------------------
-    # PREFERENCES (clean split)
-    # ----------------------------
-    preferences_raw = get_species_preferences(creature.species)
+    preferences = set(get_species_preferences(creature.species))
 
-    preferences = {
-        "tags": set(preferences_raw),   # treat species prefs as tags for now
-        "types": set()                  # optional future expansion
-    }
+    item_tags = set(resource.get("tags", []))
 
-    # ----------------------------
-    # RESULT BASE
-    # ----------------------------
+    match_score = len(item_tags.intersection(preferences))
+
     result = {
         "success": True,
         "reaction": "neutral",
-        "message": "",
+        "bond_gain": 0,
         "comfort_gain": 0,
-        "bond_gain": 0
+        "shelter_action": "ignored"
     }
 
-    # ----------------------------
-    # MATCH SCORING
-    # ----------------------------
-    item_tags = set(resource.get("tags", []))
-    item_type = resource.get("type")
-
-    match_score = 0
-
-    if item_type in preferences["types"]:
-        match_score += 2
-
-    match_score += len(item_tags.intersection(preferences["tags"]))
-
-    # ----------------------------
-    # REACTION LOGIC (balanced)
-    # ----------------------------
     if match_score >= 3:
-        result["reaction"] = "loves"
-        result["bond_gain"] = 5
-        result["comfort_gain"] = 3
+        result.update({
+            "reaction": "loves",
+            "bond_gain": 5,
+            "comfort_gain": 3,
+            "shelter_action": "favorite"
+        })
 
     elif match_score == 2:
-        result["reaction"] = "likes"
-        result["bond_gain"] = 2
-        result["comfort_gain"] = 2
+        result.update({
+            "reaction": "likes",
+            "bond_gain": 2,
+            "comfort_gain": 2,
+            "shelter_action": "kept"
+        })
 
     elif match_score == 1:
-        result["reaction"] = "neutral"
-        result["bond_gain"] = 0
-        result["comfort_gain"] = 1
+        result.update({
+            "reaction": "neutral",
+            "bond_gain": 0,
+            "comfort_gain": 1,
+            "shelter_action": "kept"
+        })
 
     else:
-        result["reaction"] = "dislikes"
-        result["bond_gain"] = -2
-        result["comfort_gain"] = -1
+        result.update({
+            "reaction": "dislikes",
+            "bond_gain": -2,
+            "comfort_gain": -1,
+            "shelter_action": "rejected"
+        })
 
-    import random
-
-    if result["reaction"] == "loves":
-        result["message"] = random.choice(LOVE_MESSAGES).format(
-            name=creature.name
-        )
-    
-    elif result["reaction"] == "likes":
-        result["message"] = random.choice(LIKE_MESSAGES).format(
-            name=creature.name
-        )
-    
-    elif result["reaction"] == "neutral":
-        result["message"] = random.choice(NEUTRAL_MESSAGES).format(
-            name=creature.name
-        )
-    
-    else:
-        result["message"] = random.choice(DISLIKE_MESSAGES).format(
-            name=creature.name
-    )
-    # ----------------------------
-    # APPLY STAT CHANGES
-    # ----------------------------
-    creature.trust = max(
-        0,
-        min(creature.max_trust, creature.trust + result["bond_gain"])
-    )
-
-    # ----------------------------
-    # MEMORY UPDATE (MANDATORY)
-    # ----------------------------
-    add_gift_memory(creature, item_id, result["reaction"], player_id)
+    creature.trust = max(0, min(creature.max_trust, creature.trust + result["bond_gain"]))
 
     return result
 from systems.memory_system import ensure_memory
@@ -157,77 +114,67 @@ def gift_creature(player, creature, item_id):
             "message": "You don't have that item."
         }
 
+    # remove item
     player.inventory[item_id] -= 1
-
     if player.inventory[item_id] <= 0:
         del player.inventory[item_id]
 
-    result = give_item(
-        creature,
-        item_id,
-        player_id=player.user_id
-    )
+    # reaction
+    result = give_item(creature, item_id, player.user_id)
 
-    apply_gift_outcome(
-        creature,
-        item_id,
-        result
-    )
+    # apply world changes
+    apply_gift_outcome(creature, item_id, result)
 
-    update_memory(
-        creature,
-        "gift",
-        result
-    )
+    # memory system
+    update_memory(creature, "gift", result)
 
     return {
         "success": True,
-        "reaction": result["reaction"],
-        "message": result["message"],
-        "bond_gain": result["bond_gain"],
-        "comfort_gain": result["comfort_gain"]
+        **result
     }
 
 def apply_gift_outcome(creature, item_id, result):
     reaction = result["reaction"]
+    action = result["shelter_action"]
+
+    # Ensure structure
+    creature.shelter.setdefault("items", [])
+    creature.memory.setdefault("favorites", {"items": []})
 
     # ----------------------------
-    # ❤️ FAVORITE ITEMS
+    # FAVORITE
     # ----------------------------
-    if reaction == "loves":
+    if action == "favorite":
+        creature.memory["favorites"]["items"].append(item_id)
 
-        creature.memory.setdefault("favorites", {}).setdefault("items", [])
-    
-        if item_id not in creature.memory["favorites"]["items"]:
-            creature.memory["favorites"]["items"].append(item_id)
-        
-            result["message"] = random.choice(
-                FAVORITE_MESSAGES
-            ).format(name=creature.name)
+        creature.shelter["items"].append({
+            "item": item_id,
+            "state": "favorite"
+        })
 
     # ----------------------------
-    # 😊 LIKES → KEEP IN SHELTER
+    # KEPT
     # ----------------------------
-    elif reaction == "likes":
+    elif action == "kept":
         creature.shelter["items"].append({
             "item": item_id,
             "state": "kept"
         })
 
     # ----------------------------
-    # 😐 NEUTRAL → OPTIONAL KEEP
+    # IGNORED
     # ----------------------------
-    elif reaction == "neutral":
+    elif action == "ignored":
         creature.shelter["items"].append({
             "item": item_id,
             "state": "ignored"
         })
 
     # ----------------------------
-    # ❌ DISLIKES → RETURN ITEM
+    # REJECTED
     # ----------------------------
-    elif reaction == "dislikes":
-        return_item_to_player(creature, item_id)
+    elif action == "rejected":
+        creature.memory.setdefault("rejected_items", []).append(item_id)
 
 #HELPER  
 
@@ -240,3 +187,53 @@ def return_item_to_player(creature, item_id):
         "returned": True,
         "message": f"{creature.name} rejected the item."
     }
+
+import discord
+
+def build_gift_embed(creature, item_id, result):
+    reaction = result["reaction"]
+    action = result["shelter_action"]
+
+    color_map = {
+        "loves": discord.Color.green(),
+        "likes": discord.Color.blurple(),
+        "neutral": discord.Color.greyple(),
+        "dislikes": discord.Color.red()
+    }
+
+    embed = discord.Embed(
+        title=f"{creature.name} received a gift!",
+        description=f"The creature looks **{reaction}** about it.",
+        color=color_map.get(reaction, discord.Color.default())
+    )
+
+    embed.add_field(
+        name="Bond Change",
+        value=f"+{result['bond_gain']} trust",
+        inline=True
+    )
+
+    embed.add_field(
+        name="Comfort",
+        value=f"+{result['comfort_gain']}",
+        inline=True
+    )
+
+    # 🏡 Shelter result message
+    shelter_text = {
+        "favorite": "It placed the item in a special corner of its shelter.",
+        "kept": "It added the item to its shelter.",
+        "ignored": "It left the item in its shelter without interest.",
+        "rejected": "It rejected the gift and refuses to keep it."
+    }
+
+    embed.add_field(
+        name="Shelter",
+        value=shelter_text.get(action, "No change."),
+        inline=False
+    )
+
+    if item_id:
+        embed.set_footer(text=f"Item: {item_id}")
+
+    return embed
