@@ -8,6 +8,12 @@ SPECIES_REGISTRY = {
     "Fire Dragon": {
         "description": "Aggressive dragons with burning breath.",
         "shelter": "nest",
+            "liked_shelter_items": [
+                "warm pebbles",
+                "obsidian shards",
+                "lava rock",
+                "heat crystal"
+            ],
         "rarity": "rare",
         "habitat": "volcanic",
         "diet": "carnivore",
@@ -31,6 +37,12 @@ SPECIES_REGISTRY = {
     "Ice Dragon": {
         "description": "Calm dragons from frozen lands.",
         "shelter": "nest",
+        "liked_shelter_items": [
+            "ice crystal",
+            "packed snow",
+            "frost flowers",
+            "glacial stone"
+        ],
         "rarity": "rare",
         "habitat": "arctic",
         "diet": "carnivore",
@@ -54,6 +66,12 @@ SPECIES_REGISTRY = {
     "Emberfox": {
         "description": "A fox-like creature with glowing warm fur.",
         "shelter": "den",
+        "liked_shelter_items": [
+            "warm pebbles",
+            "fluffy tuffs",
+            "soft bedding",
+            "glowing mushrooms"
+        ],
         "rarity": "common",
         "habitat": "forest",
         "diet": "omnivore",
@@ -79,6 +97,11 @@ SPECIES_REGISTRY = {
     "Cinderware": {
             "description": "Bear-like creatures that leave glowing pawprints wherever they walk.",
             "shelter": "den",
+            "liked_shelter_items": [
+                "warm pebbles",
+                "large cushions",
+                "glowing mushrooms"
+            ],
             "rarity": "common",
             "habitat": "forest",
             "diet": "carnivore",
@@ -104,6 +127,11 @@ SPECIES_REGISTRY = {
     "Stonehorn": {
         "description": "Goat-like creatures with volcanic stone horns.",
         "shelter": "den",
+        "liked_shelter_items": [
+            "lava rock",
+            "obsidian shards",
+            "mineral salt block"
+        ],
         "rarity": "common",
         "habitat": "volcanic",
         "diet": "carnivore",
@@ -130,6 +158,11 @@ SPECIES_REGISTRY = {
         "description": "A small, agile creature that can leap great distances. It has a coat of fine, frost-covered fur..",
         "shelter": "den",
         "rarity": "common",
+        "liked_shelter_items": [
+            "frost flowers",
+            "snow puff moss",
+            "ice crystal"
+        ],
         "habitat": "artic",
         "diet": "omnivore",
         "is_starter": True,
@@ -154,6 +187,12 @@ SPECIES_REGISTRY = {
     "Frostfox": {
             "description": "Fox-like creatures with tails resembling drifting snowfall.",
             "shelter": "den",
+            "liked_shelter_items": [
+                "snow puff moss",
+                "frost flowers",
+                "soft bedding",
+                "ice crystal"
+            ],
             "rarity": "common",
             "habitat": "artic",
             "diet": "omnivore",
@@ -179,6 +218,11 @@ SPECIES_REGISTRY = {
     "Mossling": {
         "description": "A small woodland creature covered in soft moss and tiny sprouts.",
         "shelter": "burrow",
+        "liked_shelter_items": [
+            "soft moss",
+            "glowing mushrooms",
+            "tree roots"
+        ],
         "rarity": "common",
         "habitat": "forest",
         "diet": "herbivore",
@@ -203,6 +247,11 @@ SPECIES_REGISTRY = {
         "Thornhare": {
         "description": "Rabbit-like creatures with thorny vines growing through their fur.",
         "shelter": "den",
+        "liked_shelter_items": [
+            "vines",
+            "soft moss",
+            "thorn branches"
+        ],
         "rarity": "common",
         "habitat": "forest",
         "diet": "herbivore",
@@ -227,6 +276,10 @@ SPECIES_REGISTRY = {
         "Fernpaw": {
         "description": "Feline creatures with leafy tails and glowing green eyes.",
         "shelter": "den",
+        "liked_shelter_items": [
+            "soft moss",
+            "glowing mushrooms",
+        ],
         "rarity": "common",
         "habitat": "forest",
         "diet": "omnivore",
