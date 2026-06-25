@@ -21,6 +21,15 @@ def setup(bot):
             ),
             inline=False
         )
+        )
+
+        embed.add_field(
+            name="👤Player",
+            value=(
+                "!inventory"
+            ),
+            inline=False
+        )
 
         embed.add_field(
             name="🌍 Exploration",
