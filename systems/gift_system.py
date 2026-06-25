@@ -120,30 +120,43 @@ def add_gift_memory(creature, item_id, reaction, player_id=None):
 
     
 def gift_creature(player, creature, item_id):
-    from data.resources import RESOURCES
     from systems.memory_system import update_memory
 
     if player.inventory.get(item_id, 0) <= 0:
-        return {"success": False, "message": "You don't have that item."}
+        return {
+            "success": False,
+            "message": "You don't have that item."
+        }
 
-    # remove item from player
     player.inventory[item_id] -= 1
+
     if player.inventory[item_id] <= 0:
         del player.inventory[item_id]
 
-    # calculate reaction
-    result = give_item(creature, item_id, player_id=player.user_id)
+    result = give_item(
+        creature,
+        item_id,
+        player_id=player.user_id
+    )
 
-    # apply shelter outcome
-    apply_gift_outcome(creature, item_id, result)
+    apply_gift_outcome(
+        creature,
+        item_id,
+        result
+    )
 
-    # memory update (if not already inside give_item)
-    update_memory(creature, "gift", result)
+    update_memory(
+        creature,
+        "gift",
+        result
+    )
 
     return {
         "success": True,
         "reaction": result["reaction"],
-        "message": result["message"]
+        "message": result["message"],
+        "bond_gain": result["bond_gain"],
+        "comfort_gain": result["comfort_gain"]
     }
 
 def apply_gift_outcome(creature, item_id, result):
