@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from commands import feed, heal, rest, play, start, starter, inspect, overview, explore_sanctuary, explore, journal, species, reset_tutorial, inventory, help, gift
+from commands import feed, heal, rest, play, start, starter, inspect, overview, explore_sanctuary, explore, journal, species, reset_tutorial, inventory, headcaretaker, help, gift
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -40,6 +40,7 @@ help.setup(bot)
 reset_tutorial.setup(bot)
 gift.setup(bot)
 inventory.setup(bot)
+headcaretaker.setup(bot)
 
 from systems.tutorial_cutscene import start_intro
 
