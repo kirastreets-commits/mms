@@ -13,5 +13,10 @@ async def continue_tutorial(ctx, player):
     elif stage == 1:
         await show_starter_selection(ctx)
 
-    else:
-        await ctx.send("Tutorial stage not implemented yet.")
+    elif stage == 2:
+        await first_care_task(ctx, player)
+
+    elif stage >= 3:
+        await ctx.send(
+            "🌿 Your caretaker training is complete. Explore the sanctuary and care for your creatures."
+        )
