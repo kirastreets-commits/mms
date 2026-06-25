@@ -310,11 +310,9 @@ def get_species_data(species_name):
 def get_species(species_name):
     return SPECIES_REGISTRY.get(species_name)
 
-def get_species_description(species_description):
-    if species_description in SPECIES_REGISTRY:
-        return SPECIES_REGISTRY[species_description]
-    
-    return {}
+def get_species_description(species_name):
+    species = SPECIES_REGISTRY.get(species_name)
+    return species.get("description") if species else None
 
 def get_species_stat(species_name, key, default=100):
     species = get_species(species_name)
