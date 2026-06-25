@@ -21,7 +21,6 @@ def setup(bot):
             ),
             inline=False
         )
-        )
 
         embed.add_field(
             name="👤Player",
