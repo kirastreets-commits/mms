@@ -45,11 +45,8 @@ class StarterNameModal(discord.ui.Modal):
 
         player = get_or_create_player(interaction.user)
 
-        if player.creatures:
-            await interaction.response.send_message(
-                "You already have a creature.",
-                ephemeral=True
-            )
+        if player.has_starter:
+            await ctx.send("You have already chosen your starter creature.")
             return
 
         species_data = get_species(self.species)
@@ -121,9 +118,11 @@ def setup(bot):
         player = get_or_create_player(ctx.author)
 
         # optional: prevent re-using starter system
-        if player.creatures:
-            await ctx.send("You already have a creature.")
+        
+        if player.has_starter:
+            await ctx.send("You have already chosen your starter creature.")
             return
+            
 
         await ctx.send(
             "🌿 **Choose your first rescued creature:**",
