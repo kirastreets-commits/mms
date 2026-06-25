@@ -4,6 +4,8 @@ from data.gift_responses import (
     NEUTRAL_MESSAGES,
     DISLIKE_MESSAGES
 )
+from data.gift_responses import get_gift_message
+
 
 def build_gift_embed(creature, result):
     embed = discord.Embed()
