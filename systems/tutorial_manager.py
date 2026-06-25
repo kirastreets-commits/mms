@@ -2,7 +2,9 @@ from systems.tutorial_cutscene import start_intro
 from commands.starter import show_starter_selection
 
 async def continue_tutorial(ctx, player):
-
+    
+    print(f"Tutorial stage = {player.tutorial_stage}")
+    
     stage = player.tutorial_stage
 
     if stage == 0:
