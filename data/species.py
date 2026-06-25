@@ -160,7 +160,7 @@ SPECIES_REGISTRY = {
             "soft",
             "flower"
         ],
-        "habitat": "artic",
+        "habitat": "arctic",
         "diet": "omnivore",
         "is_starter": True,
         "emoji": "❄️",
@@ -190,7 +190,7 @@ SPECIES_REGISTRY = {
                 "shiny"
             ],
             "rarity": "common",
-            "habitat": "artic",
+            "habitat": "arctic",
             "diet": "omnivore",
             "is_starter": False,
             "emoji": "❄️",
