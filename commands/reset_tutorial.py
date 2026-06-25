@@ -1,3 +1,5 @@
+from models.player import get_or_create_player 
+
 def setup(bot):
 
     @bot.command()
