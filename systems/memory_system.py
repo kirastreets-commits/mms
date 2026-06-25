@@ -1,9 +1,11 @@
 VALID_ACTIONS = {"play", "feed", "heal", "rest", "gift"}
-    if action_type not in VALID_ACTIONS:
-        return
+
+
+def ensure_valid_action(action_type):
+    return action_type in VALID_ACTIONS
+
 
 def default_memory():
-            
     return {
         "interactions": {
             "play": [],
@@ -24,7 +26,7 @@ def default_memory():
             "liked_items": {},
             "disliked_items": {}
         },
-        "favorites": {   # 👈 ADD IT HERE
+        "favorites": {
             "items": []
         },
         "flags": {
@@ -34,14 +36,29 @@ def default_memory():
         "events": []
     }
 
+
 def update_memory(creature, action_type, result):
     memory = creature.memory
 
     # ----------------------------
+    # VALID ACTION CHECK (SAFE)
+    # ----------------------------
+    if action_type not in VALID_ACTIONS:
+        return
+
+    # ----------------------------
     # SAFE INITIALISATION
     # ----------------------------
-    memory.setdefault("interactions", {})
-    memory["interactions"].setdefault(action_type, [])
+    memory.setdefault("interactions", {
+        "play": [],
+        "feed": [],
+        "heal": [],
+        "rest": [],
+        "gift": []
+    })
+
+    for key in VALID_ACTIONS:
+        memory["interactions"].setdefault(key, [])
 
     memory.setdefault("emotional", {})
     memory.setdefault("experience", {})
@@ -55,20 +72,8 @@ def update_memory(creature, action_type, result):
     memory["experience"].setdefault("healing_bad", 0)
 
     # ----------------------------
-    # SAFE INTERACTIONS (FULL STRUCTURE GUARANTEE)
+    # INTERACTION LOG
     # ----------------------------
-    memory.setdefault("interactions", {
-        "play": [],
-        "feed": [],
-        "heal": [],
-        "rest": [],
-        "gift": []
-    })
-    
-    # hard guarantee (protect old saves)
-    for key in ["play", "feed", "heal", "rest", "gift"]:
-        memory["interactions"].setdefault(key, [])
-    
     memory["interactions"][action_type].append({
         "success": result.get("success", True),
         "mood": creature.mood,
