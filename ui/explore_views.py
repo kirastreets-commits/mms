@@ -1,3 +1,8 @@
+import discord
+import random
+
+from systems.save_system import save_player
+from data.locations import LOCATIONS
 
 class ExploreMenuView(discord.ui.View):
     def __init__(self, player):
@@ -71,11 +76,7 @@ class LocationSelectMenu(discord.ui.Select):
 
         await interaction.response.edit_message(embed=embed, view=None)
 
-    
-# HELPERS
- 
-def explore_location(self, player, location_id, location):
-        import random
+    def explore_location(self, player, location_id, location):
 
         roll = random.randint(1, 100)
 
@@ -95,7 +96,7 @@ def explore_location(self, player, location_id, location):
             player.journal_entries.append(lore)
             return f"📜 Lore discovered:\n*{lore}*"
 
-        # 🐾 Creature event (placeholder for later system)
+        # 🐾 Creature event (placeholder)
         elif roll < 90:
             return "A creature watches you from afar… but disappears before you can react."
 
@@ -112,6 +113,6 @@ def explore_location(self, player, location_id, location):
         for next_loc in location["connected"]:
             if next_loc not in player.unlocked_locations:
                 player.unlocked_locations.append(next_loc)
-                return f"🔓 A new path has opened: **{next_loc}**"
+                return f"🔓 A new path has opened: **{LOCATIONS[next_loc]['name']}**"
 
         return "You feel this area is already fully explored."
