@@ -197,8 +197,8 @@ RESOURCES = {
     "tags": ["soft", "shiny"]
     },
 
-    "sweetberry": {
-    "name": "Sweetberry",
+    "sweetberries": {
+    "name": "Sweetberries",
     "emoji": "🍓",
     "rarity": "common",
     "type": "food",
