@@ -24,7 +24,8 @@ class Shelter:
                     comfort += 2
 
         return comfort
-        def update_shelter(creature):
+        
+    def update_shelter(creature):
             comfort = creature.shelter.get("comfort", 0)
 
         if comfort >= 100:
