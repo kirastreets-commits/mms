@@ -1,3 +1,6 @@
+# inside your data file
+LOCATION_TYPES = ["inside", "grounds", "outside"]
+
 LOCATIONS = {
     "sanctuary_core": {
         "name": "Sanctuary Core",
@@ -23,3 +26,4 @@ LOCATIONS = {
         "connected": ["sanctuary_gardens"]
     }
 }
+
