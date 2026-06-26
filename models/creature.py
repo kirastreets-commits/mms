@@ -536,7 +536,7 @@ class Creature:
 
         return result
     
-      def rest(self):
+     def rest(self):
     
         import random
     
@@ -699,7 +699,7 @@ class Creature:
         result["message"] = message
     
         return result
-    
+     
     # ----------------------------
     # 📊 STATUS CHECKS
     # ----------------------------
