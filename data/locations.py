@@ -40,8 +40,7 @@ LOCATIONS = {
         "name": "The Feeding Hall",
         "type": "inside",
         "resources": [
-            "sweetberries",
-            "warm_pebbles"
+            "sweetberries"
         ],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens", "sanctuary_core"]
