@@ -50,7 +50,21 @@ class LocationSelectView(discord.ui.View):
                     )
                 )
 
-        self.add_item(LocationSelectMenu(player, options))
+        if options:
+            self.add_item(LocationSelectMenu(player, options))
+        else:
+            self.add_item(
+                discord.ui.Select(
+                    placeholder="No locations unlocked",
+                    options=[
+                        discord.SelectOption(
+                            label="No locations available",
+                            value="none"
+                        )
+                    ],
+                    disabled=True
+                )
+            )
 
 class LocationSelectMenu(discord.ui.Select):
     def __init__(self, player, options):
