@@ -1,42 +1,54 @@
-class Shelter:
-    def __init__(self):
-        self.items = []
+from data.resources import RESOURCES
+from data.species import get_species_preferences
 
-    def calculate_comfort(self, species_name):
-        comfort = 0
+SHELTER_LEVELS = {
+    1: 0,
+    2: 15,
+    3: 35,
+    4: 60,
+    5: 100
+}
 
-        preferences = set(
-            tag.lower().strip()
-            for tag in get_species_preferences(species_name)
-        )
 
-        for item_id in self.items:
-            resource = RESOURCES.get(item_id)
-            if not resource:
-                continue
+def update_shelter(creature):
 
-            # base comfort
-            comfort += resource.get("comfort", 0)
+    preferences = set(
+        tag.lower().strip()
+        for tag in get_species_preferences(creature.species)
+    )
 
-            # tag matching
-            for tag in resource.get("tags", []):
-                if tag.lower().strip() in preferences:
-                    comfort += 2
+    comfort = 0
 
-        return comfort
-        
-    def update_shelter(creature):
-            comfort = creature.shelter.get("comfort", 0)
+    for entry in creature.shelter.get("items", []):
 
-            if comfort >= 100:
-                level = 5
-            elif comfort >= 60:
-                level = 4
-            elif comfort >= 35:
-                level = 3
-            elif comfort >= 15:
-                level = 2
-            else:
-                level = 1
-     
-            creature.shelter["level"] = level
+        item_id = entry["item"]
+
+        resource = RESOURCES.get(item_id)
+
+        if not resource:
+            continue
+
+        comfort += resource.get("comfort", 0)
+
+        for tag in resource.get("tags", []):
+            if tag.lower().strip() in preferences:
+                comfort += 2
+
+    creature.shelter["comfort"] = comfort
+
+    previous_level = creature.shelter.get("level", 1)
+
+    new_level = 1
+
+    for level, required in sorted(SHELTER_LEVELS.items()):
+        if comfort >= required:
+            new_level = level
+
+    creature.shelter["level"] = new_level
+
+    return {
+        "comfort": comfort,
+        "leveled_up": new_level > previous_level,
+        "old_level": previous_level,
+        "new_level": new_level
+    }
