@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from systems.save_system import get_or_create_player, save_player
 from data.locations import LOCATIONS
+from ui.explore_views import ExploreMenuView
 
 
 def setup(bot):
