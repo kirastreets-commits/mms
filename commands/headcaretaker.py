@@ -1,5 +1,5 @@
 import discord
-from ui import headcaretaker_views
+from ui.headcaretaker_views import HeadCaretakerView
 
 
 def setup(bot):
