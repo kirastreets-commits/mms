@@ -204,5 +204,5 @@ RESOURCES = {
     "type": "healing",
     "comfort": 2,
     "tags": ["plant", "natural"]
-    },
+    }
 }
