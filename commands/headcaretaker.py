@@ -1,19 +1,12 @@
-import discord
-from ui.headcaretaker_views import HeadCaretakerView
+from ui.npc.headcaretaker import HeadCaretaker
 
 
 def setup(bot):
 
     @bot.command()
     async def headcaretaker(ctx):
-    
-        embed = discord.Embed(
-            title="🌿 Head Caretaker",
-            description=(
-                "The Head Caretaker looks up and offers a gentle smile.\n\n"
-                "\"Welcome back, caretaker. How may I help you today?\""
-            ),
-            color=discord.Color.green()
-        )
-    
-        await ctx.send(embed=embed, view=HeadCaretakerView())
+
+        npc = HeadCaretaker()
+        view = npc.get_view(ctx.author.id)
+
+        await npc.open(ctx, view)
