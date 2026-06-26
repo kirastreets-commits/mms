@@ -34,6 +34,18 @@ LOCATIONS = {
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens"]
     },
+
+    "
+    "feeding_hall": {
+        "name": "The Feeding Hall",
+        "type": "inside",
+        "resources": [
+            "healing_moss",
+            "warm_pebbles"
+        ],
+        "lore_chance": 0.15,
+        "connected": ["sanctuary_gardens", "sanctuary_core"]
+    },
         
     "sanctuary_gardens": {
         "name": "Moonlit Gardens",
