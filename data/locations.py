@@ -5,7 +5,7 @@ LOCATIONS = {
     "sanctuary_core": {
         "name": "Sanctuary Core",
         "type": "inside",
-        "items": ["healing_moss"],
+        "resources": ["healing_moss"],
         "lore_chance": 0.15,
         "connected": ["healing_room", "sanctuary_gardens"]
     },
@@ -13,7 +13,7 @@ LOCATIONS = {
     "healing_room": {
         "name": "Healing Room",
         "type": "inside",
-        "items": ["healing_moss, glowing_mushrooms"],
+        "resources": ["healing_moss, glowing_mushrooms"],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens"]
     },
@@ -21,7 +21,7 @@ LOCATIONS = {
     "sanctuary_gardens": {
         "name": "Moonlit Gardens",
         "type": "grounds",
-        "items": ["sweetberries", "moonflowers"],
+        "resources": ["sweetberries", "moonflowers"],
         "lore_chance": 0.25,
         "connected": ["sanctuary_core", "moonlit_forest"]
     },
@@ -29,7 +29,7 @@ LOCATIONS = {
     "moonlit_forest": {
         "name": "Moonlit Forest",
         "type": "outside",
-        "items": ["rare_herbs"],
+        "resources": ["rare_herbs"],
         "lore_chance": 0.4,
         "connected": ["sanctuary_gardens"]
     }
