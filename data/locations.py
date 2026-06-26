@@ -7,11 +7,11 @@ LOCATIONS = {
         "type": "inside",
         "resources": ["healing_moss"],
         "lore_chance": 0.15,
-        "connected": ["healing_room", "sanctuary_gardens"]
+        "connected": ["healing_conservatory", "sanctuary_gardens"]
     },
 
-    "healing_room": {
-        "name": "Healing Room",
+    "healing_conservatory": {
+        "name": "The Healing Conservatory",
         "type": "inside",
         "resources": [
             "healing_moss",
