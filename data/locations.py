@@ -64,7 +64,7 @@ LOCATIONS = {
             "thorn_branches"
         ],
         "lore_chance": 0.4,
-        "connected": ["sanctuary_gardens, "emberlight_hollow"]
+        "connected": ["sanctuary_gardens", "emberlight_hollow"]
     },
     
     "emberlight_hollow": {
