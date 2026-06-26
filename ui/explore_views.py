@@ -108,7 +108,7 @@ class LocationSelectMenu(discord.ui.Select):
 
         # 🍓 Resource event
         elif roll < 55:
-            resource_id = random.choice(location["items"])
+            resource_id = random.choice(location["resources"])
             resource = RESOURCES[resource_id]
         
             amount = random.randint(1, 3)
