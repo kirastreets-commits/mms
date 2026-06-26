@@ -64,7 +64,21 @@ LOCATIONS = {
             "thorn_branches"
         ],
         "lore_chance": 0.4,
-        "connected": ["sanctuary_gardens"]
-    }
+        "connected": ["sanctuary_gardens, "emberlight_hollow"]
+    },
+    
+    "emberlight_hollow": {
+        "name": "Emberlight Hollow",
+        "type": "outside",
+        "resources": [
+            "obsidian_shards",
+            "lava_rock",
+            "heat_crystal",
+            "mineral_salt_block",
+            "glowing_mushrooms"
+        ],
+        "lore_chance": 0.4,
+        "connected": ["moonlit_forest"]
+}
 }
 
