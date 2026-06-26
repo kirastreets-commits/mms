@@ -10,7 +10,7 @@ LOCATIONS = {
             "warm_pebbles"
         ],
         "lore_chance": 0.15,
-        "connected": ["healing_conservatory", "sanctuary_gardens"]
+        "connected": ["healing_conservatory", "arcanum_archive", "sanctuary_gardens"]
     },
 
     "healing_conservatory": {
@@ -24,6 +24,17 @@ LOCATIONS = {
         "connected": ["sanctuary_gardens"]
     },
 
+    "arcanum_archive": {
+        "name": "The Arcanum Archive",
+        "type": "inside",
+        "resources": [
+            "healing_moss",
+            "warm_pebbles"
+        ],
+        "lore_chance": 0.15,
+        "connected": ["sanctuary_gardens"]
+    },
+        
     "sanctuary_gardens": {
         "name": "Moonlit Gardens",
         "type": "grounds",
