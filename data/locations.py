@@ -57,7 +57,12 @@ LOCATIONS = {
     "moonlit_forest": {
         "name": "Moonlit Forest",
         "type": "outside",
-        "resources": ["soft_moss"],
+        "resources": [
+            "soft_moss",
+            "vines",
+            "tree_roots",
+            "thorn_branches"
+        ],
         "lore_chance": 0.4,
         "connected": ["sanctuary_gardens"]
     }
