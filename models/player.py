@@ -10,6 +10,7 @@ class Player:
         creatures=None,
         discovered_species=None,
         journal_entries= None,
+        unlocked_locations=None,
         tutorial_stage=0,
         tutorial_complete=False,
         has_starter=False
@@ -22,9 +23,7 @@ class Player:
         self.creatures = creatures if isinstance(creatures, list) else []
         self.discovered_species = discovered_species if isinstance(discovered_species, list) else []
         self.journal_entries = journal_entries if isinstance(journal_entries, list) else []
-        self.unlocked_locations = [
-            "sanctuary_core"
-        ]
+        self.unlocked_locations = (unlocked_locations if isinstance(unlocked_locations, list) else ["sanctuary_core"])
 
         self.has_starter = has_starter
 
@@ -133,7 +132,7 @@ class Player:
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
             journal_entries=data.get("journal_entries", []),
-            unlocked_locations=data.get("unlocked_locations", []),
+            unlocked_locations=data.get("unlocked_locations", ["sanctuary_core"]),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
             has_starter=data.get("has_starter", False)
