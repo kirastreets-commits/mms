@@ -96,6 +96,7 @@ class LocationSelectMenu(discord.ui.Select):
         elif roll < 55:
             item_id = random.choice(location["items"])
             item = RESOURCES[item_id]
+            resource = RESOURCES[resource_id]
             amount = random.randint(1, 3)
             player.add_to_inventory(resource_id, amount)
 
