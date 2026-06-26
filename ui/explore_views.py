@@ -27,7 +27,7 @@ class ExploreMenuView(discord.ui.View):
 
         await interaction.response.edit_message(embed=embed, view=view)
 
-  class LocationSelectView(discord.ui.View):
+class LocationSelectView(discord.ui.View):
     def __init__(self, player, location_type):
         super().__init__(timeout=60)
         self.player = player
@@ -46,7 +46,7 @@ class ExploreMenuView(discord.ui.View):
 
         self.add_item(LocationSelectMenu(player, options))
 
-    class LocationSelectMenu(discord.ui.Select):
+class LocationSelectMenu(discord.ui.Select):
     def __init__(self, player, options):
         self.player = player
 
@@ -71,7 +71,10 @@ class ExploreMenuView(discord.ui.View):
 
         await interaction.response.edit_message(embed=embed, view=None)
 
-    def explore_location(self, player, location_id, location):
+    
+# HELPERS
+ 
+def explore_location(self, player, location_id, location):
         import random
 
         roll = random.randint(1, 100)
