@@ -536,7 +536,7 @@ class Creature:
 
         return result
     
-     def rest(self):
+    def rest(self):
     
         import random
     
