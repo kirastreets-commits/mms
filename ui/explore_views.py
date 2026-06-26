@@ -61,8 +61,13 @@ class LocationSelectMenu(discord.ui.Select):
         )
 
     async def callback(self, interaction: discord.Interaction):
-        location_id = self.values[0]
-        location = LOCATIONS[location_id]
+    print("SELECT FIRED")
+    print("VALUE:", self.values)
+
+    await interaction.response.send_message(
+        f"Debug: {self.values}",
+        ephemeral=True
+    )
 
         result = self.explore_location(self.player, location_id, location)
 
