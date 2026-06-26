@@ -61,24 +61,26 @@ class LocationSelectMenu(discord.ui.Select):
         )
 
     async def callback(self, interaction: discord.Interaction):
-        print("SELECT FIRED")
-        print("VALUE:", self.values)
+        location_id = self.values[0]   # ✅ YOU ARE MISSING THIS LINE
+        location = LOCATIONS[location_id]
 
-        await interaction.response.send_message(
-            f"Debug: {self.values}",
-            ephemeral=True
-        )
-
+        if not self.values:
+            await interaction.response.send_message(
+                "No selection detected.",
+                ephemeral=True
+            )
+            return
+            
         result = self.explore_location(self.player, location_id, location)
-
+    
         save_player(self.player)
-
+    
         embed = discord.Embed(
             title=f"✨ Exploring {location['name']}",
             description=result,
             color=0xf1c40f
         )
-
+    
         await interaction.response.edit_message(embed=embed, view=None)
 
     def explore_location(self, player, location_id, location):
