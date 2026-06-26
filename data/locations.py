@@ -35,7 +35,6 @@ LOCATIONS = {
         "connected": ["sanctuary_gardens"]
     },
 
-    "
     "feeding_hall": {
         "name": "The Feeding Hall",
         "type": "inside",
