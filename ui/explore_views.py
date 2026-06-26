@@ -139,6 +139,7 @@ class LocationSelectMenu(discord.ui.Select):
         for next_loc in location["connected"]:
             if next_loc not in player.unlocked_locations:
                 player.unlocked_locations.append(next_loc)
+                print(player.unlocked_locations)
                 return f"🔓 A new path has opened: **{LOCATIONS[next_loc]['name']}**"
 
         return "You feel this area is already fully explored."
