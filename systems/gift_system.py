@@ -66,6 +66,7 @@ def give_item(creature, item_id, player_id=None):
     creature.trust = max(0, min(creature.max_trust, creature.trust + result["bond_gain"]))
 
     return result
+    
 from systems.memory_system import ensure_memory
 def add_gift_memory(creature, item_id, reaction, player_id=None):
     ensure_memory(creature.memory)
@@ -134,18 +135,27 @@ def gift_creature(player, creature, item_id):
     }
 
 def apply_gift_outcome(creature, item_id, result):
-    reaction = result["reaction"]
     action = result["shelter_action"]
 
     # Ensure structure
     creature.shelter.setdefault("items", [])
+    creature.shelter.setdefault("comfort", 0)
     creature.memory.setdefault("favorites", {"items": []})
+
+    # ----------------------------
+    # APPLY COMFORT
+    # ----------------------------
+    creature.shelter["comfort"] = max(
+        0,
+        creature.shelter["comfort"] + result["comfort_gain"]
+    )
 
     # ----------------------------
     # FAVORITE
     # ----------------------------
     if action == "favorite":
-        creature.memory["favorites"]["items"].append(item_id)
+        if item_id not in creature.memory["favorites"]["items"]:
+            creature.memory["favorites"]["items"].append(item_id)
 
         creature.shelter["items"].append({
             "item": item_id,
@@ -176,6 +186,10 @@ def apply_gift_outcome(creature, item_id, result):
     elif action == "rejected":
         creature.memory.setdefault("rejected_items", []).append(item_id)
 
+    # ----------------------------
+    # UPDATE SHELTER LEVEL
+    # ----------------------------
+    update_shelter(creature)
 #HELPER  
 
 def return_item_to_player(creature, item_id):
