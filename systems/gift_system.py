@@ -141,21 +141,13 @@ def apply_gift_outcome(creature, item_id, result):
 
     # Ensure structure
     creature.shelter.setdefault("items", [])
-    creature.shelter.setdefault("comfort", 0)
     creature.memory.setdefault("favorites", {"items": []})
-
-    # ----------------------------
-    # APPLY COMFORT
-    # ----------------------------
-    creature.shelter["comfort"] = max(
-        0,
-        creature.shelter["comfort"] + result["comfort_gain"]
-    )
 
     # ----------------------------
     # FAVORITE
     # ----------------------------
     if action == "favorite":
+
         if item_id not in creature.memory["favorites"]["items"]:
             creature.memory["favorites"]["items"].append(item_id)
 
@@ -168,6 +160,7 @@ def apply_gift_outcome(creature, item_id, result):
     # KEPT
     # ----------------------------
     elif action == "kept":
+
         creature.shelter["items"].append({
             "item": item_id,
             "state": "kept"
@@ -177,6 +170,7 @@ def apply_gift_outcome(creature, item_id, result):
     # IGNORED
     # ----------------------------
     elif action == "ignored":
+
         creature.shelter["items"].append({
             "item": item_id,
             "state": "ignored"
@@ -186,12 +180,17 @@ def apply_gift_outcome(creature, item_id, result):
     # REJECTED
     # ----------------------------
     elif action == "rejected":
+
         creature.memory.setdefault("rejected_items", []).append(item_id)
 
     # ----------------------------
-    # UPDATE SHELTER LEVEL
+    # RECALCULATE SHELTER
     # ----------------------------
-    update_shelter(creature)
+    shelter_result = update_shelter(creature)
+
+    result["comfort"] = shelter_result["comfort"]
+    result["shelter_level"] = shelter_result["new_level"]
+    result["leveled_up"] = shelter_result["leveled_up"]
 #HELPER  
 
 def return_item_to_player(creature, item_id):
@@ -206,50 +205,68 @@ def return_item_to_player(creature, item_id):
 
 import discord
 
-def build_gift_embed(creature, item_id, result):
-    reaction = result["reaction"]
-    action = result["shelter_action"]
+import discord
+from data.gift_responses import get_gift_message
 
-    color_map = {
+
+def get_shelter_text(creature, result):
+
+    shelter_name = creature.shelter.get("type", "shelter")
+
+    return {
+        "favorite": f"It carefully places the gift in a special spot inside its {shelter_name}.",
+        "kept": f"It carries the gift back to its {shelter_name}.",
+        "ignored": f"It leaves the gift inside its {shelter_name}.",
+        "rejected": "It politely refuses the gift."
+    }.get(result["shelter_action"], "")
+
+
+def build_gift_embed(creature, result):
+
+    reaction = result["reaction"]
+
+    colors = {
         "loves": discord.Color.green(),
         "likes": discord.Color.blurple(),
-        "neutral": discord.Color.greyple(),
+        "neutral": discord.Color.gold(),
         "dislikes": discord.Color.red()
     }
 
     embed = discord.Embed(
         title=f"{creature.name} received a gift!",
-        description=f"The creature looks **{reaction}** about it.",
-        color=color_map.get(reaction, discord.Color.default())
+        description=get_gift_message(creature, result),
+        color=colors.get(reaction, discord.Color.green())
     )
 
     embed.add_field(
-        name="Bond Change",
-        value=f"+{result['bond_gain']} trust",
+        name="Trust",
+        value=f"{result['bond_gain']:+}",
         inline=True
     )
 
     embed.add_field(
-        name="Comfort",
-        value=f"+{result['comfort_gain']}",
+        name="Shelter Comfort",
+        value=f"{result['comfort']} ⭐",
         inline=True
     )
 
-    # 🏡 Shelter result message
-    shelter_text = {
-        "favorite": "It placed the item in a special corner of its shelter.",
-        "kept": "It added the item to its shelter.",
-        "ignored": "It left the item in its shelter without interest.",
-        "rejected": "It rejected the gift and refuses to keep it."
-    }
+    embed.add_field(
+        name="Shelter Level",
+        value=f"Level {result['shelter_level']}",
+        inline=True
+    )
 
     embed.add_field(
         name="Shelter",
-        value=shelter_text.get(action, "No change."),
+        value=get_shelter_text(creature, result),
         inline=False
     )
 
-    if item_id:
-        embed.set_footer(text=f"Item: {item_id}")
+    if result.get("leveled_up"):
+        embed.add_field(
+            name="🏡 Shelter Upgraded!",
+            value=f"{creature.name}'s {creature.shelter.get('type', 'shelter')} reached **Level {result['shelter_level']}**!",
+            inline=False
+        )
 
     return embed
