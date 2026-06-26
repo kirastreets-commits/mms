@@ -6,7 +6,8 @@ LOCATIONS = {
         "name": "The Grand Hearth Hall",
         "type": "inside",
         "resources": [
-            "healing_moss",
+            "soft_bedding",
+            "large_cushions",
             "warm_pebbles"
         ],
         "lore_chance": 0.15,
@@ -39,7 +40,7 @@ LOCATIONS = {
         "name": "The Feeding Hall",
         "type": "inside",
         "resources": [
-            "sweetberry",
+            "sweetberries",
             "warm_pebbles"
         ],
         "lore_chance": 0.15,
