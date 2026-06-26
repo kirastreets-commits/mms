@@ -64,7 +64,7 @@ LOCATIONS = {
             "thorn_branches"
         ],
         "lore_chance": 0.4,
-        "connected": ["sanctuary_gardens", "emberlight_hollow"]
+        "connected": ["sanctuary_gardens", "emberlight_hollow", "frostpine_forest"]
     },
     
     "emberlight_hollow": {
@@ -79,6 +79,18 @@ LOCATIONS = {
         ],
         "lore_chance": 0.4,
         "connected": ["moonlit_forest"]
-}
+    },
+    
+    "frostpine_forest": {
+        "name": "Frostpine Forest",
+        "type": "outside",
+        "resources": [
+            "snow_puff_moss",
+            "packed_snow",
+            "frost_flowers"
+        ],
+        "lore_chance": 0.4,
+        "connected": ["moonlit_forest"]
+    }
 }
 
