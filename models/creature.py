@@ -558,6 +558,11 @@ class Creature:
         energy_gain = 25
         happiness_gain = 10
 
+        level = self.shelter.get("level", 1)
+
+        energy_gain = 10 + (level * 2)
+        trust_gain = level // 2
+
         self.energy = min(100, self.energy + energy_gain)
         self.happiness = min(100, self.happiness + happiness_gain)
 
@@ -566,10 +571,6 @@ class Creature:
             ("Happiness", happiness_gain)
         ])
 
-        level = self.shelter.get("level", 1)
-
-        energy_gain = 10 + (level * 2)
-        trust_gain = level // 2
 
         # ----------------------------
         # BOND BONUS
