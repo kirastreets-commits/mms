@@ -10,6 +10,7 @@ LOCATIONS = {
             "large_cushions",
             "warm_pebbles"
         ],
+        "available_creatures": [],
         "lore_chance": 0.15,
         "connected": ["healing_conservatory", "arcanum_archive", "feeding_hall", "sanctuary_gardens"]
     },
