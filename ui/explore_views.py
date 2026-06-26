@@ -3,6 +3,7 @@ import random
 
 from systems.save_system import save_player
 from data.locations import LOCATIONS
+from data.resources import RESOURCES
 
 class ExploreMenuView(discord.ui.View):
     def __init__(self, player):
@@ -93,9 +94,12 @@ class LocationSelectMenu(discord.ui.Select):
 
         # 🍓 Item event
         elif roll < 55:
-            item = random.choice(location["items"])
-            player.inventory[item] = player.inventory.get(item, 0) + 1
-            return f"You found **{item}** hidden in the area."
+            item_id = random.choice(location["items"])
+            item = RESOURCES[item_id]
+
+            player.inventory[item_id] = player.inventory.get(item_id, 0) + 1
+            
+            return f"You found **{item['emoji']} {item['name']}** in the area."
 
         # 📜 Lore event
         elif roll < 75:
