@@ -39,7 +39,7 @@ LOCATIONS = {
         "name": "The Feeding Hall",
         "type": "inside",
         "resources": [
-            "healing_moss",
+            "sweetberry",
             "warm_pebbles"
         ],
         "lore_chance": 0.15,
