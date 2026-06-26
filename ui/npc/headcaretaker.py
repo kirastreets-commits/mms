@@ -1,6 +1,8 @@
 import discord
 from ui.npc.base_npc import BaseNPC
 from ui.npc.base_view import BaseNPCView
+from ui.components.creature_select import CreatureSelectView
+from systems.save_system import get_or_create_player, save_player
 
 
 class HeadCaretaker(BaseNPC):
