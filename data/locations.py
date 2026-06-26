@@ -3,7 +3,7 @@ LOCATION_TYPES = ["inside", "grounds", "outside"]
 
 LOCATIONS = {
     "sanctuary_core": {
-        "name": "Sanctuary Core",
+        "name": "The Grand Hearth Hall",
         "type": "inside",
         "resources": ["healing_moss"],
         "lore_chance": 0.15,
