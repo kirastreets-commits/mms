@@ -536,159 +536,168 @@ class Creature:
 
         return result
     
-    def rest(self):
-
+      def rest(self):
+    
         import random
-
+    
         from systems.mood_system import update_mood
         from systems.personality_system import apply_personality
         from data.rest_responses import REST_MESSAGES, REST_PERSONALITY_LINES
-
+    
         result = {
             "message": "",
             "stat_changes": [],
             "mood_change": None,
             "rare_event": None
         }
-
+    
         # ----------------------------
-        # BASE RECOVERY
+        # SHELTER VALUES
         # ----------------------------
-
+    
+        level = self.shelter.get("level", 1)
+        comfort = self.shelter.get("comfort", 0)
+    
+        # ----------------------------
+        # BASE RECOVERY (unchanged baseline feel)
+        # ----------------------------
+    
         energy_gain = 25
         happiness_gain = 10
-
-        level = self.shelter.get("level", 1)
-
-        energy_gain = 10 + (level * 2)
-        trust_gain = level // 2
-
+    
+        # ----------------------------
+        # SHELTER BONUSES
+        # ----------------------------
+    
+        energy_gain += (level - 1) * 2
+        energy_gain += comfort // 10   # stronger comfort scaling
+    
+        happiness_gain += (level - 1)
+        happiness_gain += comfort // 25
+    
+        trust_gain = (level - 1) // 2
+    
         self.energy = min(100, self.energy + energy_gain)
         self.happiness = min(100, self.happiness + happiness_gain)
-
+        self.trust = min(100, self.trust + trust_gain)
+    
         result["stat_changes"].extend([
             ("Energy", energy_gain),
-            ("Happiness", happiness_gain)
+            ("Happiness", happiness_gain),
+            ("Trust", trust_gain)
         ])
-
-
+    
         # ----------------------------
         # BOND BONUS
         # ----------------------------
-
+    
         bond = self.bond_level()
-
+    
         if bond == "friendly":
-
             self.happiness = min(100, self.happiness + 2)
-
-            result["stat_changes"].append(
-                ("Happiness", 2)
-            )
-
+            result["stat_changes"].append(("Happiness", 2))
+    
         elif bond == "trusted":
-
             self.happiness = min(100, self.happiness + 3)
             self.trust = min(100, self.trust + 2)
-
-            result["stat_changes"].extend([
-                ("Happiness", 3),
-                ("Trust", 2)
-            ])
-
+            result["stat_changes"].extend([("Happiness", 3), ("Trust", 2)])
+    
         elif bond == "devoted":
-
             self.happiness = min(100, self.happiness + 5)
             self.trust = min(100, self.trust + 3)
-
-            result["stat_changes"].extend([
-                ("Happiness", 5),
-                ("Trust", 3)
-            ])
-
+            result["stat_changes"].extend([("Happiness", 5), ("Trust", 3)])
+    
         # ----------------------------
         # PERSONALITY EFFECTS
         # ----------------------------
-
-        personality_changes = apply_personality(
-            self,
-            "rest"
-        )
-
-        result["stat_changes"].extend(
-            personality_changes
-        )
-
+    
+        personality_changes = apply_personality(self, "rest")
+        result["stat_changes"].extend(personality_changes)
+    
         # ----------------------------
         # MOOD UPDATE
         # ----------------------------
-
+    
         old_mood = self.mood
-
         update_mood(self)
-
+    
         if old_mood != self.mood:
             result["mood_change"] = self.mood
-
+    
         # ----------------------------
-        # BASE MOOD RESPONSE
+        # BASE MESSAGE
         # ----------------------------
+    
         message = random.choice(
-            REST_MESSAGES.get(
-                self.mood,
-                REST_MESSAGES["neutral"]
-            )
+            REST_MESSAGES.get(self.mood, REST_MESSAGES["neutral"])
         ).format(name=self.name)
-
+    
         # ----------------------------
         # PERSONALITY FLAVOUR
         # ----------------------------
-
+    
         if self.personality in REST_PERSONALITY_LINES:
             message += "\n\n" + REST_PERSONALITY_LINES[self.personality]
-
+    
         # ----------------------------
         # BOND FLAVOUR
         # ----------------------------
-
+    
         BOND_LINES = {
-
-            "friendly":
-                "It seems comfortable around you.",
-
-            "trusted":
-                "It clearly trusts your presence.",
-
-            "devoted":
-                "It relaxes completely when you're nearby."
+            "friendly": "It seems comfortable around you.",
+            "trusted": "It clearly trusts your presence.",
+            "devoted": "It relaxes completely when you're nearby."
         }
-
+    
         if bond in BOND_LINES:
             message += "\n\n" + BOND_LINES[bond]
-
+    
+        # ----------------------------
+        # SHELTER FLAVOUR (NEW)
+        # ----------------------------
+    
+        if level >= 5:
+            message += f"\n\nIts beautifully decorated home leaves {self.name} completely refreshed."
+    
+        elif level >= 3:
+            message += f"\n\n{self.name} wakes feeling comfortable in its well-kept home."
+    
+        elif comfort >= 20:
+            message += f"\n\n{self.name} seems to appreciate the comfort of its home."
+    
+        # ----------------------------
+        # FAVOURITE ITEM BONUS (NEW)
+        # ----------------------------
+    
+        favorites = self.memory.get("favorites", {}).get("items", [])
+    
+        if favorites and random.random() < 0.25:
+            self.happiness = min(100, self.happiness + 2)
+    
+            result["stat_changes"].append(("Happiness", 2))
+    
+            message += f"\n\nBefore settling down, {self.name} curls up beside one of its favourite possessions."
+    
         # ----------------------------
         # RARE EVENT
         # ----------------------------
-
+    
         if random.random() < 0.08:
-
+    
             result["rare_event"] = random.choice([
-
+    
                 f"{self.name} shifts closer to you in its sleep.",
-
                 f"You notice {self.name}'s breathing slow into a deep calm rhythm.",
-
                 f"{self.name} lets out a quiet sound before fully resting.",
-
                 f"{self.name} seems to be dreaming peacefully."
             ])
-
+    
         # ----------------------------
         # FINAL MESSAGE
         # ----------------------------
-
+    
         result["message"] = message
-
+    
         return result
     
     # ----------------------------
