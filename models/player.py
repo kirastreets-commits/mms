@@ -106,6 +106,7 @@ class Player:
             "creatures": [c.to_dict() for c in self.creatures],
             "discovered_species": self.discovered_species,
             "journal_entries": self.journal_entries,
+            "unlocked_locations": self.unlocked_locations,
             "tutorial_stage": self.tutorial_stage,
             "tutorial_complete": self.tutorial_complete,
             "has_starter": self.has_starter
@@ -132,6 +133,7 @@ class Player:
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
             journal_entries=data.get("journal_entries", []),
+            player.unlocked_locations = data.get("unlocked_locations",[])
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
             has_starter=data.get("has_starter", False)
