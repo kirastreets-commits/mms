@@ -13,7 +13,10 @@ LOCATIONS = {
     "healing_room": {
         "name": "Healing Room",
         "type": "inside",
-        "resources": ["healing_moss, glowing_mushrooms"],
+        "resources": [
+            "healing_moss",
+            "glowing_mushrooms"
+        ],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens"]
     },
