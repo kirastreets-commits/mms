@@ -106,15 +106,17 @@ class LocationSelectMenu(discord.ui.Select):
         if roll < 20:
             return "The area is quiet… nothing unusual stirs."
 
-        # 🍓 Item event
+        # 🍓 Resource event
         elif roll < 55:
-            item_id = random.choice(location["items"])
-            item = RESOURCES[item_id]
+            resource_id = random.choice(location["items"])
             resource = RESOURCES[resource_id]
+        
             amount = random.randint(1, 3)
             player.add_to_inventory(resource_id, amount)
-
-            return f"You found **{item['emoji']} {item['name']}** in the area."
+        
+            return (
+                f"You found {resource['emoji']} **{resource['name']}** x{amount}!"
+            )
 
         # 📜 Lore event
         elif roll < 75:
