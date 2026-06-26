@@ -133,7 +133,7 @@ class Player:
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
             journal_entries=data.get("journal_entries", []),
-            player.unlocked_locations = data.get("unlocked_locations",[])
+            player.unlocked_locations=data.get("unlocked_locations", []),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
             has_starter=data.get("has_starter", False)
