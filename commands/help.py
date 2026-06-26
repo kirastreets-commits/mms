@@ -25,7 +25,7 @@ def setup(bot):
         embed.add_field(
             name="👤Player",
             value=(
-                "!inventory"
+                "`!inventory`"
             ),
             inline=False
         )
