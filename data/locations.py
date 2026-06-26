@@ -24,7 +24,7 @@ LOCATIONS = {
     "sanctuary_gardens": {
         "name": "Moonlit Gardens",
         "type": "grounds",
-        "resources": ["sweetberries", "moonflowers"],
+        "resources": ["wildflowers"],
         "lore_chance": 0.25,
         "connected": ["sanctuary_core", "moonlit_forest"]
     },
