@@ -197,6 +197,15 @@ RESOURCES = {
     "tags": ["soft", "shiny"]
     },
 
+    "sweetberry": {
+    "name": "Sweetberry",
+    "emoji": "🍓",
+    "rarity": "common",
+    "type": "food",
+    "comfort": 1,
+    "tags": ["plant", "soft", "natural"]
+    },
+
     "healing_moss": {
     "name": "Healing Moss",
     "emoji": "💎",
