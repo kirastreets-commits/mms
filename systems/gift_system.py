@@ -1,3 +1,5 @@
+from systems.shelter_system import update_shelter
+
 from data.gift_responses import (
     LOVE_MESSAGES,
     LIKE_MESSAGES,
