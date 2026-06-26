@@ -17,7 +17,7 @@ def setup(bot):
         if not result["success"]:
             return await ctx.send(result["message"])
 
-        save_player(player
+        save_player(player)
     
         embed = build_gift_embed(creature, result)
     
