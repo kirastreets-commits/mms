@@ -195,5 +195,14 @@ RESOURCES = {
     "type": "shelter",
     "comfort": 2,
     "tags": ["soft", "shiny"]
-    }
+    },
+
+    "healing_moss": {
+    "name": "Healing Moss",
+    "emoji": "💎",
+    "rarity": "common",
+    "type": "healing",
+    "comfort": 2,
+    "tags": ["plant", "natural"]
+    },
 }
