@@ -5,7 +5,10 @@ LOCATIONS = {
     "sanctuary_core": {
         "name": "The Grand Hearth Hall",
         "type": "inside",
-        "resources": ["healing_moss"],
+        "resources": [
+            "healing_moss",
+            "warm_pebbles"
+        ],
         "lore_chance": 0.15,
         "connected": ["healing_conservatory", "sanctuary_gardens"]
     },
