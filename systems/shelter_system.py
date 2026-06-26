@@ -28,15 +28,15 @@ class Shelter:
     def update_shelter(creature):
             comfort = creature.shelter.get("comfort", 0)
 
-        if comfort >= 100:
-            level = 5
-        elif comfort >= 60:
-            level = 4
-        elif comfort >= 35:
-            level = 3
-        elif comfort >= 15:
-            level = 2
-        else:
-            level = 1
- 
-        creature.shelter["level"] = level
+            if comfort >= 100:
+                level = 5
+            elif comfort >= 60:
+                level = 4
+            elif comfort >= 35:
+                level = 3
+            elif comfort >= 15:
+                level = 2
+            else:
+                level = 1
+     
+            creature.shelter["level"] = level
