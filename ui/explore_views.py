@@ -24,9 +24,6 @@ class ExploreMenuView(discord.ui.View):
     async def outside(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.open_location_menu(interaction, "outside")
 
-    @discord.ui.button(label="✏️ Give Name", style=discord.ButtonStyle.primary)
-    async def name_creature(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(RenameModal(self.player, self.species_name))
 
     async def open_location_menu(self, interaction, location_type):
         view = LocationSelectView(self.player, location_type)
@@ -302,6 +299,10 @@ class RenameModal(discord.ui.Modal, title="Name your creature"):
         super().__init__()
         self.player = player
         self.species_name = species_name
+
+    @discord.ui.button(label="✏️ Give Name", style=discord.ButtonStyle.primary)
+    async def name_creature(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_modal(RenameModal(self.player, self.species_name))
 
     async def on_submit(self, interaction: discord.Interaction):
 
