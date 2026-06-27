@@ -203,7 +203,7 @@ class LocationSelectMenu(discord.ui.Select):
         
                 return (
                     message,
-                    None
+                    RescueView(player, species_name)
                 )
         
             # 🔓 Unlock new locations
