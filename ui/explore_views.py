@@ -195,7 +195,7 @@ class LocationSelectMenu(discord.ui.Select):
                     )
         
                 message = (
-                    f"🐾 You spot a **{species_name}** watching you from the shadows."
+                    f"🐾 You spot a **{species_name}** watching you curiously from the shadows."
                 )
         
                 if discovered:
