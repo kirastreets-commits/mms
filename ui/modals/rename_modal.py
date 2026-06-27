@@ -13,26 +13,26 @@ class RenameModal(discord.ui.Modal, title="Rename Creature"):
 
         player = get_or_create_player(interaction.user)
         creature = player.get_creature(self.creature_name)
-    
+
         if not creature:
             return await interaction.response.send_message(
                 "That creature could not be found.",
                 ephemeral=True
             )
-    
+
         new_name = self.new_name.value.strip()
-    
+
         if not new_name:
             return await interaction.response.send_message(
-                "The name cannot be empty.",
+                "Name cannot be empty.",
                 ephemeral=True
             )
-    
+
         old_name = creature.nickname or creature.name
         creature.nickname = new_name
-    
+
         save_player(player)
-    
+
         await interaction.response.send_message(
             f"🌿 The Head Caretaker smiles softly...\n\n"
             f"\"{new_name}... yes, that suits them.\"\n\n"
