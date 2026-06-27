@@ -1,29 +1,19 @@
-class ReleaseSelect(discord.ui.Select):
-    def __init__(self, options):
-        super().__init__(
-            placeholder="Choose a creature to release...",
-            min_values=1,
-            max_values=1,
-            options=options
-        )
+class ReleaseSelectView(discord.ui.View):
+    def __init__(self, user_id: int):
+        super().__init__(timeout=120)
+        self.user_id = user_id
 
-    async def callback(self, interaction: discord.Interaction):
+        player = get_or_create_player_by_id(user_id)
 
-        creature_name = self.values[0]
-
-        player = get_or_create_player(interaction.user)
-        creature = player.get_creature(creature_name)
-
-        if not creature:
-            return await interaction.response.send_message(
-                "That creature could not be found.",
-                ephemeral=True
+        options = [
+            discord.SelectOption(
+                label=creature.nickname or creature.name,
+                value=creature.name
             )
+            for creature in player.creatures
+        ]
 
-        player.creatures.remove(creature)
-        save_player(player)
+        self.add_item(ReleaseSelect(options))
 
-        await interaction.response.send_message(
-            f"🕊️ {creature.nickname or creature.name} has been gently released back into the wild.",
-            ephemeral=True
-        )
+    def interaction_check(self, interaction: discord.Interaction):
+        return interaction.user.id == self.user_id
