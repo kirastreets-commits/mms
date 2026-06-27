@@ -1,19 +1,16 @@
-class ReleaseSelectView(discord.ui.View):
-    def __init__(self, user_id: int):
-        super().__init__(timeout=120)
-        self.user_id = user_id
+class RenameSelect(discord.ui.Select):
+    def __init__(self, options):
+        super().__init__(
+            placeholder="Choose a creature...",
+            min_values=1,
+            max_values=1,
+            options=options
+        )
 
-        player = get_or_create_player_by_id(user_id)
+    async def callback(self, interaction: discord.Interaction):
 
-        options = [
-            discord.SelectOption(
-                label=creature.nickname or creature.name,
-                value=creature.name
-            )
-            for creature in player.creatures
-        ]
+        creature_name = self.values[0]
 
-        self.add_item(ReleaseSelect(options))
-
-    def interaction_check(self, interaction: discord.Interaction):
-        return interaction.user.id == self.user_id
+        await interaction.response.send_modal(
+            RenameModal(creature_name)
+        )
