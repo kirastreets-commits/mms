@@ -221,11 +221,11 @@ class RescueView(discord.ui.View):
         self.player = player
         self.species_name = species_name
     
-        @discord.ui.button(
+    @discord.ui.button(
             label="🤝 Approach",
             style=discord.ButtonStyle.success
         )
-        async def approach(
+    async def approach(
             self,
             interaction: discord.Interaction,
             button: discord.ui.Button
@@ -253,11 +253,11 @@ class RescueView(discord.ui.View):
                 view=None
             )
     
-        @discord.ui.button(
+    @discord.ui.button(
             label="👀 Observe",
             style=discord.ButtonStyle.primary
         )
-        async def observe(
+    async def observe(
             self,
             interaction: discord.Interaction,
             button: discord.ui.Button
@@ -277,11 +277,11 @@ class RescueView(discord.ui.View):
                 view=self
             )
     
-        @discord.ui.button(
+    @discord.ui.button(
             label="🚶 Leave",
             style=discord.ButtonStyle.secondary
         )
-        async def leave(
+    async def leave(
             self,
             interaction: discord.Interaction,
             button: discord.ui.Button
