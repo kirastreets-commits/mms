@@ -233,7 +233,7 @@ class RescueView(discord.ui.View):
     
             species = get_species(self.species_name)
     
-            creature = Creature(species)
+            creature = Creature(species, self.species_name)
     
             self.player.creatures.append(creature)
     
