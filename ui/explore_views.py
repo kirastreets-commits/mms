@@ -179,7 +179,7 @@ class LocationSelectMenu(discord.ui.Select):
                     discovered = True
         
                 # 25% chance the creature needs rescuing
-                if random.random() < 0.25:
+                if random.random() < 0.70:
         
                     message = (
                         f"🐾 You discover an injured **{species_name}** hiding nearby.\n\n"
@@ -195,7 +195,7 @@ class LocationSelectMenu(discord.ui.Select):
                     )
         
                 message = (
-                    f"🐾 You spot a **{species_name}** watching you curiously from the shadows."
+                    f"🐾 You spot a **{species_name}** watching you from the shadows."
                 )
         
                 if discovered:
