@@ -231,9 +231,16 @@ class RescueView(discord.ui.View):
         interaction: discord.Interaction,
         button: discord.ui.Button
     ):
-        # Open naming modal immediately
-        await interaction.response.send_modal(
-            RenameModal(self.player, self.species_name)
+        await interaction.response.edit_message(
+            embed=discord.Embed(
+                title="🐾 Careful Approach...",
+                description=(
+                    f"You slowly step toward the **{self.species_name}**.\n\n"
+                    "It watches you closely, unsure whether to trust you..."
+                ),
+                color=0xf1c40f
+            ),
+            view=TrustView(self.player, self.species_name)
         )
 
     @discord.ui.button(
@@ -281,41 +288,104 @@ class RescueView(discord.ui.View):
             view=None
         )
 
-class RenameModal(discord.ui.Modal, title="Name Your Creature"):
-
-    creature_name = discord.ui.TextInput(
-        label="Creature Name",
-        placeholder="Give your new companion a name...",
-        max_length=20,
-        required=True
-    )
+class TrustView(discord.ui.View):
 
     def __init__(self, player, species_name):
-        super().__init__()
+        super().__init__(timeout=60)
 
         self.player = player
         self.species_name = species_name
 
-    async def on_submit(self, interaction: discord.Interaction):
+    @discord.ui.button(
+        label="✨ Offer Calm Reassurance",
+        style=discord.ButtonStyle.success
+    )
+    async def reassure(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
 
-        # Correct constructor order:
-        # name FIRST, species SECOND
+        embed = discord.Embed(
+            title="💞 Trust Forms",
+            description=(
+                f"The **{self.species_name}** slowly relaxes.\n\n"
+                "It no longer seems afraid of you...\n"
+                "It might be ready to come with you."
+            ),
+            color=0x57F287
+        )
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=NameCreatureView(self.player, self.species_name)
+        )
+
+    @discord.ui.button(
+        label="🚶 Back Away",
+        style=discord.ButtonStyle.secondary
+    )
+    async def leave(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+
+        embed = discord.Embed(
+            title="The moment fades...",
+            description="You step away and the creature retreats into the wild.",
+            color=0x95a5a6
+        )
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=None
+        )
+
+class NameCreatureView(discord.ui.View):
+
+    def __init__(self, player, species_name):
+        super().__init__(timeout=60)
+
+        self.player = player
+        self.species_name = species_name
+
+    @discord.ui.button(
+        label="✏️ Name Creature",
+        style=discord.ButtonStyle.primary
+    )
+    async def name(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+
+        await interaction.response.send_modal(
+            RenameModal(self.player, self.species_name)
+        )
+
+    @discord.ui.button(
+        label="✨ Keep It Wild (No Name)",
+        style=discord.ButtonStyle.secondary
+    )
+    async def keep_wild(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+
         creature = Creature(
-            self.creature_name.value,
+            self.species_name,
             self.species_name
         )
 
         self.player.creatures.append(creature)
-
         save_player(self.player)
 
         embed = discord.Embed(
-            title="❤️ Creature Joined Your Sanctuary!",
-            description=(
-                f"**{self.creature_name.value}** the **{self.species_name}** "
-                "has been safely brought home."
-            ),
-            color=0x57F287
+            title="🌿 Creature Freed",
+            description=f"The **{self.species_name}** joins your sanctuary… but remains wild.",
+            color=0x95a5a6
         )
 
         await interaction.response.edit_message(
