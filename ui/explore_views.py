@@ -4,6 +4,7 @@ import random
 from systems.save_system import save_player
 from data.locations import LOCATIONS
 from data.resources import RESOURCES
+from data.species import get_species
 
 class ExploreMenuView(discord.ui.View):
     def __init__(self, player):
@@ -124,9 +125,47 @@ class LocationSelectMenu(discord.ui.Select):
             player.journal_entries.append(lore)
             return f"📜 Lore discovered:\n*{lore}*"
 
-        # 🐾 Creature event (placeholder)
+        # 🐾 Creature encounter
         elif roll < 90:
-            return "A creature watches you from afar… but disappears before you can react."
+        
+            available = location.get("available_creatures", [])
+    
+            undiscovered = [
+                c for c in available
+                if c not in player.discovered_species
+            ]
+            
+            if undiscovered:
+                species_name = random.choice(undiscovered)
+            else:
+                species_name = random.choice(available)
+            
+                if not available:
+                    return "You thought you saw movement, but nothing emerged."
+            
+                species_name = random.choice(available)
+        
+            # Add to discovered species
+            if species_name not in player.discovered_species:
+                player.discovered_species.append(species_name)
+                discovered = True
+            else:
+                discovered = False
+        
+            species = get_species(species_name)
+        
+            message = (
+                f"You spot a **{species_name}** quietly observing you from the shadows."
+            )
+        
+            if discovered:
+                player.journal_entries.append(
+                    f"You discovered the species **{species_name}** in {location['name']}."
+                )
+        
+                message += "\n\n📖 **New species discovered!**"
+        
+            return message
 
         # 🔓 Progress event
         else:
