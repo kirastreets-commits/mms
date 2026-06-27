@@ -111,92 +111,9 @@ class LocationSelectMenu(discord.ui.Select):
     from models.creature import Creature
 
 
-    class RescueView(discord.ui.View):
     
-        def __init__(self, player, species_name):
-            super().__init__(timeout=60)
     
-            self.player = player
-            self.species_name = species_name
-    
-        @discord.ui.button(
-            label="🤝 Approach",
-            style=discord.ButtonStyle.success
-        )
-        async def approach(
-            self,
-            interaction: discord.Interaction,
-            button: discord.ui.Button
-        ):
-    
-            species = get_species(self.species_name)
-    
-            creature = Creature(species)
-    
-            self.player.creatures.append(creature)
-    
-            save_player(self.player)
-    
-            embed = discord.Embed(
-                title="❤️ Creature Rescued!",
-                description=(
-                    f"The **{self.species_name}** cautiously approaches you.\n\n"
-                    "After some reassurance, it decides to follow you back to the sanctuary."
-                ),
-                color=0x57F287
-            )
-    
-            await interaction.response.edit_message(
-                embed=embed,
-                view=None
-            )
-    
-        @discord.ui.button(
-            label="👀 Observe",
-            style=discord.ButtonStyle.primary
-        )
-        async def observe(
-            self,
-            interaction: discord.Interaction,
-            button: discord.ui.Button
-        ):
-    
-            embed = discord.Embed(
-                title=self.species_name,
-                description=(
-                    "You remain still and quietly observe the creature.\n\n"
-                    "It seems wary, but not hostile."
-                ),
-                color=0x3498db
-            )
-    
-            await interaction.response.edit_message(
-                embed=embed,
-                view=self
-            )
-    
-        @discord.ui.button(
-            label="🚶 Leave",
-            style=discord.ButtonStyle.secondary
-        )
-        async def leave(
-            self,
-            interaction: discord.Interaction,
-            button: discord.ui.Button
-        ):
-    
-            embed = discord.Embed(
-                title="The creature slips away...",
-                description="Perhaps your paths will cross again someday.",
-                color=0x95a5a6
-            )
-    
-            await interaction.response.edit_message(
-                embed=embed,
-                view=None
-            )
-    
-        def explore_location(self, player, location_id, location):
+    def explore_location(self, player, location_id, location):
     
             roll = random.randint(1, 100)
         
@@ -295,6 +212,90 @@ class LocationSelectMenu(discord.ui.Select):
                     self.progress_unlock(player, location_id),
                     None
                 )
+            class RescueView(discord.ui.View):
+    
+    def __init__(self, player, species_name):
+        super().__init__(timeout=60)
+    
+        self.player = player
+        self.species_name = species_name
+    
+        @discord.ui.button(
+            label="🤝 Approach",
+            style=discord.ButtonStyle.success
+        )
+        async def approach(
+            self,
+            interaction: discord.Interaction,
+            button: discord.ui.Button
+        ):
+    
+            species = get_species(self.species_name)
+    
+            creature = Creature(species)
+    
+            self.player.creatures.append(creature)
+    
+            save_player(self.player)
+    
+            embed = discord.Embed(
+                title="❤️ Creature Rescued!",
+                description=(
+                    f"The **{self.species_name}** cautiously approaches you.\n\n"
+                    "After some reassurance, it decides to follow you back to the sanctuary."
+                ),
+                color=0x57F287
+            )
+    
+            await interaction.response.edit_message(
+                embed=embed,
+                view=None
+            )
+    
+        @discord.ui.button(
+            label="👀 Observe",
+            style=discord.ButtonStyle.primary
+        )
+        async def observe(
+            self,
+            interaction: discord.Interaction,
+            button: discord.ui.Button
+        ):
+    
+            embed = discord.Embed(
+                title=self.species_name,
+                description=(
+                    "You remain still and quietly observe the creature.\n\n"
+                    "It seems wary, but not hostile."
+                ),
+                color=0x3498db
+            )
+    
+            await interaction.response.edit_message(
+                embed=embed,
+                view=self
+            )
+    
+        @discord.ui.button(
+            label="🚶 Leave",
+            style=discord.ButtonStyle.secondary
+        )
+        async def leave(
+            self,
+            interaction: discord.Interaction,
+            button: discord.ui.Button
+        ):
+    
+            embed = discord.Embed(
+                title="The creature slips away...",
+                description="Perhaps your paths will cross again someday.",
+                color=0x95a5a6
+            )
+    
+            await interaction.response.edit_message(
+                embed=embed,
+                view=None
+            )
 
     def progress_unlock(self, player, location_id):
         location = LOCATIONS[location_id]
