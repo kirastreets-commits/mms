@@ -3,7 +3,7 @@ import discord
 
 class HeadCaretakerView(discord.ui.View):
     def __init__(self):
-        super().__init__(timeout=180)  # 3 min idle timeout
+        super().__init__(timeout=180)
 
     # -------------------------
     # 🏷️ RENAME BUTTON
@@ -14,6 +14,7 @@ class HeadCaretakerView(discord.ui.View):
         emoji="🏷️"
     )
     async def rename_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+
         await interaction.response.send_message(
             "Which creature would you like to rename?",
             view=RenameSelectView(interaction.user.id),
@@ -29,6 +30,7 @@ class HeadCaretakerView(discord.ui.View):
         emoji="🕊️"
     )
     async def release_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+
         await interaction.response.send_message(
             "Which creature would you like to release?",
             view=ReleaseSelectView(interaction.user.id),
