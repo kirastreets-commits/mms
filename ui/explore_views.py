@@ -24,6 +24,10 @@ class ExploreMenuView(discord.ui.View):
     async def outside(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.open_location_menu(interaction, "outside")
 
+    @discord.ui.button(label="✏️ Give Name", style=discord.ButtonStyle.primary)
+    async def name_creature(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_modal(RenameModal(self.player, self.species_name))
+
     async def open_location_menu(self, interaction, location_type):
         view = LocationSelectView(self.player, location_type)
 
@@ -222,37 +226,25 @@ class RescueView(discord.ui.View):
         self.species_name = species_name
     
     @discord.ui.button(
-            label="🤝 Approach",
-            style=discord.ButtonStyle.success
+    label="🤝 Approach",
+    style=discord.ButtonStyle.success
+)
+    async def approach(self, interaction: discord.Interaction, button: discord.ui.Button):
+
+        embed = discord.Embed(
+            title="❤️ The creature trusts you...",
+            description=(
+                f"The **{self.species_name}** slowly steps closer.\n\n"
+                "It seems ready to join you... but it feels like it should have a name."
+            ),
+            color=0x57F287
         )
-    async def approach(
-            self,
-            interaction: discord.Interaction,
-            button: discord.ui.Button
-        ):
-    
-            species = get_species(self.species_name)
-    
-            creature = Creature(species, self.species_name)
-    
-            self.player.creatures.append(creature)
-    
-            save_player(self.player)
-    
-            embed = discord.Embed(
-                title="❤️ Creature Rescued!",
-                description=(
-                    f"The **{self.species_name}** cautiously approaches you.\n\n"
-                    "After some reassurance, it decides to follow you back to the sanctuary."
-                ),
-                color=0x57F287
-            )
-    
-            await interaction.response.edit_message(
-                embed=embed,
-                view=None
-            )
-    
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=RenameCreatureView(self.player, self.species_name)
+        )
+
     @discord.ui.button(
             label="👀 Observe",
             style=discord.ButtonStyle.primary
@@ -297,6 +289,34 @@ class RescueView(discord.ui.View):
                 embed=embed,
                 view=None
             )
+
+class RenameModal(discord.ui.Modal, title="Name your creature"):
+
+    name = discord.ui.TextInput(
+        label="Creature Name",
+        placeholder="Enter a name...",
+        max_length=20
+    )
+
+    def __init__(self, player, species_name):
+        super().__init__()
+        self.player = player
+        self.species_name = species_name
+
+    async def on_submit(self, interaction: discord.Interaction):
+
+        creature = Creature(get_species(self.species_name), self.name.value)
+
+        self.player.creatures.append(creature)
+        save_player(self.player)
+
+        embed = discord.Embed(
+            title="❤️ Creature Named!",
+            description=f"Your new companion is now called **{self.name.value}**.",
+            color=0x57F287
+        )
+
+        await interaction.response.send_message(embed=embed, ephemeral=False)
 
     def progress_unlock(self, player, location_id):
         location = LOCATIONS[location_id]
