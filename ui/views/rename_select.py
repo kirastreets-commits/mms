@@ -1,13 +1,19 @@
-class RenameSelectView(discord.ui.View):
-    def __init__(self, user_id):
+class ReleaseSelectView(discord.ui.View):
+    def __init__(self, user_id: int):
         super().__init__(timeout=120)
         self.user_id = user_id
 
-    @discord.ui.select(placeholder="Choose a creature to rename")
-    async def select_creature(self, interaction: discord.Interaction, select: discord.ui.Select):
+        player = get_or_create_player_by_id(user_id)
 
-        creature_name = select.values[0]
+        options = [
+            discord.SelectOption(
+                label=creature.nickname or creature.name,
+                value=creature.name
+            )
+            for creature in player.creatures
+        ]
 
-        await interaction.response.send_modal(
-            RenameModal(creature_name)
-        )
+        self.add_item(ReleaseSelect(options))
+
+    def interaction_check(self, interaction: discord.Interaction):
+        return interaction.user.id == self.user_id
