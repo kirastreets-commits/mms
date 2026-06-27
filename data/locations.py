@@ -68,7 +68,7 @@ LOCATIONS = {
             "tree_roots",
             "thorn_branches"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Cinderware", "Emberfox", "Fernpaw", "Thornhare", "Mossling"],
         "lore_chance": 0.4,
         "connected": ["sanctuary_gardens", "emberlight_hollow", "frostpine_forest"]
     },
@@ -83,7 +83,7 @@ LOCATIONS = {
             "mineral_salt_block",
             "glowing_mushrooms"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Stonehorn"],
         "lore_chance": 0.4,
         "connected": ["moonlit_forest"]
     },
@@ -101,4 +101,3 @@ LOCATIONS = {
         "connected": ["moonlit_forest"]
     }
 }
-
