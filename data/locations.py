@@ -22,6 +22,7 @@ LOCATIONS = {
             "healing_moss",
             "glowing_mushrooms"
         ],
+        "available_creatures": [],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens"]
     },
@@ -33,6 +34,7 @@ LOCATIONS = {
             "healing_moss",
             "warm_pebbles"
         ],
+        "available_creatures": [],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens"]
     },
@@ -43,6 +45,7 @@ LOCATIONS = {
         "resources": [
             "sweetberries"
         ],
+        "available_creatures": [],
         "lore_chance": 0.15,
         "connected": ["sanctuary_gardens", "sanctuary_core"]
     },
@@ -51,6 +54,7 @@ LOCATIONS = {
         "name": "Moonlit Gardens",
         "type": "grounds",
         "resources": ["wildflowers"],
+        "available_creatures": [],
         "lore_chance": 0.25,
         "connected": ["sanctuary_core", "moonlit_forest"]
     },
@@ -64,6 +68,7 @@ LOCATIONS = {
             "tree_roots",
             "thorn_branches"
         ],
+        "available_creatures": [],
         "lore_chance": 0.4,
         "connected": ["sanctuary_gardens", "emberlight_hollow", "frostpine_forest"]
     },
@@ -78,6 +83,7 @@ LOCATIONS = {
             "mineral_salt_block",
             "glowing_mushrooms"
         ],
+        "available_creatures": [],
         "lore_chance": 0.4,
         "connected": ["moonlit_forest"]
     },
@@ -90,6 +96,7 @@ LOCATIONS = {
             "packed_snow",
             "frost_flowers"
         ],
+        "available_creatures": [],
         "lore_chance": 0.4,
         "connected": ["moonlit_forest"]
     }
