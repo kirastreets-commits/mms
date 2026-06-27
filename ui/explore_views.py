@@ -212,7 +212,8 @@ class LocationSelectMenu(discord.ui.Select):
                     self.progress_unlock(player, location_id),
                     None
                 )
-            class RescueView(discord.ui.View):
+            
+class RescueView(discord.ui.View):
     
     def __init__(self, player, species_name):
         super().__init__(timeout=60)
