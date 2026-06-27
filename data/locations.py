@@ -96,7 +96,7 @@ LOCATIONS = {
             "packed_snow",
             "frost_flowers"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Frostfox", "Frosthopper"],
         "lore_chance": 0.4,
         "connected": ["moonlit_forest"]
     }
