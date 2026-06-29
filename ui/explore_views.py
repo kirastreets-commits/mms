@@ -333,7 +333,17 @@ class TrustView(discord.ui.View):
 
         await interaction.response.edit_message(
             embed=embed,
-            view=NameCreatureView(self.player, self.species_name)
+            creature = Creature(
+            self.species_name,
+            self.species_name
+        )
+
+        view = NameCreatureView(self.player, creature)
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=view
+        )
         )
 
     @discord.ui.button(
@@ -359,11 +369,11 @@ class TrustView(discord.ui.View):
 
 class NameCreatureView(discord.ui.View):
 
-    def __init__(self, player, species_name):
+    def __init__(self, player, creature):
         super().__init__(timeout=60)
 
         self.player = player
-        self.species_name = species_name
+        self.creature = creature
 
     @discord.ui.button(
         label="✏️ Name Creature",
@@ -376,8 +386,8 @@ class NameCreatureView(discord.ui.View):
     ):
 
         await interaction.response.send_modal(
-            AdoptNameModal(self.player, self.species_name)
-        )
+        AdoptNameModal(self.player, self.creature)
+    )
 
     @discord.ui.button(
         label="✨ Keep It Wild (No Name)",
