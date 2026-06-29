@@ -1,3 +1,5 @@
+import discord
+
 class RenameModal(discord.ui.Modal, title="Rename Creature"):
     new_name = discord.ui.TextInput(
         label="New Name",
