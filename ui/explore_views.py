@@ -395,7 +395,7 @@ class NameCreatureView(discord.ui.View):
         button: discord.ui.Button
     ):
 
-        self.player.creatures.append(self.creature)
+        self.player.add_creature(self.creature, named=False)
         save_player(self.player)
 
         embed = discord.Embed(
