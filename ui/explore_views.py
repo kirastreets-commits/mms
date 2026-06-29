@@ -344,6 +344,7 @@ class TrustView(discord.ui.View):
             embed=embed,
             view=view
         )
+        )
 
     @discord.ui.button(
         label="🚶 Back Away",
