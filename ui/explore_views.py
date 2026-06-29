@@ -376,7 +376,7 @@ class NameCreatureView(discord.ui.View):
     ):
 
         await interaction.response.send_modal(
-            rename_modal(self.player, self.species_name)
+            RenameModal(self.player, self.species_name)
         )
 
     @discord.ui.button(
