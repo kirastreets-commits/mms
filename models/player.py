@@ -39,8 +39,19 @@ class Player:
         if species_name not in self.discovered_species:
             self.discovered_species.append(species_name)
 
-    def add_creature(self, creature):
+    def add_creature(self, creature, named=True):
+
         self.creatures.append(creature)
+        self.add_discovered_species(creature.species)
+    
+        if named:
+            self.add_journal_entry(
+                f"You welcomed {creature.name}, a {creature.species}, into Moonlit Meadows."
+            )
+        else:
+            self.add_journal_entry(
+                f"A wild {creature.species} chose to make Moonlit Meadows its home."
+            )
 
     def remove_creature(self, creature_name):
 
