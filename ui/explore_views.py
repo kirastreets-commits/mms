@@ -321,29 +321,24 @@ class TrustView(discord.ui.View):
         button: discord.ui.Button
     ):
 
+        creature = Creature(
+            name=self.species_name,
+            species=self.species_name
+        )
+
         embed = discord.Embed(
             title="💞 Trust Forms",
             description=(
                 f"The **{self.species_name}** slowly relaxes.\n\n"
-                "It no longer seems afraid of you...\n"
-                "It might be ready to come with you."
+                "It cautiously walks toward you before gently nudging your hand.\n\n"
+                "Perhaps it's waiting to hear the name you've chosen..."
             ),
             color=0x57F287
         )
 
         await interaction.response.edit_message(
             embed=embed,
-            creature = Creature(
-            self.species_name,
-            self.species_name
-            )
-
-        view = NameCreatureView(self.player, creature)
-
-        await interaction.response.edit_message(
-            embed=embed,
-            view=view
-        )
+            view=NameCreatureView(self.player, creature)
         )
 
     @discord.ui.button(
@@ -358,7 +353,57 @@ class TrustView(discord.ui.View):
 
         embed = discord.Embed(
             title="The moment fades...",
-            description="You step away and the creature retreats into the wild.",
+            description="You step away and the creature quietly disappears back into the wilderness.",
+            color=0x95a5a6
+        )
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=None
+        )
+
+
+class NameCreatureView(discord.ui.View):
+
+    def __init__(self, player, creature):
+        super().__init__(timeout=60)
+
+        self.player = player
+        self.creature = creature
+
+    @discord.ui.button(
+        label="✏️ Give a Name",
+        style=discord.ButtonStyle.primary
+    )
+    async def name(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+
+        await interaction.response.send_modal(
+            AdoptNameModal(self.player, self.creature)
+        )
+
+    @discord.ui.button(
+        label="🌿 Let Them Stay Wild",
+        style=discord.ButtonStyle.secondary
+    )
+    async def keep_wild(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button
+    ):
+
+        self.player.creatures.append(self.creature)
+        save_player(self.player)
+
+        embed = discord.Embed(
+            title="🌿 A Wild Spirit",
+            description=(
+                f"The **{self.creature.species}** chooses to remain unnamed.\n\n"
+                "Though wild at heart, it happily follows you back to Moonlit Meadows."
+            ),
             color=0x95a5a6
         )
 
