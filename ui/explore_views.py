@@ -6,7 +6,7 @@ from data.locations import LOCATIONS
 from data.resources import RESOURCES
 from data.species import get_species
 from models.creature import Creature
-from ui.modals.rename_modal import RenameModal
+from ui.modals import rename_modal
 
 class ExploreMenuView(discord.ui.View):
     def __init__(self, player):
@@ -376,7 +376,7 @@ class NameCreatureView(discord.ui.View):
     ):
 
         await interaction.response.send_modal(
-            rename_modal(self.player, self.species_name)
+            RenameModal(self.player, self.species_name)
         )
 
     @discord.ui.button(
