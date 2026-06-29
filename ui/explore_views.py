@@ -336,14 +336,13 @@ class TrustView(discord.ui.View):
             creature = Creature(
             self.species_name,
             self.species_name
-        )
+            )
 
         view = NameCreatureView(self.player, creature)
 
         await interaction.response.edit_message(
             embed=embed,
             view=view
-        )
         )
 
     @discord.ui.button(
