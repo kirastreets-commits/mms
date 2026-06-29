@@ -27,7 +27,7 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
                 ephemeral=True
             )
 
-        self.creature.nickname = new_name
+        self.creature.name = new_name
 
         save_player(self.player)
 
