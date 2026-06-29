@@ -20,17 +20,22 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
     async def on_submit(self, interaction: discord.Interaction):
 
         new_name = self.creature_name.value.strip()
-
+    
         if not new_name:
             return await interaction.response.send_message(
                 "Please choose a name.",
                 ephemeral=True
             )
-
+    
+        # Give the creature its name
         self.creature.name = new_name
-
+    
+        # Add it to the player's sanctuary
+        self.player.add_creature(self.creature)
+    
+        # Save the player
         save_player(self.player)
-
+    
         embed = discord.Embed(
             title="✨ A New Beginning",
             description=(
@@ -41,7 +46,7 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
             ),
             colour=discord.Color.green()
         )
-
+    
         await interaction.response.send_message(
             embed=embed,
             ephemeral=True
