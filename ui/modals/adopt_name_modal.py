@@ -30,10 +30,7 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
         # Give the creature its name
         self.creature.name = new_name
     
-        # Add it to the player's sanctuary
-        self.player.add_creature(self.creature)
-    
-        # Save the player
+        self.player.add_creature(self.creature, named=True)
         save_player(self.player)
     
         embed = discord.Embed(
