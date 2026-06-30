@@ -29,6 +29,7 @@ class Player:
         self.discovered_species = discovered_species if isinstance(discovered_species, list) else []
         self.journal_entries = journal_entries if isinstance(journal_entries, list) else []
         self.unlocked_locations = (unlocked_locations if isinstance(unlocked_locations, list) else ["sanctuary_core"])
+        self.seen_lore = []
 
         self.has_starter = has_starter
 
