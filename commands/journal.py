@@ -1,19 +1,7 @@
 import discord
 
 from systems.save_system import get_or_create_player
-
-JOURNAL_ICONS = {
-    "adoption": "💚",
-    "discovery": "🔍",
-    "bond": "🤝",
-    "feeding": "🍓",
-    "play": "🎾",
-    "rest": "🛏️",
-    "heal": "🩹",
-    "shelter": "🏡",
-    "memory": "✨",
-    "general": "📖"
-}
+from data.journal import JOURNAL_ICONS
 
 
 def setup(bot):
