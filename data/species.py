@@ -327,6 +327,36 @@ SPECIES_REGISTRY = {
             "base_energy": 30,
             "base_happiness": 35,
         }
+    },
+       "Emberbun": {
+        "description": "Small hearth spirits that resemble fluffy rabbits with glowing ember-like fur. Emberbuns are drawn to warm fireplaces and the comforting presence of others, often curling beside tired caretakers after long days.",
+        "shelter": "nest",
+        "shelter_preferences": [
+            "plant",
+            "soft",
+            "glowing",
+            "flower"
+        ],
+        "rarity": "common",
+        "habitat": "fireplaces",
+        "diet": "herbivore",
+        "is_starter": False,
+        "emoji": "🔥",
+        "button_style": discord.ButtonStyle.red,
+
+        "growth_stages": ["kit", "juvenile", "adult"],
+
+        "stats": {
+            "max_health": 100,
+            "max_energy": 100,
+            "max_hunger": 100,
+            "max_happiness": 100,
+            "max_trust": 100,
+
+            "base_health": 20,
+            "base_energy": 30,
+            "base_happiness": 35,
+        }
     }
 }
 
