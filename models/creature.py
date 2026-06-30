@@ -86,13 +86,15 @@ class Creature:
             "message": "",
             "stat_changes": [],
             "mood_change": None,
+            "bond_change": None,
             "rare_event": None
         }
 
         # ----------------------------
         # BASE RECOVERY
         # ----------------------------
-
+        old_bond = self.bond_level()
+        
         happiness_gain = 3
         trust_gain = 3
         hunger_loss = -10
@@ -213,12 +215,15 @@ class Creature:
             "message": "",
             "stat_changes": [],
             "mood_change": None,
+            "bond_change": None,
             "rare_event": None
         }
 
         # ----------------------------
         # BASE RECOVERY
         # ----------------------------
+
+        old_bond = self.bond_level()
 
         hunger_gain = 20
         happiness_gain = 5
@@ -356,6 +361,11 @@ class Creature:
             result["rare_event"] = random.choice(RARE_FEED_MESSAGES).format(name=self.name)
 
 
+        new_bond = self.bond_level()
+
+        if old_bond != new_bond:
+            result["bond_change"] = new_bond
+
         # ----------------------------
         # FINAL MESSAGE
         # ----------------------------
@@ -384,8 +394,11 @@ class Creature:
             "message": "",
             "stat_changes": [],
             "mood_change": None,
+            "bond_change": None,
             "rare_event": None
         }
+
+        old_bond = self.bond_level()
 
         # ----------------------------
         # SUCCESS CHANCE SYSTEM
@@ -534,6 +547,11 @@ class Creature:
         # 🧠 MEMORY PIPELINE CALL (IMPORTANT)
         update_memory(self, "heal", result)
 
+        new_bond = self.bond_level()
+
+        if old_bond != new_bond:
+            result["bond_change"] = new_bond
+
         return result
     
     def rest(self):
@@ -545,12 +563,16 @@ class Creature:
         from data.rest_responses import REST_MESSAGES, REST_PERSONALITY_LINES
     
         result = {
+            "success": True,
             "message": "",
             "stat_changes": [],
             "mood_change": None,
+            "bond_change": None,
             "rare_event": None
         }
     
+        old_bond = self.bond_level()
+
         # ----------------------------
         # SHELTER VALUES
         # ----------------------------
@@ -692,6 +714,13 @@ class Creature:
                 f"{self.name} seems to be dreaming peacefully."
             ])
     
+        new_bond = self.bond_level()
+
+        if old_bond != new_bond:
+            result["bond_change"] = new_bond
+
+        update_memory(self, "rest", result)
+
         # ----------------------------
         # FINAL MESSAGE
         # ----------------------------
@@ -721,16 +750,22 @@ class Creature:
     # 🕒 BOND LEVELS
     # ---------------------------- 
     def bond_level(self):
+
         if self.trust >= 90:
             return "devoted"
+
         elif self.trust >= 70:
-            return "loyal"
+            return "trusted"
+
         elif self.trust >= 50:
             return "friendly"
+
         elif self.trust >= 20:
-            return "distant"
-        else:
-            return "hostile"
+            return "wary"
+
+        return "hostile"
+        
+    
 
     #MERGER HEALPER
 
