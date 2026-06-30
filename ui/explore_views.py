@@ -152,6 +152,30 @@ class LocationSelectMenu(discord.ui.Select):
             elif roll < 75:
 
                 lore_pool = location.get("lore", [])
+            
+                if not lore_pool:
+                    return (
+                        "A strange feeling passes through the area… but no memories surface.",
+                        None
+                    )
+            
+                # filter out already seen lore
+                unseen_lore = [l for l in lore_pool if l not in player.journal_entries]
+            
+                # fallback if everything already seen
+                if not unseen_lore:
+                    unseen_lore = lore_pool
+            
+                lore_entry = random.choice(unseen_lore)
+            
+                player.journal_entries.append(lore_entry)
+            
+                return (
+                    f"📜 Lore discovered:\n{lore_entry}",
+                    None
+                )
+
+                lore_pool = location.get("lore", [])
 
                 if not lore_pool:
                     return (
