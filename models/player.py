@@ -1,4 +1,7 @@
-from systems.journal_system import record_adoption
+from systems.journal_system import (
+    record_adoption,
+    record_discovery,
+)
 
 # PLAYER
 
@@ -36,15 +39,13 @@ class Player:
     # 🐉 CREATURE MANAGEMENT
     # ----------------------------
 
-    from systems.journal_system import record_adoption
     
     def add_creature(self, creature, named=True):
 
         self.creatures.append(creature)
 
-        self.discovered_species(creature.species)
+        self.add_discovered_species(creature.species)
 
-        from systems.journal_system import record_adoption
 
         record_adoption(
             self,
@@ -68,9 +69,24 @@ class Player:
 
         return None
     
-    # JOURNAL
+    def add_discovered_species(self, species_name):
 
-    from datetime import datetime
+        if species_name not in self.discovered_species:
+
+            self.discovered_species.append(species_name)
+
+            from systems.journal_system import record_discovery
+
+            record_discovery(
+                self,
+                species_name
+            )
+
+            return True
+
+        return False
+    
+    # JOURNAL
 
 
     def add_journal_entry(self, category, text, day=None):
