@@ -39,11 +39,13 @@ class Player:
     from systems.journal_system import record_adoption
     
     def add_creature(self, creature, named=True):
-    
+
         self.creatures.append(creature)
-    
+
         self.add_discovered_species(creature.species)
-    
+
+        from systems.journal_system import record_adoption
+
         record_adoption(
             self,
             creature,
