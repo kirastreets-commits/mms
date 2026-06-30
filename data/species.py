@@ -328,6 +328,37 @@ SPECIES_REGISTRY = {
             "base_happiness": 35,
         }
     },
+    "Glowfern": {
+        "description": "Glowferns are timid woodland spirits covered in soft moss and glowing fern "
+        "fronds. They quietly tend to injured plants and resting creatures, believing "
+        "every wound deserves patience and every life deserves another chance.",
+        "shelter": "nest",
+        "shelter_preferences": [
+            "plant",
+            "soft",
+            "glowing",
+            "flower"
+        ],
+        "rarity": "uncommon",
+        "habitat": "forest",
+        "diet": "omnivore",
+        "is_starter": False,
+        "emoji": "🌿",
+        "button_style": discord.ButtonStyle.green,
+
+        "growth_stages": ["kit", "juvenile", "adult"],
+
+        "stats": {
+            "max_health": 100,
+            "max_energy": 100,
+            "max_hunger": 100,
+            "max_happiness": 100,
+            "max_trust": 100,
+
+            "base_health": 20,
+            "base_energy": 30,
+            "base_happiness": 35,
+        },
        "Emberbun": {
         "description": "Small hearth spirits that resemble fluffy rabbits with glowing ember-like fur. Emberbuns are drawn to warm fireplaces and the comforting presence of others, often curling beside tired caretakers after long days.",
         "shelter": "nest",
