@@ -159,36 +159,18 @@ class LocationSelectMenu(discord.ui.Select):
                         None
                     )
             
-                # filter out already seen lore
-                unseen_lore = [l for l in lore_pool if l not in player.journal_entries]
+                # split seen vs unseen
+                unseen = [l for l in lore_pool if l not in player.journal_entries]
+                seen = [l for l in lore_pool if l in player.journal_entries]
             
-                # fallback if everything already seen
-                if not unseen_lore:
-                    unseen_lore = lore_pool
-            
-                lore_entry = random.choice(unseen_lore)
+                # prefer unseen, but allow echoes of old lore
+                if unseen and random.random() < 0.8:
+                    lore_entry = random.choice(unseen)
+                else:
+                    lore_entry = random.choice(lore_pool)
             
                 player.journal_entries.append(lore_entry)
             
-                return (
-                    f"📜 Lore discovered:\n{lore_entry}",
-                    None
-                )
-
-                lore_pool = location.get("lore", [])
-
-                if not lore_pool:
-                    return (
-                        "A strange feeling passes through the area… but no memories surface.",
-                        None
-                    )
-
-                lore_entry = random.choice(lore_pool)
-
-                # Optional: prevent duplicates
-                if lore_entry not in player.journal_entries:
-                    player.journal_entries.append(lore_entry)
-
                 return (
                     f"📜 Lore discovered:\n{lore_entry}",
                     None
