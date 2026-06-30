@@ -26,9 +26,12 @@ LOCATIONS = {
             "healing_moss",
             "glowing_mushrooms"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Glowfern"],
         "lore_chance": 0.15,
-        "lore": [],
+        "lore": ["**Caretaker's Note**:'Leave a bowl of fresh dew near "
+        "the herb beds before dawn. If it's empty by sunrise, a "
+        "Glowfern has accepted your kindness. If it leaves a sprig of "
+        "lavender behind, you've earned its trust."],
         "connected": ["sanctuary_gardens"]
     },
 
