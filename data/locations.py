@@ -87,7 +87,10 @@ LOCATIONS = {
         ],
         "available_creatures": ["Cinderware", "Emberfox", "Fernpaw", "Thornhare", "Mossling"],
         "lore_chance": 0.4,
-        "lore": [],
+        "lore": [
+            "**Caretaker's Note**: 'The Moonlit Forest does not sleep. It listens. Walk too loudly, and you will only find silence where paths once were.'",
+            "**Caretaker's Note**: 'If the fireflies gather above your head here, do not fear. They are not watching you — they are guiding you back out.'"
+        ],
         "connected": ["sanctuary_gardens", "emberlight_hollow", "frostpine_forest"]
     },
     
@@ -103,7 +106,10 @@ LOCATIONS = {
         ],
         "available_creatures": ["Stonehorn"],
         "lore_chance": 0.4,
-        "lore": [],
+        "lore": [
+            "**Caretaker's Note**: 'Stonehorns are not born in Emberlight Hollow. They are carved into being by heat, pressure, and time. Treat them gently—they remember the fire that made them.'",
+            "**Caretaker's Note**: 'The ground here breathes. If you feel it shift beneath your feet, it is not anger. It is waking.'"
+        ],
         "connected": ["moonlit_forest"]
     },
     
@@ -117,7 +123,10 @@ LOCATIONS = {
         ],
         "available_creatures": ["Frostfox", "Frosthopper"],
         "lore_chance": 0.4,
-        "lore": [],
+        "lore": [
+            "**Caretaker's Note**: 'Frostfoxes do not leave tracks for long. If you see one, remember the direction it came from — it may be the only way back.'",
+            "**Caretaker's Note**: 'The frostpines sing when the wind is right. It is said they are mourning something that has not yet happened.'"
+        ],
         "connected": ["moonlit_forest"]
     }
 }
