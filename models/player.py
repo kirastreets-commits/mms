@@ -66,12 +66,18 @@ class Player:
     
     # JOURNAL
 
-    def add_journal_entry(self, text):
+    from datetime import datetime
 
-        self.journal_entries.append(text)
+    def add_journal_entry(self, category, text):
 
-        # Keep only latest 100 entries
-        self.journal_entries = self.journal_entries[-100:]
+        self.journal_entries.append({
+            "category": category,
+            "text": text,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        # Keep only latest 200 entries
+        self.journal_entries = self.journal_entries[-200:]
     
     # ----------------------------
     # 🎒 INVENTORY SYSTEM
@@ -130,6 +136,22 @@ class Player:
         inventory = data.get("inventory", {})
         if not isinstance(inventory, dict):
             inventory = {}
+
+        journal_entries = []
+
+        for entry in data.get("journal_entries", []):
+
+            # Old save format
+            if isinstance(entry, str):
+                journal_entries.append({
+                    "category": "general",
+                    "text": entry,
+                    "timestamp": None
+                })
+
+            # New save format
+            else:
+                journal_entries.append(entry)
     
         return cls(
             user_id=str(data["user_id"]),
@@ -137,7 +159,7 @@ class Player:
             inventory=inventory,
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
-            journal_entries=data.get("journal_entries", []),
+            journal_entries=journal_entries,
             unlocked_locations=data.get("unlocked_locations", ["sanctuary_core"]),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
