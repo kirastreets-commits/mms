@@ -55,9 +55,12 @@ LOCATIONS = {
         "resources": [
             "sweetberries"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Crumblepuff"],
         "lore_chance": 0.15,
-        "lore": [],
+        "lore": ["**Caretaker's Note**:
+        "'Never shoo away a Crumblepuff after supper. It isn't begging—it "
+        "simply wants to make sure no creature goes to bed hungry.'"
+        ],
         "connected": ["sanctuary_gardens", "sanctuary_core"]
     },
         
