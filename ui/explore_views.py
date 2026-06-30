@@ -150,16 +150,25 @@ class LocationSelectMenu(discord.ui.Select):
         
             # 📜 Lore
             elif roll < 75:
-        
-                lore = f"A forgotten memory stirs in {location['name']}..."
-        
-                if lore not in player.journal_entries:
-                    player.journal_entries.append(lore)
-        
+
+            lore_pool = location.get("lore", [])
+
+            if not lore_pool:
                 return (
-                    f"📜 Lore discovered:\n*{lore}*",
+                    "A strange feeling passes through the area… but no memories surface.",
                     None
                 )
+
+            lore_entry = random.choice(lore_pool)
+
+            # Optional: prevent duplicates
+            if lore_entry not in player.journal_entries:
+                player.journal_entries.append(lore_entry)
+
+            return (
+                f"📜 Lore discovered:\n{lore_entry}",
+                None
+            )
         
             # 🐾 Creature
             elif roll < 90:
