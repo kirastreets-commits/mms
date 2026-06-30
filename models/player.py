@@ -1,3 +1,5 @@
+from systems.journal_system import record_adoption
+
 # PLAYER
 
 class Player:
