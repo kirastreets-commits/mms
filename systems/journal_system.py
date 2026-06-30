@@ -1,7 +1,8 @@
 from datetime import datetime
 
 
-def add_entry(player, category, text):
+def add_entry(player, category, text, day=None):
+    """Add a journal entry to the player's journal."""
 
     if not hasattr(player, "journal_entries"):
         player.journal_entries = []
@@ -9,13 +10,16 @@ def add_entry(player, category, text):
     player.journal_entries.append({
         "category": category,
         "text": text,
+        "day": day,
         "timestamp": datetime.now().isoformat()
     })
 
-    # Keep newest 200 entries
+    # Keep only the most recent 200 entries
     player.journal_entries = player.journal_entries[-200:]
 
+
 def record_adoption(player, creature, named=True):
+    """Record a creature joining the sanctuary."""
 
     if named:
         add_entry(
@@ -29,8 +33,10 @@ def record_adoption(player, creature, named=True):
             "adoption",
             f"A wild {creature.species} chose to make Moonlit Meadows its home."
         )
-    
-    def record_discovery(player, species):
+
+
+def record_discovery(player, species):
+    """Record discovering a new species."""
 
     add_entry(
         player,
@@ -38,7 +44,9 @@ def record_adoption(player, creature, named=True):
         f"You discovered a {species} while exploring."
     )
 
+
 def record_bond(player, creature, level):
+    """Record reaching a new bond level."""
 
     add_entry(
         player,
@@ -46,7 +54,9 @@ def record_bond(player, creature, level):
         f"{creature.name} has become {level.title()} with you."
     )
 
+
 def record_shelter_upgrade(player, creature):
+    """Record a shelter upgrade."""
 
     add_entry(
         player,
@@ -54,10 +64,12 @@ def record_shelter_upgrade(player, creature):
         f"{creature.name}'s shelter was upgraded to Level {creature.shelter['level']}."
     )
 
-def record_favourite_food(player, creature, food):
+
+def record_memory(player, creature, text):
+    """Record a memorable event."""
 
     add_entry(
         player,
         "memory",
-        f"{creature.name} discovered they love {food}."
+        text
     )
