@@ -34,24 +34,19 @@ class Player:
     # 🐉 CREATURE MANAGEMENT
     # ----------------------------
 
-
-    def add_discovered_species(self, species_name):
-        if species_name not in self.discovered_species:
-            self.discovered_species.append(species_name)
-
+    from systems.journal_system import record_adoption
+    
     def add_creature(self, creature, named=True):
-
+    
         self.creatures.append(creature)
+    
         self.add_discovered_species(creature.species)
     
-        if named:
-            self.add_journal_entry(
-                f"You welcomed {creature.name}, a {creature.species}, into Moonlit Meadows."
-            )
-        else:
-            self.add_journal_entry(
-                f"A wild {creature.species} chose to make Moonlit Meadows its home."
-            )
+        record_adoption(
+            self,
+            creature,
+            named
+        )
 
     def remove_creature(self, creature_name):
 
