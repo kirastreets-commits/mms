@@ -12,6 +12,10 @@ LOCATIONS = {
         ],
         "available_creatures": ["Emberbun"],
         "lore_chance": 0.15,
+        "lore": ["**Caretaker's Note**: 'If you wake to find an Emberbun "
+        "sleeping beside you, consider yourself fortunate. "
+        "They have a habit of finding those who need comfort "
+        "before they realize it themselves.'"],
         "connected": ["healing_conservatory", "arcanum_archive", "feeding_hall", "sanctuary_gardens"]
     },
 
@@ -24,6 +28,7 @@ LOCATIONS = {
         ],
         "available_creatures": [],
         "lore_chance": 0.15,
+        "lore": [],
         "connected": ["sanctuary_gardens"]
     },
 
@@ -36,6 +41,7 @@ LOCATIONS = {
         ],
         "available_creatures": [],
         "lore_chance": 0.15,
+        "lore": [],
         "connected": ["sanctuary_gardens"]
     },
 
@@ -47,6 +53,7 @@ LOCATIONS = {
         ],
         "available_creatures": [],
         "lore_chance": 0.15,
+        "lore": [],
         "connected": ["sanctuary_gardens", "sanctuary_core"]
     },
         
@@ -56,6 +63,10 @@ LOCATIONS = {
         "resources": ["wildflowers"],
         "available_creatures": ["Lunabloom"],
         "lore_chance": 0.25,
+        "lore": ["**Caretaker's Note**: Don't chase a Lunabloom. "
+        "Sit quietly instead. "
+        "If it believes your heart is gentle, it will be the one to approach you."
+        ],
         "connected": ["sanctuary_core", "moonlit_forest"]
     },
 
@@ -70,6 +81,7 @@ LOCATIONS = {
         ],
         "available_creatures": ["Cinderware", "Emberfox", "Fernpaw", "Thornhare", "Mossling"],
         "lore_chance": 0.4,
+        "lore": [],
         "connected": ["sanctuary_gardens", "emberlight_hollow", "frostpine_forest"]
     },
     
@@ -85,6 +97,7 @@ LOCATIONS = {
         ],
         "available_creatures": ["Stonehorn"],
         "lore_chance": 0.4,
+        "lore": [],
         "connected": ["moonlit_forest"]
     },
     
@@ -98,6 +111,7 @@ LOCATIONS = {
         ],
         "available_creatures": ["Frostfox", "Frosthopper"],
         "lore_chance": 0.4,
+        "lore": [],
         "connected": ["moonlit_forest"]
     }
 }
