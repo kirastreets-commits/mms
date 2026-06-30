@@ -297,6 +297,36 @@ SPECIES_REGISTRY = {
             "base_energy": 30,
             "base_happiness": 35,
         }
+    },
+        "Lunabloom": {
+        "description": "A gentle spirit creature said to bloom wherever moonlight lingers the longest.",
+        "shelter": "nest",
+        "shelter_preferences": [
+            "plant",
+            "soft",
+            "glowing",
+            "flower"
+        ],
+        "rarity": "uncommon",
+        "habitat": "gardens",
+        "diet": "omnivore",
+        "is_starter": False,
+        "emoji": "🌿",
+        "button_style": discord.ButtonStyle.green,
+
+        "growth_stages": ["kit", "juvenile", "adult"],
+
+        "stats": {
+            "max_health": 100,
+            "max_energy": 100,
+            "max_hunger": 100,
+            "max_happiness": 100,
+            "max_trust": 100,
+
+            "base_health": 20,
+            "base_energy": 30,
+            "base_happiness": 35,
+        }
     }
 }
 
