@@ -54,7 +54,7 @@ LOCATIONS = {
         "name": "Moonlit Gardens",
         "type": "grounds",
         "resources": ["wildflowers"],
-        "available_creatures": [],
+        "available_creatures": ["Lunabloom"],
         "lore_chance": 0.25,
         "connected": ["sanctuary_core", "moonlit_forest"]
     },
