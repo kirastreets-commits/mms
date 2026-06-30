@@ -42,9 +42,10 @@ LOCATIONS = {
             "healing_moss",
             "warm_pebbles"
         ],
-        "available_creatures": [],
+        "available_creatures": ["Whispermoth"],
         "lore_chance": 0.15,
-        "lore": [],
+        "lore": ["**Caretaker's Note**: 'If a Whispermoth settles upon your book, "
+        "don't turn the page just yet. The elders say it has found a passage worth remembering.'"],
         "connected": ["sanctuary_gardens"]
     },
 
