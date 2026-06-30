@@ -68,17 +68,18 @@ class Player:
 
     from datetime import datetime
 
-    def add_journal_entry(self, category, text):
 
+    def add_journal_entry(self, category, text, day=None):
+    
         self.journal_entries.append({
             "category": category,
             "text": text,
+            "day": day,
             "timestamp": datetime.now().isoformat()
         })
-
-        # Keep only latest 200 entries
-        self.journal_entries = self.journal_entries[-200:]
     
+        # Keep the latest 200 entries
+        self.journal_entries = self.journal_entries[-200:]
     # ----------------------------
     # 🎒 INVENTORY SYSTEM
     # ----------------------------
