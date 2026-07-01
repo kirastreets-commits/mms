@@ -17,6 +17,42 @@ RESOURCES = {
     "tags": ["warm", "flower"]
     },
 
+    "fireplace_stone": {
+    "name": "Fireplace Stone",
+    "emoji": "🪨",
+    "rarity": "common",
+    "type": "decoration",
+    "comfort": 1,
+    "tags": ["warm", "stone"]
+    },
+
+    "hearth_blanket": {
+    "name": "Hearth Blanket",
+    "emoji": "🧶",
+    "rarity": "uncommon",
+    "type": "shelter",
+    "comfort": 5,
+    "tags": ["warm", "soft", "cozy"]
+    },
+    
+    "everwarm_coal": {
+    "name": "Everwarm Coal",
+    "emoji": "🔥",
+    "rarity": "epic",
+    "type": "resource",
+    "comfort": 4,
+    "tags": ["warm"]
+    },
+
+    "knitted_pillow": {
+    "name": "Knitted Pillow",
+    "emoji": "🛋️",
+    "rarity": "uncommon",
+    "type": "shelter",
+    "comfort": 4,
+    "tags": ["soft", "cozy"]
+    },
+
     "fluffy_tufts": {
     "name": "Fluffy Tufts",
     "emoji": "☁️",
