@@ -413,7 +413,7 @@ class Creature:
         elif self.trust < 20:
             success_chance -= 20
 
-        elif self.personality == "calm":
+        if self.personality == "calm":
             success_chance += 10
         elif self.personality == "stubborn":
             success_chance -= 5
