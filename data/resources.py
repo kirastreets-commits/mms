@@ -62,6 +62,15 @@ RESOURCES = {
     "tags": ["soft", "cozy"]
     },
 
+    "wild_lavender": {
+    "name": "Wild Lavender",
+    "emoji": "💜",
+    "rarity": "uncommon",
+    "type": "decoration",
+    "comfort": 2,
+    "tags": ["plants", "calming"]
+    },
+
     "obsidian_shards": {
     "name": "Obsidian Shards",
     "emoji": "🖤",
@@ -242,12 +251,21 @@ RESOURCES = {
     "tags": ["plant", "soft", "natural"]
     },
 
+    "healing_herbs": {
+    "name": "Healing Herbs",
+    "emoji": "🌾",
+    "rarity": "common",
+    "type": "healing",
+    "comfort": 1,
+    "tags": ["plants", "natural"]
+    },
+
     "healing_moss": {
     "name": "Healing Moss",
-    "emoji": "💎",
+    "emoji": "🌿",
     "rarity": "common",
     "type": "healing",
     "comfort": 2,
-    "tags": ["plant", "natural"]
+    "tags": ["plant", "natural", "soft"]
     }
 }
