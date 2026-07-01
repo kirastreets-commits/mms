@@ -8,7 +8,11 @@ LOCATIONS = {
         "resources": [
             "soft_bedding",
             "large_cushions",
-            "warm_pebbles"
+            "warm_pebbles",
+            "fireplace_stone",
+            "hearth_blanket",
+            "everwarm_coal",
+            "knitted_pillow"
         ],
         "available_creatures": ["Emberbun"],
         "lore_chance": 0.15,
