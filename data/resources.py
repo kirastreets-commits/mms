@@ -26,6 +26,33 @@ RESOURCES = {
     "tags": ["cozy", "knowledge"]
     },
 
+    "woven_basket": {
+    "name": "Woven Basket",
+    "emoji": "🧺",
+    "rarity": "common",
+    "type": "shelter",
+    "comfort": 3,
+    "tags": ["cozy", "small"]
+    },
+
+    "grain_sack": {
+    "name": "Grain Sack",
+    "emoji": "🌾",
+    "rarity": "common",
+    "type": "shelter",
+    "comfort": 3,
+    "tags": ["soft", "warm"]
+    },
+
+    "picnic_blanket": {
+    "name": "Picnic Blanket",
+    "emoji": "🧺",
+    "rarity": "uncommon",
+    "type": "shelter",
+    "comfort": 5,
+    "tags": ["soft", "warm", "cozy"]
+    },
+
     "firebloom_petals": {
     "name": "Firebloom Petals",
     "emoji": "🌺",
