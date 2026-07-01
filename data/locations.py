@@ -59,7 +59,10 @@ LOCATIONS = {
         "name": "The Feeding Hall",
         "type": "inside",
         "resources": [
-            "sweetberries"
+            "sweetberries",
+            "woven_basket",
+            "grain_sack",
+            "picnic_blanket"
         ],
         "available_creatures": ["Crumblepuff"],
         "lore_chance": 0.15,
