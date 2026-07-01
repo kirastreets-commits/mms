@@ -45,8 +45,8 @@ LOCATIONS = {
         "name": "The Arcanum Archive",
         "type": "inside",
         "resources": [
-            "healing_moss",
-            "warm_pebbles"
+            "velvet_reading_cushion",
+            "handwritten_research_note"
         ],
         "available_creatures": ["Whispermoth"],
         "lore_chance": 0.15,
