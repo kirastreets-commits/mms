@@ -8,6 +8,24 @@ RESOURCES = {
     "tags": ["warm", "stone"]
     },
 
+    "velvet_reading_cushion": {
+    "name": "Velvet Reading Cushion",
+    "emoji": "🛋️",
+    "rarity": "uncommon",
+    "type": "shelter",
+    "comfort": 5,
+    "tags": ["soft", "cozy"]
+    },
+
+    "handwritten_research_note": {
+    "name": "Handwritten Research Note",
+    "emoji": "📜",
+    "rarity": "uncommon",
+    "type": "shelter",
+    "comfort": 3,
+    "tags": ["cozy", "knowledge"]
+    },
+
     "firebloom_petals": {
     "name": "Firebloom Petals",
     "emoji": "🌺",
