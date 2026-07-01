@@ -127,8 +127,7 @@ SPECIES_REGISTRY = {
         "shelter_preferences": [
             "stone",
             "mineral",
-            "sturdy",
-            "warm"
+            "sturdy"
         ],
         "rarity": "common",
         "habitat": "volcanic",
@@ -393,14 +392,43 @@ SPECIES_REGISTRY = {
             }
         },
 
+        "Crumblepuff": {
+            "description": "Round, cheerful creatures with fluffy cream-colored fur and tiny seed-like spots across their backs. They instinctively gather fallen crumbs and fresh ingredients, keeping the Feeding Hall tidy while ensuring no creature eats alone.",
+            "shelter": "nest",
+            "shelter_preferences": [
+                "cozy",
+                "warm",
+                "social"
+            ],
+            "rarity": "common",
+            "habitat": "feeding_hall",
+            "diet": "omnivore",
+            "is_starter": False,
+            "emoji": "🍞",
+            "button_style": discord.ButtonStyle.orange,
+
+            "growth_stages": ["kit", "juvenile", "adult"],
+
+            "stats": {
+                "max_health": 100,
+                "max_energy": 100,
+                "max_hunger": 100,
+                "max_happiness": 100,
+                "max_trust": 100,
+
+                "base_health": 30,
+                "base_energy": 40,
+                "base_happiness": 45,
+            }
+        },
+        
         "Emberbun": {
             "description": "Small hearth spirits that resemble fluffy rabbits with glowing ember-like fur. Emberbuns are drawn to warm fireplaces and the comforting presence of others, often curling beside tired caretakers after long days.",
             "shelter": "nest",
             "shelter_preferences": [
-                "plant",
+                "warm",
                 "soft",
-                "glowing",
-                "flower"
+                "cosy"
             ],
             "rarity": "common",
             "habitat": "fireplaces",
