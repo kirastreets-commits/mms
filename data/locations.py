@@ -77,6 +77,10 @@ LOCATIONS = {
         "type": "grounds",
         "resources": [
             "wildflowers",
+            "picnic_blanket",
+            "firebloom_petals",
+            "wild_lavender",
+            "sweet_grass",
             "moonflower_petals"
             ],
         "available_creatures": ["Lunabloom"],
