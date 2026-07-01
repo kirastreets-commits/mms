@@ -28,7 +28,9 @@ LOCATIONS = {
         "type": "inside",
         "resources": [
             "healing_moss",
-            "glowing_mushrooms"
+            "glowing_mushrooms",
+            "wild_lavender",
+            "healing_herbs"
         ],
         "available_creatures": ["Glowfern"],
         "lore_chance": 0.15,
