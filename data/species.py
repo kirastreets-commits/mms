@@ -405,7 +405,7 @@ SPECIES_REGISTRY = {
             "diet": "omnivore",
             "is_starter": False,
             "emoji": "🍞",
-            "button_style": discord.ButtonStyle.orange,
+            "button_style": discord.ButtonStyle.red,
 
             "growth_stages": ["kit", "juvenile", "adult"],
 
