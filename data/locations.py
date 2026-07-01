@@ -99,7 +99,11 @@ LOCATIONS = {
             "soft_moss",
             "vines",
             "tree_roots",
-            "thorn_branches"
+            "thorn_branches",
+            "healing_moss",
+            "sweetberries",
+            "glowing_mushrooms",
+            "wild_lavender"
         ],
         "available_creatures": ["Cinderware", "Emberfox", "Fernpaw", "Thornhare", "Mossling"],
         "lore_chance": 0.4,
