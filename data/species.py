@@ -336,7 +336,8 @@ SPECIES_REGISTRY = {
         "shelter_preferences": [
             "crystal",
             "soft",
-            "glowing"
+            "glowing",
+            "cozy"
         ],
         "rarity": "uncommon",
         "habitat": "libaries",
@@ -368,6 +369,7 @@ SPECIES_REGISTRY = {
                 "plant",
                 "soft",
                 "glowing",
+                "mnatural",
                 "flower"
             ],
             "rarity": "uncommon",
