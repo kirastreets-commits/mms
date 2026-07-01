@@ -378,7 +378,7 @@ class Creature:
 
         return result
 
-    def heal(self):
+    def heal(self, healing_item=None):
         import random
         from systems.mood_system import update_mood
         from data.heal_responses import (
@@ -424,6 +424,21 @@ class Creature:
             success_chance += 10
         elif self.mood == "tired":
             success_chance += 5
+
+        # ----------------------------
+        # HEALING RESOURCE BONUS
+        # ----------------------------
+
+        resource_bonus = 0
+        heal_bonus = 0
+        crit_bonus = 0
+
+        if healing_item:
+            resource_bonus = healing_item.get("healing_bonus", 0)
+            heal_bonus = healing_item.get("heal_bonus", 0)
+            crit_bonus = healing_item.get("crit_bonus", 0)
+
+        success_chance = min(95, success_chance + resource_bonus)
 
         roll = random.randint(1, 100)
 
@@ -472,8 +487,10 @@ class Creature:
         # CRITICAL SUCCESS
         # ----------------------------
 
-        if roll >= 95:
-            heal_amount = 30
+        crit_threshold = max(80, 95 - crit_bonus)
+
+        if roll >= crit_threshold:
+            heal_amount = 30 + heal_bonus
             trust_gain = 3
 
             self.health = min(100, self.health + heal_amount)
@@ -497,7 +514,7 @@ class Creature:
         # ----------------------------
 
         elif roll > success_chance - 20:
-            heal_amount = 20
+            heal_amount = 20 + heal_bonus
             trust_gain = 2
 
             self.health = min(100, self.health + heal_amount)
@@ -518,7 +535,7 @@ class Creature:
         # ----------------------------
 
         else:
-            heal_amount = 10
+            heal_amount = 10 + heal_bonus
 
             self.health = min(100, self.health + heal_amount)
 
