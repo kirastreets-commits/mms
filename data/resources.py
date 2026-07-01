@@ -7,6 +7,15 @@ RESOURCES = {
     "comfort": 2,
     "tags": ["warm", "stone"]
     },
+    
+    "moonflower_petals": {
+    "name": "Moonflower Petals",
+    "emoji": "🌙",
+    "rarity": "common",
+    "type": "resource",
+    "comfort": 2,
+    "tags": ["flowers", "moonlight", "plant", "soft"]
+    },
 
     "velvet_reading_cushion": {
     "name": "Velvet Reading Cushion",
