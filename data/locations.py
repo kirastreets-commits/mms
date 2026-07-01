@@ -75,7 +75,10 @@ LOCATIONS = {
     "sanctuary_gardens": {
         "name": "Moonlit Gardens",
         "type": "grounds",
-        "resources": ["wildflowers"],
+        "resources": [
+            "wildflowers",
+            "moonflower_petals"
+            ],
         "available_creatures": ["Lunabloom"],
         "lore_chance": 0.25,
         "lore": ["**Caretaker's Note**: Don't chase a Lunabloom. "
