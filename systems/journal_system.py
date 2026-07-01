@@ -1,5 +1,14 @@
 from datetime import datetime
 
+CATEGORY_ICONS = {
+    "adoption": "🏡",
+    "discovery": "🐾",
+    "bond": "❤️",
+    "shelter": "🛖",
+    "memory": "✨",
+    "lore": "📜",
+    "milestone": "⭐"
+}
 
 def add_entry(player, category, text, day=None):
     """Add a journal entry to the player's journal."""
