@@ -400,7 +400,7 @@ SPECIES_REGISTRY = {
             "shelter_preferences": [
                 "cozy",
                 "warm",
-                "social"
+                "small"
             ],
             "rarity": "common",
             "habitat": "feeding_hall",
