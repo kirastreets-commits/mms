@@ -336,7 +336,7 @@ SPECIES_REGISTRY = {
         "shelter_preferences": [
             "crystal",
             "soft",
-            "glowing",
+            "knowledge"
             "cozy"
         ],
         "rarity": "uncommon",
