@@ -61,7 +61,7 @@ class HealResourceSelect(discord.ui.Select):
             title="🩹 Healing Session",
             creature=self.creature,
             result=result,
-            action_text=f"You carefully tend to **{self.creature.name}**."
+            action_text=f"You attempt to tend to **{self.creature.name}**."
         )
 
         if result.get("healing_item"):
