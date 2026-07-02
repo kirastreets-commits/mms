@@ -48,15 +48,37 @@ class GiftResourceSelect(discord.ui.Select):
 
     async def callback(self, interaction: discord.Interaction):
 
-        self.player = player
-        gift_item = None
+        item_id = self.values[0]
 
-        result = gift_creature(player, creature, item_id)
+        if item_id == "none":
+            return await interaction.response.send_message(
+                "No gift was given.",
+                ephemeral=True
+            )
+
+        result = gift_creature(
+            self.player,
+            self.creature,
+            item_id
+        )
 
         save_player(self.player)
 
-        embed = build_gift_embed(creature, result)
+        embed = build_gift_embed(self.creature, result)
 
+        item = RESOURCES[item_id]
+
+        embed.add_field(
+            name="Gift Given",
+            value=f"{item['emoji']} {item['name']}",
+            inline=False
+        )
+
+        await interaction.response.edit_message(
+            embed=embed,
+            view=None,
+            content=None
+        )
 
 
 
