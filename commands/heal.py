@@ -26,4 +26,12 @@ def setup(bot):
             action_text=f"You carefully tend to **{creature.name}**."
         )
 
+        if result["healing_item"]:
+            item = result["healing_item"]
+            embed.add_field(
+                name="Healing Resource",
+                value=f'{item["emoji"]} {item["name"]}',
+                inline=False
+            )
+
         await ctx.send(embed=embed)
