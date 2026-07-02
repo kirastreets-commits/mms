@@ -34,7 +34,8 @@ class HealResourceSelect(discord.ui.Select):
                 discord.SelectOption(
                     label=f'{item["name"]} x{amount}',
                     value=item_id,
-                    emoji=item.get("emoji")
+                    emoji=item.get("emoji"),
+                    description=f"+{item.get('healing_bonus', 0)}% healing success"
                 )
             )
 
