@@ -70,9 +70,9 @@ class GiftResourceSelect(discord.ui.Select):
             **result
         }
 
-    save_player(self.player)
+        save_player(self.player)
 
-    embed = build_gift_embed(creature, result)
+        embed = build_gift_embed(creature, result)
 
 
 
