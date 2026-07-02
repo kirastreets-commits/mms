@@ -15,9 +15,6 @@ def setup(bot):
         if not creature:
             return await ctx.send("You don't have a creature with that name.")
 
-        result = creature.heal()
-
-
         save_player(player)
 
         view = HealView(player, creature)
