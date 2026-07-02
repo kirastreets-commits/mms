@@ -6,7 +6,6 @@ from systems.action_renderer import render_action_embed
 from systems.gift_system import apply_gift_outcome, build_gift_embed, gift_creature, give_item
 from systems.memory_system import update_memory
 from systems.save_system import save_player
-from ui.gift_views import GiftView
 from models.player import remove_from_inventory
 
 class GiftResourceSelect(discord.ui.Select):
