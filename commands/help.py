@@ -17,7 +17,7 @@ def setup(bot):
                 "`!play <creature>`\n"
                 "`!rest <creature>`\n"
                 "`!heal <creature>`\n"
-                "`!gift <creature> <item_name>`"
+                "`!gift <creature>`"
             ),
             inline=False
         )
@@ -34,7 +34,6 @@ def setup(bot):
             name="🌍 Exploration",
             value=(
                 "`!explore`\n"
-                "`!explore_sanctuary <creature>`"
             ),
             inline=False
         )
