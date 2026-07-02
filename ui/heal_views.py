@@ -1,3 +1,5 @@
+import discord
+
 class HealResourceSelect(discord.ui.Select):
 
     def __init__(self, player, creature):
