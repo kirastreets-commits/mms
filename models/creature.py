@@ -395,8 +395,19 @@ class Creature:
             "stat_changes": [],
             "mood_change": None,
             "bond_change": None,
-            "rare_event": None
+            "rare_event": None,
+            "healing_item": None
         }
+
+        if healing_item:
+            resource_bonus = healing_item.get("healing_bonus", 0)
+            heal_bonus = healing_item.get("heal_bonus", 0)
+            crit_bonus = healing_item.get("crit_bonus", 0)
+
+            result["healing_item"] = {
+                "name": healing_item["name"],
+                "emoji": healing_item.get("emoji", "")
+            }
 
         old_bond = self.bond_level()
 
