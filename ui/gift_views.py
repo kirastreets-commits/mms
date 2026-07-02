@@ -3,7 +3,8 @@ import discord
 from data.resources import RESOURCES
 from models import creature
 from systems.action_renderer import render_action_embed
-from systems.gift_system import build_gift_embed, gift_creature, give_item
+from systems.gift_system import apply_gift_outcome, build_gift_embed, gift_creature, give_item
+from systems.memory_system import update_memory
 from systems.save_system import save_player
 
 class GiftResourceSelect(discord.ui.Select):
@@ -18,7 +19,7 @@ class GiftResourceSelect(discord.ui.Select):
                 label="No Gift Resource",
                 value="none",
                 emoji="🎁",
-                description="Give a gift normally."
+                description="Do not give a gift."
             )
         ]
 
@@ -54,20 +55,25 @@ class GiftResourceSelect(discord.ui.Select):
             gift_item = RESOURCES[item_id]
             self.player.remove_from_inventory(item_id, 1)
 
-        result = gift_creature(self.creature, gift_item, self.player.user_id)
+        # reaction
+        result = give_item(creature, item_id, player.user_id)
 
-        if not result["success"]:
-            return await ctx.send(result["message"])
+        # apply world changes
+        apply_gift_outcome(creature, item_id, result)
+
+        # memory system
+        update_memory(creature, "gift", result)
+
+        return {
+            "success": True,
+            **result
+        }
+
+    save_player(self.player)
+
+    embed = build_gift_embed(creature, result)
 
 
-        save_player(self.player)
-
-        embed = build_gift_embed(creature, result)
-
-        await interaction.response.edit_message(
-            embed=embed,
-            view=None
-        )
 
 
 class GiftView(discord.ui.View):
