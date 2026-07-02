@@ -53,7 +53,7 @@ async def callback(self, interaction):
 
         healing_item = RESOURCES[item_id]
 
-        self.player.remove_item(item_id, 1)
+        self.player.remove_from_inventory(item_id, 1)
 
         result = self.creature.heal(healing_item)
 
