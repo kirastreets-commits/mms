@@ -1,5 +1,6 @@
 from systems.action_renderer import render_action_embed
 from systems.save_system import get_or_create_player, save_player
+from ui.heal_views import HealView
 
 
 def setup(bot):
@@ -19,19 +20,9 @@ def setup(bot):
 
         save_player(player)
 
-        embed = render_action_embed(
-            title="🩹 Healing Session",
-            creature=creature,
-            result=result,
-            action_text=f"You carefully tend to **{creature.name}**."
+        view = HealView(player, creature)
+
+        await ctx.send(
+            f"Choose a healing resource for **{creature.name}**.",
+            view=view
         )
-
-        if result["healing_item"]:
-            item = result["healing_item"]
-            embed.add_field(
-                name="Healing Resource",
-                value=f'{item["emoji"]} {item["name"]}',
-                inline=False
-            )
-
-        await ctx.send(embed=embed)
