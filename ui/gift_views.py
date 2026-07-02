@@ -1,5 +1,4 @@
 import discord
-from flask import ctx
 
 from data.resources import RESOURCES
 from models import creature
