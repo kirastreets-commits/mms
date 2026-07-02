@@ -1,6 +1,8 @@
 import discord
 
 from data.resources import RESOURCES
+from systems.action_renderer import render_action_embed
+from systems.save_system import save_player
 
 class HealResourceSelect(discord.ui.Select):
 
@@ -49,7 +51,7 @@ class HealResourceSelect(discord.ui.Select):
 
                 item_id = self.values[0]
 
-                healing_item = ITEMS[item_id]
+                healing_item = RESOURCES[item_id]
 
                 self.player.remove_item(item_id, 1)
 
