@@ -1,7 +1,7 @@
 import discord
 
 from data.resources import RESOURCES
-from models import creature
+from models import creature, player
 from systems.action_renderer import render_action_embed
 from systems.gift_system import apply_gift_outcome, build_gift_embed, gift_creature, give_item
 from systems.memory_system import update_memory
@@ -48,6 +48,7 @@ class GiftResourceSelect(discord.ui.Select):
 
     async def callback(self, interaction: discord.Interaction):
 
+        self.player = player
         gift_item = None
 
         if self.values[0] != "none":
