@@ -1,5 +1,7 @@
 import discord
 
+from data.resources import RESOURCES
+
 class HealResourceSelect(discord.ui.Select):
 
     def __init__(self, player, creature):
@@ -21,7 +23,7 @@ class HealResourceSelect(discord.ui.Select):
             if amount <= 0:
                 continue
 
-            item = ITEMS[item_id]
+            item = RESOURCES[item_id]
 
             if item["type"] != "healing":
                 continue
