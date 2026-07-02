@@ -12,7 +12,7 @@ RESOURCES = {
     "name": "Moonflower Petals",
     "emoji": "🌙",
     "rarity": "common",
-    "type": "resource",
+    "type": "shelter",
     "comfort": 2,
     "tags": ["flowers", "moonlight", "plant", "soft"]
     },
