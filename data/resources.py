@@ -311,7 +311,8 @@ RESOURCES = {
     "rarity": "common",
     "type": "healing",
     "comfort": 1,
-    "tags": ["plants", "natural"]
+    "tags": ["plants", "natural"],
+    "healing_bonus": 10
     },
 
     "healing_moss": {
@@ -320,6 +321,8 @@ RESOURCES = {
     "rarity": "common",
     "type": "healing",
     "comfort": 2,
-    "tags": ["plant", "natural", "soft"]
+    "tags": ["plant", "natural", "soft"],
+    "healing_bonus": 10,
+    "heal_bonus": 5
     }
 }
