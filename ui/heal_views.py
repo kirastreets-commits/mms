@@ -43,30 +43,30 @@ class HealResourceSelect(discord.ui.Select):
             options=options
         )
 
-        async def callback(self, interaction):
+async def callback(self, interaction):
 
-            healing_item = None
+    healing_item = None
 
-            if self.values[0] != "none":
+    if self.values[0] != "none":
 
-                item_id = self.values[0]
+        item_id = self.values[0]
 
-                healing_item = RESOURCES[item_id]
+        healing_item = RESOURCES[item_id]
 
-                self.player.remove_item(item_id, 1)
+        self.player.remove_item(item_id, 1)
 
-            result = self.creature.heal(healing_item)
+        result = self.creature.heal(healing_item)
 
-            save_player(self.player)
+        save_player(self.player)
 
-            embed = render_action_embed(
+        embed = render_action_embed(
                 title="🩹 Healing Session",
                 creature=self.creature,
                 result=result,
                 action_text=f"You carefully tend to **{self.creature.name}**."
             )
 
-            await interaction.response.edit_message(
+    await interaction.response.edit_message(
                 embed=embed,
                 view=None
             )
