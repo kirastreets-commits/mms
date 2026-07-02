@@ -63,6 +63,14 @@ class HealResourceSelect(discord.ui.Select):
             action_text=f"You carefully tend to **{self.creature.name}**."
         )
 
+        if result.get("healing_item"):
+            item = result["healing_item"]
+            embed.add_field(
+                name="Healing Resource",
+                value=f'{item["emoji"]} {item["name"]}',
+                inline=False
+            )
+
         await interaction.response.edit_message(
             embed=embed,
             view=None
