@@ -68,10 +68,6 @@ class HealResourceSelect(discord.ui.Select):
             view=None
         )
 
-    await interaction.response.edit_message(
-                embed=embed,
-                view=None
-            )
 
 class HealView(discord.ui.View):
 
