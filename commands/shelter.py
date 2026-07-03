@@ -25,8 +25,9 @@ def setup(bot):
         color=0x6bbf59
         )
 
-        items = creature.shelter.get('items', {})
+        items = creature.shelter.get("items", [])
         if items:
-            embed.add_field(name=f"Items in {shelter_name}", value="\n".join(items), inline=False)
+            embed.add_field(name=f"Items in {shelter_name}", 
+                value="\n {items}".join(items), inline=False)
 
         await ctx.send(embed=embed)
