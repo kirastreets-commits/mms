@@ -1,6 +1,7 @@
 
 import discord
 from discord import reaction
+from models.player import player
 
 from models import creature
 
