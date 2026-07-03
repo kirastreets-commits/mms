@@ -315,6 +315,15 @@ RESOURCES = {
     "healing_bonus": 10
     },
 
+    "golden_nectar": {
+    "name": "Golden Nectar",
+    "emoji": "🍯",
+    "type": "healing",
+    "healing_bonus": 15,
+    "heal_bonus": 10,
+    "crit_bonus": 5
+    },
+
     "healing_moss": {
     "name": "Healing Moss",
     "emoji": "🌿",
