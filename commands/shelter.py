@@ -1,7 +1,7 @@
 
 import discord
 from discord import reaction
-from models.player import player
+from systems.save_system import get_or_create_player, save_player
 
 from models import creature
 
