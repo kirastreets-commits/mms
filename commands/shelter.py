@@ -26,8 +26,9 @@ def setup(bot):
         )
 
         items = creature.shelter.get("items", [])
-        if items:
+
+        if items.get("state") == "kept":
             embed.add_field(name=f"Items in {shelter_name}", 
-                value="\n {items}".join(items), inline=False)
+                value="{items}", inline=False)
 
         await ctx.send(embed=embed)
