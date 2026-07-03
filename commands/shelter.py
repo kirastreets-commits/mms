@@ -21,7 +21,7 @@ def setup(bot):
 
         embed = discord.Embed(
         title=f"{creature.name}'s {shelter_name}",
-        description=f"Comfort: {creature.shelter.get('comfort')} \nLevel: {creature.shelter.get('level', 1)}",
+        description=f"Comfort: {creature.shelter.get('comfort', 0)} \nLevel: {creature.shelter.get('level', 1)}",
         color=0x6bbf59
         )
 
@@ -30,9 +30,10 @@ def setup(bot):
 
         if items:
             item_list = "\n".join(
-                f"- {entry['item']} (State: {entry.get('state', 'normal')})"
+                f"- {entry['item']}  {entry['emoji']} (State: {entry.get('state', 'normal')})"
                 for entry in items
             )
             embed.add_field(name=f"Items in {shelter_name}", value=item_list, inline=False)
 
         await ctx.send(embed=embed)
+
