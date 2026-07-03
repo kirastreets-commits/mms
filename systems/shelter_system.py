@@ -76,3 +76,14 @@ def update_shelter(creature):
         "new_level": new_level,
         "leveled_up": new_level > previous_level
     }
+from data.resources import RESOURCES
+
+def get_shelter_comfort(shelter):
+    comfort = 0
+
+    for entry in shelter.get("items", []):
+        resource = RESOURCES.get(entry["item"])
+        if resource:
+            comfort += resource.get("comfort", 0)
+
+    return comfort
