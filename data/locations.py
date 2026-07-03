@@ -81,6 +81,7 @@ LOCATIONS = {
             "firebloom_petals",
             "wild_lavender",
             "sweet_grass",
+            "golden_nectar",
             "moonflower_petals"
             ],
         "available_creatures": ["Lunabloom"],
