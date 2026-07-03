@@ -30,7 +30,7 @@ def setup(bot):
 
         if items:
             item_list = "\n".join(
-                f"- {entry[{items["name"]}]} (State: {entry.get('state', 'normal')})"
+                f"- {entry['item']} (State: {entry.get('state', 'normal')})"
                 for entry in items
             )
             embed.add_field(name=f"Items in {shelter_name}", value=item_list, inline=False)
