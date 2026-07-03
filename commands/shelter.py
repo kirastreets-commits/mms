@@ -1,6 +1,5 @@
 
 import discord
-from discord import reaction
 from systems.save_system import get_or_create_player, save_player
 
 from models import creature
@@ -23,7 +22,7 @@ def setup(bot):
         embed = discord.Embed(
         title=f"{creature.name}'s {shelter_name}",
         description=f"Comfort: {creature.shelter.get('comfort', 0)} ⭐\nLevel: {creature.shelter.get('level', 1)}",
-        color=colors.get(reaction, discord.Color.green())
+        color=0x6bbf59
         )
 
         await ctx.send(embed=embed)
