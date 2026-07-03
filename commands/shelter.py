@@ -21,8 +21,12 @@ def setup(bot):
 
         embed = discord.Embed(
         title=f"{creature.name}'s {shelter_name}",
-        description=f"Comfort: {creature.shelter.get('comfort', 0)} ⭐\nLevel: {creature.shelter.get('level', 1)}",
+        description=f"Comfort: {creature.shelter.get('comfort', 0)} \nLevel: {creature.shelter.get('level', 1)}",
         color=0x6bbf59
         )
+
+        items = creature.shelter.get('items', [])
+        if items:
+            embed.add_field(name=f"Items in {shelter_name}", value="\n".join(items), inline=False)
 
         await ctx.send(embed=embed)
