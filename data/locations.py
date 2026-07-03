@@ -131,7 +131,30 @@ LOCATIONS = {
             "**Caretaker's Note**: 'Stonehorns are not born in Emberlight Hollow. They are carved into being by heat, pressure, and time. Treat them gently—they remember the fire that made them.'",
             "**Caretaker's Note**: 'The ground here breathes. If you feel it shift beneath your feet, it is not anger. It is waking.'"
         ],
-        "connected": ["moonlit_forest"]
+        "connected": ["moonlit_forest", "ashenpeak_highlands"]
+    },
+
+    "ashenpeak_highlands": {
+        "name": "Ashenpeak Highlands",
+        "type": "outside",
+        "resources": [
+            "obsidian_shards",
+            "lava_rock",
+            "heat_crystal",
+            "mineral_salt_block",
+            "warm_pebbles",
+            "firebloom_petals",
+            "everwarm_coal",
+            "glowing_mushrooms"
+        ],
+        "available_creatures": ["Stonehorn", "Fire Dragon"],
+        "lore_chance": 0.4,
+        "lore": [
+            "The Ashenpeak Highlands remind all who visit that even the fiercest fire can become a source of warmth, life, and home.",
+            "Many fire-affinity creatures make their homes among these warm cliffs, where lava, stone, and steam offer both shelter and safety.",
+            "Towering above Emberlight Hollow, the Ashenpeak Highlands are a chain of ancient volcanoes whose gentle warmth has shaped the land for centuries."
+        ],
+        "connected": ["moonlit_forest", "emberlight_hollow"]
     },
     
     "frostpine_forest": {
