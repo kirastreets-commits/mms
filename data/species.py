@@ -127,7 +127,8 @@ SPECIES_REGISTRY = {
         "shelter_preferences": [
             "stone",
             "mineral",
-            "sturdy"
+            "sturdy",
+            "warm"
         ],
         "rarity": "common",
         "habitat": "volcanic",
