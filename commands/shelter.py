@@ -1,6 +1,7 @@
 
 import discord
 from systems.save_system import get_or_create_player, save_player
+from systems.shelter_system import get_shelter_comfort
 
 from models import creature
 
@@ -18,14 +19,16 @@ def setup(bot):
             return await ctx.send("You don't have a creature with that name.")
 
         shelter_name = creature.shelter.get("type", "shelter")
-
+        comfort = get_shelter_comfort(creature.shelter)
+        
         embed = discord.Embed(
         title=f"{creature.name}'s {shelter_name}",
-        description=f"Comfort: {creature.shelter.get('comfort', 0)} \nLevel: {creature.shelter.get('level', 1)}",
+        description=f"Comfort: {comfort} \nLevel: {creature.shelter.get('level', 1)}",
         color=0x6bbf59
         )
 
         items = creature.shelter.get("items", [])
+        
 
 
         if items:
