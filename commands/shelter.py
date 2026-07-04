@@ -2,7 +2,7 @@
 import discord
 from systems.save_system import get_or_create_player, save_player
 from systems.shelter_system import get_shelter_comfort
-
+from systems.shelter_system import update_shelter
 from models import creature
 
 
@@ -21,9 +21,11 @@ def setup(bot):
         shelter_name = creature.shelter.get("type", "shelter")
         comfort = get_shelter_comfort(creature.shelter)
         
+        shelter_result = update_shelter(creature)
+        
         embed = discord.Embed(
         title=f"{creature.name}'s {shelter_name}",
-        description=f"Comfort: {comfort} \nLevel: {creature.shelter.get('level', 1)}",
+        description=f"Comfort: {shelter_result['comfort']} \nLevel: {shelter_result['new_level']}",
         color=0x6bbf59
         )
 
