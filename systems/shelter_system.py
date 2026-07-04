@@ -76,14 +76,55 @@ def update_shelter(creature):
         "new_level": new_level,
         "leveled_up": new_level > previous_level
     }
-from data.resources import RESOURCES
 
-def get_shelter_comfort(shelter):
-    comfort = 0
+def generate_shelter_description(creature):
+    shelter = creature.shelter
+    items = shelter.get("items", [])
+    comfort = shelter.get("comfort", 0)
 
-    for entry in shelter.get("items", []):
+    # Overall atmosphere
+    if comfort < 10:
+        opening = "The shelter is simple, with just a few comforts."
+    elif comfort < 25:
+        opening = "The shelter feels warm and welcoming."
+    elif comfort < 45:
+        opening = "The shelter is wonderfully cozy and well cared for."
+    elif comfort < 70:
+        opening = "Every corner of the shelter feels thoughtfully decorated and inviting."
+    else:
+        opening = "The shelter has become a breathtaking sanctuary, overflowing with comfort and personality."
+
+    # Mention favourite items
+    favorites = []
+    decorations = []
+
+    from data.resources import RESOURCES
+
+    for entry in items:
         resource = RESOURCES.get(entry["item"])
-        if resource:
-            comfort += resource.get("comfort", 0)
+        if not resource:
+            continue
 
-    return comfort
+        name = resource["name"]
+
+        if entry.get("state") == "favorite":
+            favorites.append(name)
+        else:
+            decorations.append(name)
+
+    text = opening
+
+    if favorites:
+        if len(favorites) == 1:
+            text += f" Its favourite possession is **{favorites[0]}**, carefully displayed where everyone can see it."
+        elif len(favorites) == 2:
+            text += f" Its favourite possessions are **{favorites[0]}** and **{favorites[1]}**."
+        else:
+            text += " Several treasured belongings have pride of place throughout the shelter."
+
+    if len(decorations) >= 3:
+        text += " Decorations fill the space, making it feel truly lived in."
+    elif len(decorations) > 0:
+        text += " A few carefully chosen decorations add charm to the home."
+
+    return text
