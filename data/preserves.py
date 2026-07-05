@@ -2,16 +2,21 @@ PRESERVES = {
 
     "elderwood": {
         "name": "Elderwood Preserve",
-        "theme": "forest",
         "emoji": "🌲",
+        "theme": "forest",
 
         "description": (
             "One of the oldest forests within Moonlit Meadows, Elderwood Preserve "
             "is a peaceful wilderness of towering trees, moss-covered stones, "
-            "gentle streams, and hidden clearings. Caretakers rarely disturb the "
-            "forest, allowing creatures to live much as they would in the wild."
+            "gentle streams, and hidden clearings."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Burrow",
             "Den",
@@ -20,6 +25,7 @@ PRESERVES = {
             "Hollow Log"
         ],
 
+        # Resources
         "resources": [
             "moss",
             "wildflowers",
@@ -41,6 +47,12 @@ PRESERVES = {
             "safe haven for creatures that thrive in heat."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Stone Den",
             "Den",
@@ -48,6 +60,7 @@ PRESERVES = {
             "Burrow"
         ],
 
+        # Resources
         "resources": [
             "warm_pebbles",
             "charcoal",
@@ -67,6 +80,13 @@ PRESERVES = {
             "beneath the snow are warm dens where arctic creatures feel truly at home."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Snow Burrow",
             "Den",
@@ -74,6 +94,7 @@ PRESERVES = {
             "Cave"
         ],
 
+        # Resources
         "resources": [
             "ice_crystal",
             "snowberries",
@@ -92,6 +113,13 @@ PRESERVES = {
             "and enchanting home for creatures drawn to minerals and glowing caves."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Crystal Hollow",
             "Crystal Den",
@@ -99,6 +127,7 @@ PRESERVES = {
             "Stone Den"
         ],
 
+        # Resources
         "resources": [
             "crystal_shard",
             "glow_mushroom",
@@ -117,12 +146,20 @@ PRESERVES = {
             "and burrowing creatures flourish beneath open skies."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Burrow",
             "Nest",
             "Den"
         ],
 
+        # Resources
         "resources": [
             "wildflowers",
             "soft_grass",
@@ -142,6 +179,12 @@ PRESERVES = {
             "countless aquatic plants and creatures."
         ),
 
+        # Gameplay
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "unlock_level": 1,
+
+        # Allowed shelter types
         "allowed_shelters": [
             "Reed Nest",
             "Burrow",
