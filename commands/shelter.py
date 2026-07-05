@@ -30,6 +30,8 @@ def setup(bot):
         comfort = shelter_result["comfort"]
         level = shelter_result["new_level"]
 
+        description = generate_shelter_description(creature)
+
         # -----------------------------
         # Progress
         # -----------------------------
@@ -52,6 +54,35 @@ def setup(bot):
             color=0x6BBF59
         )
 
+
+        tag_counts = {}
+
+        for entry in items:
+            resource = RESOURCES.get(entry["item"])
+            if not resource:
+                continue
+
+            for tag in resource.get("tags", []):
+                tag_counts[tag] = tag_counts.get(tag, 0) + 1
+
+        if tag_counts.get("flowers", 0) >= 2:
+            description += " Fragrant flowers bloom throughout the shelter, filling the air with their sweet scent."
+
+        if tag_counts.get("glowing", 0):
+            description += " A gentle glow lights every corner."
+
+        if tag_counts.get("cozy", 0):
+            description += " Thick blankets and soft bedding make it difficult to leave."
+
+        if tag_counts.get("knowledge", 0):
+            description += " Shelves and carefully arranged curiosities give the space a scholarly feel."
+
+        if tag_counts.get("natural", 0):
+            description += " Natural materials have been woven into the shelter's design, creating a peaceful atmosphere."
+
+        if tag_counts.get("plant", 0):
+            description += " Lush greenery breathes life into every corner."
+            
         # -----------------------------
         # Shelter Description
         # -----------------------------
@@ -108,36 +139,6 @@ def setup(bot):
                 inline=False
             )
 
-        tag_counts = {}
-
-        for entry in items:
-            resource = RESOURCES.get(entry["item"])
-            if not resource:
-                continue
-
-            for tag in resource.get("tags", []):
-                tag_counts[tag] = tag_counts.get(tag, 0) + 1
-
-        if tag_counts.get("flowers", 0) >= 2:
-            description += " Fragrant flowers bloom throughout the shelter, filling the air with their sweet scent."
-
-        if tag_counts.get("glowing", 0):
-            description += " A gentle glow lights every corner."
-
-        if tag_counts.get("cozy", 0):
-            description += " Thick blankets and soft bedding make it difficult to leave."
-
-        if tag_counts.get("knowledge", 0):
-            description += " Knowledge seems to be woven into every fibre."
-
-        if tag_counts.get("natural", 0):
-            description += " Natural elements are incorporated into the design, creating a harmonious atmosphere."
-
-        if tag_counts.get("plant", 0):
-            description += " Lush greenery adds life and color to the space."
-
-        if tag_counts.get("cozy", 0):
-            description += " Thick blankets and soft bedding make it difficult to leave."
 
         # -----------------------------
         # Progress
