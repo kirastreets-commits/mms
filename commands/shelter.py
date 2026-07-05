@@ -119,10 +119,22 @@ def setup(bot):
                 tag_counts[tag] = tag_counts.get(tag, 0) + 1
 
         if tag_counts.get("flowers", 0) >= 2:
-            description += " Fragrant flowers bloom throughout the shelter."
+            description += " Fragrant flowers bloom throughout the shelter, filling the air with their sweet scent."
 
         if tag_counts.get("glowing", 0):
             description += " A gentle glow lights every corner."
+
+        if tag_counts.get("cozy", 0):
+            description += " Thick blankets and soft bedding make it difficult to leave."
+
+        if tag_counts.get("knowledge", 0):
+            description += " Knowledge seems to be woven into every fibre."
+
+        if tag_counts.get("natural", 0):
+            description += " Natural elements are incorporated into the design, creating a harmonious atmosphere."
+
+        if tag_counts.get("plant", 0):
+            description += " Lush greenery adds life and color to the space."
 
         if tag_counts.get("cozy", 0):
             description += " Thick blankets and soft bedding make it difficult to leave."
