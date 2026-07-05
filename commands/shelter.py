@@ -1,6 +1,6 @@
 import discord
 from systems.save_system import get_or_create_player
-from systems.shelter_system import update_shelter, SHELTER_LEVELS
+from systems.shelter_system import update_shelter, SHELTER_LEVELS, generate_shelter_description
 from data.resources import RESOURCES
 
 
@@ -59,36 +59,13 @@ def setup(bot):
             inline=False
         )
 
-        # Shelter items
-        items = creature.shelter.get("items", [])
+        description = generate_shelter_description(creature)
 
-        if items:
-            item_lines = []
-
-            for entry in items:
-                resource = RESOURCES.get(entry["item"], {})
-
-                emoji = resource.get("emoji", "📦")
-                name = resource.get(
-                    "name",
-                    entry["item"].replace("_", " ").title()
-                )
-
-                state = entry.get("state", "kept")
-
-                state_icon = {
-                    "favorite": "🌟",
-                    "kept": "🏡",
-                    "ignored": "📦"
-                }.get(state, "•")
-
-                item_lines.append(f"{state_icon} {emoji} **{name}**")
-
-            embed.add_field(
-                name="🪴 Shelter Items",
-                value="\n".join(item_lines),
-                inline=False
-            )
+        embed.add_field(
+            name="📖 Description",
+            value=description,
+            inline=False
+        )
         else:
             embed.add_field(
                 name="🪴 Shelter Items",
