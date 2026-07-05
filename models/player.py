@@ -3,6 +3,8 @@ from systems.journal_system import (
     record_discovery,
 )
 
+from data.preserves import PRESERVES
+
 # PLAYER
 
 class Player:
@@ -18,7 +20,8 @@ class Player:
         unlocked_locations=None,
         tutorial_stage=0,
         tutorial_complete=False,
-        has_starter=False
+        has_starter=False,
+        preserves=None
     ):
 
         self.user_id = user_id
@@ -35,6 +38,35 @@ class Player:
 
         self.tutorial_stage = tutorial_stage
         self.tutorial_complete = tutorial_complete
+
+        # ----------------------------
+        # 🌿 PRESERVES
+        # ----------------------------
+
+        default_preserves = {
+            preserve_id: {
+                "level": 1,
+                "occupied": [],
+                "restoration": 0,
+                "unlocked": PRESERVES[preserve_id].get("unlock_level", 1) == 1
+            }
+            for preserve_id in PRESERVES
+        }
+
+        # Load existing preserve data if available
+        if preserves is None:
+            preserves = default_preserves
+        else:
+            # Add any new preserves that weren't in older save files
+            for preserve_id, default_data in default_preserves.items():
+
+                if preserve_id not in preserves:
+                    preserves[preserve_id] = default_data
+                else:
+                    for key, value in default_data.items():
+                        preserves[preserve_id].setdefault(key, value)
+
+                    self.preserves = preserves
 
     # ----------------------------
     # 🐉 CREATURE MANAGEMENT
@@ -142,7 +174,8 @@ class Player:
             "unlocked_locations": self.unlocked_locations,
             "tutorial_stage": self.tutorial_stage,
             "tutorial_complete": self.tutorial_complete,
-            "has_starter": self.has_starter
+            "has_starter": self.has_starter,
+            "preserves": self.preserves,
         }
 
     @classmethod
@@ -185,5 +218,6 @@ class Player:
             unlocked_locations=data.get("unlocked_locations", ["sanctuary_core"]),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
-            has_starter=data.get("has_starter", False)
+            has_starter=data.get("has_starter", False),
+            preserves=data.get("preserves")
         )
