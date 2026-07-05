@@ -10,18 +10,6 @@ SHELTER_LEVELS = {
 }
 
 
-from data.resources import RESOURCES
-from data.species import get_species_preferences
-
-SHELTER_LEVELS = {
-    1: 0,
-    2: 15,
-    3: 35,
-    4: 60,
-    5: 100
-}
-
-
 def update_shelter(creature):
 
     creature.shelter.setdefault("items", [])
