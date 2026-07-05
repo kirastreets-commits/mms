@@ -78,53 +78,104 @@ def update_shelter(creature):
     }
 
 def generate_shelter_description(creature):
+
     shelter = creature.shelter
     items = shelter.get("items", [])
     comfort = shelter.get("comfort", 0)
 
+    # -----------------------------
     # Overall atmosphere
+    # -----------------------------
     if comfort < 10:
-        opening = "The shelter is simple, with just a few comforts."
+        text = "The shelter is simple, with just a few comforts."
     elif comfort < 25:
-        opening = "The shelter feels warm and welcoming."
+        text = "The shelter feels warm and welcoming."
     elif comfort < 45:
-        opening = "The shelter is wonderfully cozy and well cared for."
+        text = "The shelter is wonderfully cozy and well cared for."
     elif comfort < 70:
-        opening = "Every corner of the shelter feels thoughtfully decorated and inviting."
+        text = "Every corner of the shelter feels thoughtfully decorated and inviting."
     else:
-        opening = "The shelter has become a breathtaking sanctuary, overflowing with comfort and personality."
+        text = "The shelter has become a breathtaking sanctuary, overflowing with comfort and personality."
 
-    # Mention favourite items
     favorites = []
     decorations = []
+    tag_counts = {}
 
-    from data.resources import RESOURCES
-
+    # -----------------------------
+    # Scan every decoration
+    # -----------------------------
     for entry in items:
+
         resource = RESOURCES.get(entry["item"])
+
         if not resource:
             continue
 
-        name = resource["name"]
+        name = resource.get("name", entry["item"])
 
         if entry.get("state") == "favorite":
             favorites.append(name)
         else:
             decorations.append(name)
 
-    text = opening
+        for tag in resource.get("tags", []):
+            tag = tag.lower().strip()
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1
 
+    # -----------------------------
+    # Favourite decorations
+    # -----------------------------
     if favorites:
+
         if len(favorites) == 1:
-            text += f" Its favourite possession is **{favorites[0]}**, carefully displayed where everyone can see it."
+            text += f" Its favourite possession is **{favorites[0]}**, carefully displayed where everyone can admire it."
+
         elif len(favorites) == 2:
             text += f" Its favourite possessions are **{favorites[0]}** and **{favorites[1]}**."
+
         else:
             text += " Several treasured belongings have pride of place throughout the shelter."
 
+    # -----------------------------
+    # General decorations
+    # -----------------------------
     if len(decorations) >= 3:
         text += " Decorations fill the space, making it feel truly lived in."
-    elif len(decorations) > 0:
+
+    elif decorations:
         text += " A few carefully chosen decorations add charm to the home."
+
+    # -----------------------------
+    # Tag flavour
+    # -----------------------------
+    if tag_counts.get("flowers", 0) >= 2:
+        text += " Fragrant flowers bloom throughout the shelter, filling the air with a gentle scent."
+
+    if tag_counts.get("plant", 0):
+        text += " Lush greenery breathes life into every corner."
+
+    if tag_counts.get("natural", 0):
+        text += " Natural materials blend seamlessly into the surroundings."
+
+    if tag_counts.get("glowing", 0):
+        text += " A soft glow illuminates the shelter."
+
+    if tag_counts.get("cozy", 0):
+        text += " Thick blankets and soft bedding make the shelter feel wonderfully comfortable."
+
+    if tag_counts.get("knowledge", 0):
+        text += " Books and curious trinkets give the shelter a scholarly atmosphere."
+
+    if tag_counts.get("crystal", 0):
+        text += " Glittering crystals catch the light with every movement."
+
+    if tag_counts.get("water", 0):
+        text += " The gentle sound of flowing water brings a peaceful calm."
+
+    if tag_counts.get("fire", 0):
+        text += " A comforting warmth lingers throughout the shelter."
+
+    if tag_counts.get("mushroom", 0):
+        text += " Tiny mushrooms add an enchanting woodland feel."
 
     return text
