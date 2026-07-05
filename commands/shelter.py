@@ -31,20 +31,6 @@ def setup(bot):
         level = shelter_result["new_level"]
 
         # -----------------------------
-        # Comfort Description
-        # -----------------------------
-        if comfort < 10:
-            comfort_text = "A simple shelter with only the essentials."
-        elif comfort < 25:
-            comfort_text = "A warm and welcoming little home."
-        elif comfort < 45:
-            comfort_text = "A wonderfully cozy shelter filled with comfort."
-        elif comfort < 70:
-            comfort_text = "A beautifully decorated home that feels truly lived in."
-        else:
-            comfort_text = "A luxurious sanctuary that reflects years of love and care."
-
-        # -----------------------------
         # Progress
         # -----------------------------
         next_level = level + 1
@@ -62,7 +48,6 @@ def setup(bot):
             description=(
                 f"⭐ **Comfort:** {comfort}\n"
                 f"🏠 **Shelter Level:** {level}\n\n"
-                f"*{comfort_text}*"
             ),
             color=0x6BBF59
         )
