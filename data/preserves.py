@@ -11,12 +11,17 @@ PRESERVES = {
             "gentle streams, and hidden clearings."
         ),
 
-        # Gameplay
+        # -----------------------------
+        # Progression
+        # -----------------------------
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-        # Allowed shelter types
+        # -----------------------------
+        # Shelter Types
+        # -----------------------------
         "allowed_shelters": [
             "Burrow",
             "Den",
@@ -25,34 +30,77 @@ PRESERVES = {
             "Hollow Log"
         ],
 
+        # Named shelter sites
+        "shelter_sites": [
+            "Mossy Hollow",
+            "Old Oak Burrow",
+            "Fern Clearing",
+            "Whispering Roots",
+            "Foxglove Grove",
+            "Ancient Oak Hollow",
+            "Sunlit Knoll",
+            "Hidden Spring",
+            "Willow Thicket",
+            "Stone Moss Den",
+            "Twilight Hollow"
+        ],
+
+        # -----------------------------
         # Resources
+        # -----------------------------
         "resources": [
             "moss",
             "wildflowers",
             "berries",
             "sticks",
             "soft_bedding"
+        ],
+
+        # -----------------------------
+        # Atmosphere
+        # -----------------------------
+        "atmosphere": [
+            "A gentle breeze rustles through the towering trees.",
+            "Birdsong echoes throughout the preserve.",
+            "Golden rays of sunlight filter through the forest canopy.",
+            "The scent of moss and damp earth fills the air."
+        ],
+
+        # -----------------------------
+        # Weather
+        # -----------------------------
+        "possible_weather": [
+            "Sunny",
+            "Light Rain",
+            "Morning Mist"
+        ],
+
+        # -----------------------------
+        # Discoveries
+        # -----------------------------
+        "discoveries": [
+            "Ancient Stone Circle",
+            "Hidden Wildflower Patch",
+            "Forgotten Woodland Shrine",
+            "Crystal Spring"
         ]
     },
 
     "emberlands": {
         "name": "Emberlands Preserve",
-        "theme": "volcanic",
         "emoji": "🔥",
+        "theme": "volcanic",
 
         "description": (
             "Fed by the warmth beneath Moonlit Meadows, Emberlands Preserve is a "
-            "rugged landscape of volcanic stone, warm earth, glowing vents and "
-            "gentle streams of lava. Though fierce in appearance, it provides a "
-            "safe haven for creatures that thrive in heat."
+            "rugged landscape of volcanic stone, glowing vents and rivers of lava."
         ),
 
-        # Gameplay
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-        # Allowed shelter types
         "allowed_shelters": [
             "Stone Den",
             "Den",
@@ -60,33 +108,62 @@ PRESERVES = {
             "Burrow"
         ],
 
-        # Resources
+        "shelter_sites": [
+            "Ashfall Cave",
+            "Ember Hollow",
+            "Basalt Burrow",
+            "Lava Tube",
+            "Scorched Ridge",
+            "Smoldering Cavern",
+            "Firestone Hollow",
+            "Molten Pass",
+            "Obsidian Shelter",
+            "Cinder Grove",
+            "Blazing Crag"
+        ],
+
         "resources": [
             "warm_pebbles",
             "charcoal",
             "ember_moss",
             "fire_crystal"
+        ],
+
+        "atmosphere": [
+            "Warm air rises from the earth.",
+            "Tiny embers drift lazily through the preserve.",
+            "The distant rumble of the volcano echoes softly.",
+            "Heat radiates from the black stone beneath your feet."
+        ],
+
+        "possible_weather": [
+            "Clear",
+            "Ashfall",
+            "Heat Haze"
+        ],
+
+        "discoveries": [
+            "Ancient Lava Shrine",
+            "Fire Crystal Vein",
+            "Hidden Lava Tube"
         ]
     },
 
     "frostwild": {
         "name": "Frostwild Preserve",
-        "theme": "arctic",
         "emoji": "❄️",
+        "theme": "arctic",
 
         "description": (
-            "Blanketed in snow throughout the year, Frostwild Preserve is a quiet "
-            "expanse of frozen forests, glittering ice and peaceful silence. Hidden "
-            "beneath the snow are warm dens where arctic creatures feel truly at home."
+            "Blanketed in snow throughout the year, Frostwild Preserve is a peaceful "
+            "land of frozen forests, icy lakes and sparkling glaciers."
         ),
 
-        # Gameplay
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-
-        # Allowed shelter types
         "allowed_shelters": [
             "Snow Burrow",
             "Den",
@@ -94,32 +171,60 @@ PRESERVES = {
             "Cave"
         ],
 
-        # Resources
+        "shelter_sites": [
+            "Snowdrift Burrow",
+            "Frozen Hollow",
+            "Crystal Ice Cave",
+            "Aurora Ridge",
+            "Glacier Den",
+            "Winter Hollow",
+            "Ice Blossom Grove",
+            "Frostpine Shelter",
+            "Silent Cavern",
+            "Snowy Clearing",
+            "Shimmering Glacier"
+        ],
+
         "resources": [
             "ice_crystal",
             "snowberries",
             "frost_flower"
+        ],
+
+        "atmosphere": [
+            "Snowflakes drift silently through the air.",
+            "The crisp air sparkles beneath the sunlight.",
+            "Everything is wonderfully quiet.",
+            "A shimmering aurora dances overhead."
+        ],
+
+        "possible_weather": [
+            "Snow",
+            "Blizzard",
+            "Clear Skies"
+        ],
+
+        "discoveries": [
+            "Frozen Waterfall",
+            "Ice Crystal Cavern",
+            "Ancient Frost Totem"
         ]
     },
 
     "crystal_reach": {
         "name": "Crystal Reach",
-        "theme": "crystal",
         "emoji": "💎",
+        "theme": "crystal",
 
         "description": (
-            "Towering crystal formations rise from the earth, filling the preserve "
-            "with shimmering light. Every surface sparkles softly, creating a calm "
-            "and enchanting home for creatures drawn to minerals and glowing caves."
+            "Towering crystal formations fill the landscape with shimmering light."
         ),
 
-        # Gameplay
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-
-        # Allowed shelter types
         "allowed_shelters": [
             "Crystal Hollow",
             "Crystal Den",
@@ -127,68 +232,136 @@ PRESERVES = {
             "Stone Den"
         ],
 
-        # Resources
+        "shelter_sites": [
+            "Amethyst Hollow",
+            "Crystal Cavern",
+            "Shimmering Grotto",
+            "Quartz Ridge",
+            "Prism Hollow",
+            "Glittering Cavern",
+            "Moonstone Den",
+            "Crystal Garden",
+            "Gemstone Pass",
+            "Radiant Hollow",
+            "Echo Crystal Cave"
+        ],
+
         "resources": [
             "crystal_shard",
             "glow_mushroom",
             "crystal_dust"
+        ],
+
+        "atmosphere": [
+            "Crystals sparkle in every direction.",
+            "Soft light dances across the cavern walls.",
+            "Tiny fragments shimmer beneath your feet."
+        ],
+
+        "possible_weather": [
+            "Clear",
+            "Crystal Rain"
+        ],
+
+        "discoveries": [
+            "Heart Crystal",
+            "Glowing Cavern",
+            "Ancient Crystal Altar"
         ]
     },
 
     "sunpetal_prairie": {
         "name": "Sunpetal Prairie",
-        "theme": "grassland",
         "emoji": "🌼",
+        "theme": "grassland",
 
         "description": (
-            "Rolling meadows stretch as far as the eye can see, dotted with wildflowers "
-            "that sway gently in the breeze. It is a peaceful preserve where grazing "
-            "and burrowing creatures flourish beneath open skies."
+            "Rolling meadows filled with colourful wildflowers stretch beneath open skies."
         ),
 
-        # Gameplay
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-
-        # Allowed shelter types
         "allowed_shelters": [
             "Burrow",
             "Nest",
             "Den"
         ],
 
-        # Resources
+        "shelter_sites": [
+            "Buttercup Hollow",
+            "Sunflower Knoll",
+            "Wildflower Burrow",
+            "Golden Meadow",
+            "Bluebell Rise",
+            "Daisy Hollow",
+            "Poppy Field",
+            "Sunny Clearing",
+            "Breezy Hill",
+            "Honey Meadow",
+            "Lavender Hollow"
+        ],
+
         "resources": [
             "wildflowers",
             "soft_grass",
             "seeds",
             "herbs"
+        ],
+
+        "atmosphere": [
+            "Wildflowers sway gently in the breeze.",
+            "Butterflies drift between colourful blossoms.",
+            "The warm sun bathes the prairie in golden light."
+        ],
+
+        "possible_weather": [
+            "Sunny",
+            "Cloudy",
+            "Spring Shower"
+        ],
+
+        "discoveries": [
+            "Rare Flower Patch",
+            "Butterfly Grove",
+            "Hidden Meadow"
         ]
     },
 
     "mistfen": {
         "name": "Mistfen Preserve",
-        "theme": "wetland",
         "emoji": "🌿",
+        "theme": "wetland",
 
         "description": (
-            "A tranquil wetland of reeds, ponds and winding streams, Mistfen Preserve "
-            "is often cloaked in a gentle morning mist. The rich wetlands support "
-            "countless aquatic plants and creatures."
+            "A peaceful wetland of winding streams, reeds and quiet ponds."
         ),
 
-        # Gameplay
         "starting_capacity": 3,
         "capacity_per_level": 2,
+        "max_level": 5,
         "unlock_level": 1,
 
-        # Allowed shelter types
         "allowed_shelters": [
             "Reed Nest",
             "Burrow",
             "Driftwood Shelter"
+        ],
+
+        "shelter_sites": [
+            "Reed Haven",
+            "Willow Bank",
+            "Misty Hollow",
+            "Driftwood Point",
+            "Lily Pond",
+            "Foggy Nest",
+            "Heron Marsh",
+            "Quiet Creek",
+            "Silver Reeds",
+            "Water's Edge",
+            "Hidden Lagoon"
         ],
 
         "resources": [
@@ -196,11 +369,60 @@ PRESERVES = {
             "water_lily",
             "smooth_stones",
             "fresh_water"
+        ],
+
+        "atmosphere": [
+            "A blanket of mist hangs over the water.",
+            "The gentle croaking of frogs echoes through the marsh.",
+            "Dragonflies skim across the still ponds."
+        ],
+
+        "possible_weather": [
+            "Fog",
+            "Rain",
+            "Sunny"
+        ],
+
+        "discoveries": [
+            "Ancient Boardwalk",
+            "Hidden Pond",
+            "Rare Water Lily"
         ]
     }
 }
 
-# HELPER FUNCTIONS
+
+# ----------------------------------------
+# Helper Functions
+# ----------------------------------------
 
 def get_preserve(preserve_id):
     return PRESERVES.get(preserve_id)
+
+
+def get_preserve_capacity(player, preserve_id):
+    """Calculate the current shelter capacity of a preserve."""
+
+    preserve = PRESERVES[preserve_id]
+    player_preserve = player.preserves[preserve_id]
+
+    return min(
+        preserve["starting_capacity"]
+        + (player_preserve["level"] - 1) * preserve["capacity_per_level"],
+        len(preserve["shelter_sites"])
+    )
+
+
+def get_available_shelter_sites(player, preserve_id):
+    """Return a list of unoccupied shelter sites."""
+
+    preserve = PRESERVES[preserve_id]
+    player_preserve = player.preserves[preserve_id]
+
+    capacity = get_preserve_capacity(player, preserve_id)
+
+    available_sites = preserve["shelter_sites"][:capacity]
+
+    occupied = set(player_preserve["occupied"])
+
+    return [site for site in available_sites if site not in occupied]
