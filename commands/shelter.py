@@ -108,6 +108,25 @@ def setup(bot):
                 inline=False
             )
 
+        tag_counts = {}
+
+        for entry in items:
+            resource = RESOURCES.get(entry["item"])
+            if not resource:
+                continue
+
+            for tag in resource.get("tags", []):
+                tag_counts[tag] = tag_counts.get(tag, 0) + 1
+
+        if tag_counts.get("flowers", 0) >= 2:
+            description += " Fragrant flowers bloom throughout the shelter."
+
+        if tag_counts.get("glowing", 0):
+            description += " A gentle glow lights every corner."
+
+        if tag_counts.get("cozy", 0):
+            description += " Thick blankets and soft bedding make it difficult to leave."
+
         # -----------------------------
         # Progress
         # -----------------------------
