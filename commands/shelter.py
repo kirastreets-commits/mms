@@ -13,6 +13,7 @@ def setup(bot):
 
     @bot.command()
     async def shelter(ctx, creature_name: str):
+
         player = get_or_create_player(ctx.author)
 
         creature = player.get_creature(creature_name)
@@ -30,7 +31,7 @@ def setup(bot):
         comfort = shelter_result["comfort"]
         level = shelter_result["new_level"]
 
-        description = generate_shelter_description(creature)
+        items = creature.shelter.get("items", [])
 
         # -----------------------------
         # Progress
@@ -49,60 +50,26 @@ def setup(bot):
             title=f"🏡 {creature.name}'s {shelter_name}",
             description=(
                 f"⭐ **Comfort:** {comfort}\n"
-                f"🏠 **Shelter Level:** {level}\n\n"
+                f"🏠 **Shelter Level:** {level}"
             ),
             color=0x6BBF59
         )
 
-
-        tag_counts = {}
-
-        for entry in items:
-            resource = RESOURCES.get(entry["item"])
-            if not resource:
-                continue
-
-            for tag in resource.get("tags", []):
-                tag_counts[tag] = tag_counts.get(tag, 0) + 1
-
-        if tag_counts.get("flowers", 0) >= 2:
-            description += " Fragrant flowers bloom throughout the shelter, filling the air with their sweet scent."
-
-        if tag_counts.get("glowing", 0):
-            description += " A gentle glow lights every corner."
-
-        if tag_counts.get("cozy", 0):
-            description += " Thick blankets and soft bedding make it difficult to leave."
-
-        if tag_counts.get("knowledge", 0):
-            description += " Shelves and carefully arranged curiosities give the space a scholarly feel."
-
-        if tag_counts.get("natural", 0):
-            description += " Natural materials have been woven into the shelter's design, creating a peaceful atmosphere."
-
-        if tag_counts.get("plant", 0):
-            description += " Lush greenery breathes life into every corner."
-            
-        # -----------------------------
-        # Shelter Description
-        # -----------------------------
+        # Description
         embed.add_field(
             name="📖 Description",
             value=generate_shelter_description(creature),
             inline=False
         )
 
-        # -----------------------------
-        # Shelter Items
-        # -----------------------------
-        items = creature.shelter.get("items", [])
-
+        # Decorations
         if items:
 
             favorite_items = []
             regular_items = []
 
             for entry in items:
+
                 resource = RESOURCES.get(entry["item"], {})
 
                 emoji = resource.get("emoji", "📦")
@@ -139,10 +106,6 @@ def setup(bot):
                 inline=False
             )
 
-
-        # -----------------------------
-        # Progress
-        # -----------------------------
         embed.add_field(
             name="📈 Next Upgrade",
             value=progress,
