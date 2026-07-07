@@ -152,25 +152,19 @@ class LocationSelectMenu(discord.ui.Select):
             elif roll < 75:
 
                 lore_pool = location.get("lore", [])
-            
+
                 if not lore_pool:
                     return (
                         "A strange feeling passes through the area… but no memories surface.",
                         None
                     )
-            
-                # split seen vs unseen
-                unseen = [l for l in lore_pool if l not in player.journal_entries]
-                seen = [l for l in lore_pool if l in player.journal_entries]
-            
-                # prefer unseen, but allow echoes of old lore
-                if unseen and random.random() < 0.8:
-                    lore_entry = random.choice(unseen)
-                else:
-                    lore_entry = random.choice(lore_pool)
-            
-                player.journal_entries.append(lore_entry)
-            
+
+                lore_entry = random.choice(lore_pool)
+
+                # Optional: prevent duplicates
+                if lore_entry not in player.journal_entries:
+                    player.journal_entries.append(lore_entry)
+
                 return (
                     f"📜 Lore discovered:\n{lore_entry}",
                     None
@@ -401,8 +395,8 @@ class NameCreatureView(discord.ui.View):
         )
 
     @discord.ui.button(
-        label="🌿 Let Them Stay Wild",
-        style=discord.ButtonStyle.secondary
+    label="🌿 Let Them Stay Wild",
+    style=discord.ButtonStyle.secondary
     )
     async def keep_wild(
         self,
@@ -410,14 +404,19 @@ class NameCreatureView(discord.ui.View):
         button: discord.ui.Button
     ):
 
-        self.player.add_creature(self.creature, named=False)
+        self.player.add_creature(
+            self.creature,
+            named=False
+        )
+
         save_player(self.player)
 
         embed = discord.Embed(
             title="🌿 A Wild Spirit",
             description=(
                 f"The **{self.creature.species}** chooses to remain unnamed.\n\n"
-                "Though wild at heart, it happily follows you back to Moonlit Meadows."
+                "Though wild at heart, it happily follows you back to Moonlit Meadows.\n\n"
+                f"{get_home_message(self.creature)}"
             ),
             color=0x95a5a6
         )
