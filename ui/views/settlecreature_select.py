@@ -3,6 +3,11 @@ import discord
 from data.preserves import PRESERVES
 
 
+import discord
+
+from data.preserves import PRESERVES
+
+
 class SettleCreatureView(discord.ui.View):
     def __init__(
         self,
@@ -25,12 +30,17 @@ class SettleCreatureView(discord.ui.View):
             preserve = PRESERVES[preserve_id]
             player_data = player.preserves[preserve_id]
 
-            occupied = len(player_data["occupied"])
-
             capacity = (
                 preserve["starting_capacity"]
                 + (player_data["level"] - 1)
                 * preserve["capacity_per_level"]
+            )
+
+            # Count creatures currently settled here
+            occupied = sum(
+                1
+                for creature in player.creatures
+                if getattr(creature, "preserve", None) == preserve_id
             )
 
             options.append(
@@ -38,7 +48,7 @@ class SettleCreatureView(discord.ui.View):
                     label=preserve["name"],
                     value=preserve_id,
                     emoji=preserve["emoji"],
-                    description=f"{occupied}/{capacity} shelters"
+                    description=f"{occupied}/{capacity} creatures"
                 )
             )
 
@@ -66,6 +76,28 @@ class SettleCreatureSelect(discord.ui.Select):
             )
 
         preserve_id = self.values[0]
+
+        # Check preserve capacity before moving creature
+        preserve = PRESERVES[preserve_id]
+        player_data = view.player.preserves[preserve_id]
+
+        capacity = (
+            preserve["starting_capacity"]
+            + (player_data["level"] - 1)
+            * preserve["capacity_per_level"]
+        )
+
+        occupied = sum(
+            1
+            for creature in view.player.creatures
+            if getattr(creature, "preserve", None) == preserve_id
+        )
+
+        if occupied >= capacity:
+            return await interaction.response.send_message(
+                "That preserve is currently full.",
+                ephemeral=True
+            )
 
         await view.on_select_callback(
             interaction,
