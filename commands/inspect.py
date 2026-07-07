@@ -1,5 +1,6 @@
 import discord
 from systems.save_system import get_or_create_player
+from data.personalities import PERSONALITIES
 
 
 # ----------------------------
@@ -10,6 +11,12 @@ def bar(value, max_value=100, length=10):
     filled = int((value / max_value) * length)
     return "█" * filled + "░" * (length - filled)
 
+#Personalities
+personality_data = PERSONALITIES.get(creature.personality, {})
+personality_description = personality_data.get(
+    "description",
+    "This creature has a unique personality."
+)
 
 # ----------------------------
 # INSPECT COMMAND
@@ -112,8 +119,11 @@ def setup(bot):
 
         embed.add_field(
             name="🎭 Personality",
-            value=creature.personality,
-            inline=True
+            value=(
+                f"**{creature.personality.title()}**\n"
+                f"*{personality_description}*"
+            ),
+            inline=False
         )
 
         # ----------------------------
