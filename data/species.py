@@ -7,6 +7,7 @@ import discord
 SPECIES_REGISTRY = {
     "Fire Dragon": {
         "description": "Aggressive dragons with burning breath.",
+        "sanctuary_native": False,
         "shelter": "nest",
             "shelter_preferences": [
                 "warm",
@@ -35,6 +36,7 @@ SPECIES_REGISTRY = {
 
     "Ice Dragon": {
         "description": "Calm dragons from frozen lands.",
+        "sanctuary_native": False,
         "shelter": "nest",
         "shelter_preferences": [
             "cold",
@@ -63,6 +65,7 @@ SPECIES_REGISTRY = {
 
     "Emberfox": {
         "description": "A fox-like creature with glowing warm fur.",
+        "sanctuary_native": False,
         "shelter": "den",
         "shelter_preferences": [
             "warm",
@@ -93,6 +96,7 @@ SPECIES_REGISTRY = {
 
     "Cinderware": {
             "description": "Bear-like creatures that leave glowing pawprints wherever they walk.",
+            "sanctuary_native": False,
             "shelter": "den",
             "shelter_preferences": [
                 "warm",
@@ -123,6 +127,7 @@ SPECIES_REGISTRY = {
 
     "Stonehorn": {
         "description": "Goat-like creatures with volcanic stone horns.",
+        "sanctuary_native": False,
         "shelter": "den",
         "shelter_preferences": [
             "stone",
@@ -154,6 +159,7 @@ SPECIES_REGISTRY = {
 
     "Frosthopper": {
         "description": "A small, agile creature that can leap great distances. It has a coat of fine, frost-covered fur..",
+        "sanctuary_native": False,
         "shelter": "den",
         "rarity": "common",
         "shelter_preferences": [
@@ -184,6 +190,7 @@ SPECIES_REGISTRY = {
 
     "Frostfox": {
             "description": "Fox-like creatures with tails resembling drifting snowfall.",
+            "sanctuary_native": False,
             "shelter": "den",
             "shelter_preferences": [
                 "cold",
@@ -214,6 +221,7 @@ SPECIES_REGISTRY = {
 
     "Mossling": {
         "description": "A small woodland creature covered in soft moss and tiny sprouts.",
+        "sanctuary_native": False,
         "shelter": "burrow",
         "shelter_preferences": [
             "plant",
@@ -243,6 +251,7 @@ SPECIES_REGISTRY = {
     },
         "Thornhare": {
         "description": "Rabbit-like creatures with thorny vines growing through their fur.",
+        "sanctuary_native": False,
         "shelter": "den",
         "shelter_preferences": [
             "plant",
@@ -272,6 +281,7 @@ SPECIES_REGISTRY = {
     },
         "Fernpaw": {
         "description": "Feline creatures with leafy tails and glowing green eyes.",
+        "sanctuary_native": False,
         "shelter": "den",
         "shelter_preferences": [
             "plant",
@@ -301,6 +311,7 @@ SPECIES_REGISTRY = {
     },
         "Lunabloom": {
         "description": "A gentle spirit creature said to bloom wherever moonlight lingers the longest.",
+        "sanctuary_native": True,
         "shelter": "nest",
         "shelter_preferences": [
             "plant",
@@ -333,6 +344,7 @@ SPECIES_REGISTRY = {
         "description": "Whispermoths are delicate spirit moths drawn to stories,"
         " songs, and written knowledge. Their shimmering wings are said to capture echoes of conversations "
         "and preserve memories that might otherwise fade with time.",
+        "sanctuary_native": True,
         "shelter": "nest",
         "shelter_preferences": [
             "crystal",
@@ -365,6 +377,7 @@ SPECIES_REGISTRY = {
             "description": "Glowferns are timid woodland spirits covered in soft moss and glowing fern "
             "fronds. They quietly tend to injured plants and resting creatures, believing "
             "every wound deserves patience and every life deserves another chance.",
+            "sanctuary_native": True,
             "shelter": "nest",
             "shelter_preferences": [
                 "plant",
@@ -397,6 +410,7 @@ SPECIES_REGISTRY = {
 
         "Crumblepuff": {
             "description": "Round, cheerful creatures with fluffy cream-colored fur and tiny seed-like spots across their backs. They instinctively gather fallen crumbs and fresh ingredients, keeping the Feeding Hall tidy while ensuring no creature eats alone.",
+            "sanctuary_native": True,
             "shelter": "nest",
             "shelter_preferences": [
                 "cozy",
@@ -427,6 +441,7 @@ SPECIES_REGISTRY = {
         
         "Emberbun": {
             "description": "Small hearth spirits that resemble fluffy rabbits with glowing ember-like fur. Emberbuns are drawn to warm fireplaces and the comforting presence of others, often curling beside tired caretakers after long days.",
+            "sanctuary_native": True,
             "shelter": "nest",
             "shelter_preferences": [
                 "warm",
