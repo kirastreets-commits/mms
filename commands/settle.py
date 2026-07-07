@@ -1,6 +1,7 @@
 import discord
 
 from data.preserves import PRESERVES
+from data.species import SPECIES_REGISTRY
 
 from systems.preserve_system import (
     get_preserve,
@@ -52,6 +53,28 @@ def setup(bot):
                 f"🏡 **{creature.name}** already lives in **{preserve_name}**."
             )
 
+        #-------------------------
+        # Sanctuary native species
+        species_data = SPECIES_REGISTRY.get(
+            creature.species,
+            {}
+        )
+
+        if species_data.get("sanctuary_native"):
+
+            home = species_data.get("sanctuary_home")
+
+            creature.shelter["location"] = home["location"]
+            creature.shelter["site"] = home["name"]
+            creature.shelter["type"] = home["shelter"]
+
+            save_player(player)
+
+            return await ctx.send(
+                f"✨ **{creature.name}** returned to their sanctuary home!\n\n"
+                f"🏡 {home['name']}\n"
+                f"🌿 {home['shelter']}"
+            )
         # -------------------------
         # Find suitable preserves
         # -------------------------
