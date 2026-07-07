@@ -1,104 +1,165 @@
 import discord
 
-from systems.preserve_system import (
-    get_preserve,
-    get_available_shelter_sites,
-    get_preserve_capacity,
-    get_preserve_residents,
-)
-from models import creature, player
 from systems.save_system import (
     get_or_create_player,
     save_player,
 )
-
-from systems.journal_system import record_settlement
-from ui.views.settlecreature_select import SettleCreatureView
+from systems.shelter_system import (
+    update_shelter,
+    SHELTER_LEVELS,
+    generate_shelter_description,
+)
+from systems.preserve_system import (
+    get_available_shelter_sites,
+)
+from data.preserves import get_preserve
+from data.resources import RESOURCES
 
 
 def setup(bot):
 
     @bot.command()
-    async def settle(ctx, creature_name: str):
+    async def shelter(ctx, creature_name: str):
 
         player = get_or_create_player(ctx.author)
         creature = player.get_creature(creature_name)
 
         if not creature:
-            return await ctx.send(
-                "You don't have a creature with that name."
+            return await ctx.send("You don't have a creature with that name.")
+
+        # --------------------------------------------------
+        # Upgrade older save files by assigning a shelter site
+        # --------------------------------------------------
+        if (
+            creature.shelter.get("location")
+            and creature.shelter.get("site") is None
+        ):
+            available_sites = get_available_shelter_sites(
+                player,
+                creature.shelter["location"]
             )
 
-        # Already settled
-        if creature.shelter.get("location"):
+            if available_sites:
+                creature.shelter["site"] = available_sites[0]
+                save_player(player)
 
+        # --------------------------------------------------
+        # Update shelter
+        # --------------------------------------------------
+        shelter_name = creature.shelter.get("type", "Shelter")
+
+        shelter_result = update_shelter(creature)
+
+        comfort = shelter_result["comfort"]
+        level = shelter_result["new_level"]
+
+        # Save updated comfort/level
+        save_player(player)
+
+        items = creature.shelter.get("items", [])
+
+        # --------------------------------------------------
+        # Preserve information
+        # --------------------------------------------------
+        preserve_name = "Unsettled"
+
+        if creature.shelter.get("location"):
             preserve = get_preserve(creature.shelter["location"])
 
-            preserve_name = (
-                preserve["name"]
-                if preserve
-                else creature.shelter["location"]
+            if preserve:
+                preserve_name = preserve["name"]
+
+        shelter_site = creature.shelter.get("site") or "—"
+
+        # --------------------------------------------------
+        # Progress
+        # --------------------------------------------------
+        next_level = level + 1
+
+        if next_level in SHELTER_LEVELS:
+            progress = (
+                f"{comfort} / "
+                f"{SHELTER_LEVELS[next_level]} Comfort"
             )
+        else:
+            progress = "✨ Maximum Shelter Level"
 
-            return await ctx.send(
-                f"🏡 **{creature.name}** already lives in **{preserve_name}**."
-            )
+        # --------------------------------------------------
+        # Embed
+        # --------------------------------------------------
+        embed = discord.Embed(
+            title=f"🏡 {creature.name}'s {shelter_name}",
+            description=(
+                f"📍 **{preserve_name}**\n"
+                f"🌿 **{shelter_site}**\n\n"
+                f"⭐ **Comfort:** {comfort}\n"
+                f"🏠 **Shelter Level:** {level}"
+            ),
+            color=0x6BBF59
+        )
 
-        # Find suitable preserves
-        available = get_available_preserves(player, creature)
+        # --------------------------------------------------
+        # Description
+        # --------------------------------------------------
+        embed.add_field(
+            name="📖 Description",
+            value=generate_shelter_description(creature),
+            inline=False
+        )
 
-        if not available:
-            return await ctx.send(
-                "There aren't any suitable preserves available right now."
-            )
+        # --------------------------------------------------
+        # Decorations
+        # --------------------------------------------------
+        if items:
 
-        # -------------------------
-        # Called when a preserve is selected
-        # -------------------------
-        async def choose_preserve(interaction, preserve_id):
+            favorite_items = []
+            regular_items = []
 
-            if not player.preserve_has_space(preserve_id):
-                return await interaction.response.send_message(
-                    "That preserve is now full.",
-                    ephemeral=True
+            for entry in items:
+
+                resource = RESOURCES.get(entry["item"], {})
+
+                emoji = resource.get("emoji", "📦")
+                name = resource.get(
+                    "name",
+                    entry["item"].replace("_", " ").title()
                 )
-            
-            if creature.name not in player.preserves[preserve_id]["occupied"]:
-                player.preserves[preserve_id]["occupied"].append(creature.name)
-            
-            creature.shelter["location"] = preserve_id
 
-            player.preserves[preserve_id]["occupied"].append(
-                creature.name
+                line = f"{emoji} **{name}**"
+
+                if entry.get("state") == "favorite":
+                    favorite_items.append(f"🌟 {line}")
+                else:
+                    regular_items.append(f"🏡 {line}")
+
+            if favorite_items:
+                embed.add_field(
+                    name="🌟 Favorite Decorations",
+                    value="\n".join(favorite_items),
+                    inline=False
+                )
+
+            if regular_items:
+                embed.add_field(
+                    name="🪴 Shelter Decorations",
+                    value="\n".join(regular_items),
+                    inline=False
+                )
+
+        else:
+            embed.add_field(
+                name="🪴 Shelter Decorations",
+                value="*This shelter hasn't been decorated yet.*",
+                inline=False
             )
 
-            record_settlement(player, creature, PRESERVES[preserve_id])
-
-            save_player(player)
-
-            preserve = PRESERVES[preserve_id]
-
-            await interaction.response.edit_message(
-                content=(
-                    f"{preserve['emoji']} **{creature.name}** has settled into "
-                    f"**{preserve['name']}**!\n\n"
-                    f"They begin building their **{creature.shelter['type']}** among the "
-                    f"surrounding wilderness."
-                ),
-                view=None
-            )
-
-        # -------------------------
-        # Show the preserve menu
-        # -------------------------
-        view = SettleCreatureView(
-            available_preserves=available,
-            player=player,
-            creature=creature,
-            on_select_callback=choose_preserve,
+        # --------------------------------------------------
+        # Upgrade Progress
+        # --------------------------------------------------
+        embed.add_field(
+            name="📈 Next Upgrade",
+            value=progress,
+            inline=False
         )
 
-        await ctx.send(
-            f"🏡 Choose where **{creature.name}** should build their shelter.",
-            view=view
-        )
+        await ctx.send(embed=embed)
