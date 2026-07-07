@@ -58,3 +58,43 @@ def get_available_shelter_sites(player, preserve_id):
         for site in available_sites
         if site not in occupied_sites
     ]
+
+def get_available_preserves(player, creature):
+    """
+    Return preserves that:
+    - are unlocked by the player
+    - have available space
+    - can house the creature species
+    """
+
+    available = []
+
+    for preserve_id, preserve in PRESERVES.items():
+
+        # Check player has unlocked this preserve
+        player_data = player.preserves.get(preserve_id)
+
+        if not player_data:
+            continue
+
+        if not player_data.get("unlocked", False):
+            continue
+
+        # Check capacity
+        if not preserve_has_space(player, preserve_id):
+            continue
+
+        # Check species compatibility
+        allowed_species = preserve.get(
+            "available_creatures",
+            []
+        )
+
+        # If no restrictions, allow all creatures
+        if allowed_species:
+            if creature.species not in allowed_species:
+                continue
+
+        available.append(preserve_id)
+
+    return available
