@@ -2,10 +2,11 @@ import discord
 
 from data.preserves import PRESERVES
 
-
-import discord
-
-from data.preserves import PRESERVES
+from systems.preserve_system import (
+    get_preserve_capacity,
+    get_preserve_residents,
+    preserve_has_space
+)
 
 
 class SettleCreatureView(discord.ui.View):
@@ -28,19 +29,17 @@ class SettleCreatureView(discord.ui.View):
         for preserve_id in available_preserves:
 
             preserve = PRESERVES[preserve_id]
-            player_data = player.preserves[preserve_id]
 
-            capacity = (
-                preserve["starting_capacity"]
-                + (player_data["level"] - 1)
-                * preserve["capacity_per_level"]
+            capacity = get_preserve_capacity(
+                player,
+                preserve_id
             )
 
-            # Count creatures currently settled here
-            occupied = sum(
-                1
-                for creature in player.creatures
-                if getattr(creature, "preserve", None) == preserve_id
+            occupied = len(
+                get_preserve_residents(
+                    player,
+                    preserve_id
+                )
             )
 
             options.append(
@@ -77,23 +76,11 @@ class SettleCreatureSelect(discord.ui.Select):
 
         preserve_id = self.values[0]
 
-        # Check preserve capacity before moving creature
-        preserve = PRESERVES[preserve_id]
-        player_data = view.player.preserves[preserve_id]
-
-        capacity = (
-            preserve["starting_capacity"]
-            + (player_data["level"] - 1)
-            * preserve["capacity_per_level"]
-        )
-
-        occupied = sum(
-            1
-            for creature in view.player.creatures
-            if getattr(creature, "preserve", None) == preserve_id
-        )
-
-        if occupied >= capacity:
+        # Check preserve capacity
+        if not preserve_has_space(
+            view.player,
+            preserve_id
+        ):
             return await interaction.response.send_message(
                 "That preserve is currently full.",
                 ephemeral=True
