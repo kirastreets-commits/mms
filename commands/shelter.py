@@ -10,9 +10,11 @@ from systems.shelter_system import (
     generate_shelter_description,
 )
 from systems.preserve_system import (
+    get_preserve,
     get_available_shelter_sites,
+    get_preserve_capacity,
+    get_preserve_residents,
 )
-from data.preserves import get_preserve
 from data.resources import RESOURCES
 
 
