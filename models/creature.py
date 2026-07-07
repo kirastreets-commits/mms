@@ -31,9 +31,14 @@ class Creature:
         self.species_data = get_species_data(species) or {}
 
         self.shelter = {
-            "type": self.species_data.get("shelter", "basic"),
+            "type": self.species_data.get("shelter", "Burrow"),
+            "location": None,      # Elderwood Preserve
+            "site": None,          # Fern Hollow
             "level": 1,
-            "items": []
+            "comfort": 0,
+            "items": [],
+            "features": [],
+            "built_day": None
         }
 
         self.personality = personality or random.choice(list(PERSONALITIES.keys()))
