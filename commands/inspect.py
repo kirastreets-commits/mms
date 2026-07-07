@@ -120,8 +120,21 @@ def setup(bot):
         # SHELTER INFO
         # ----------------------------
 
-        # Get shelter data if it exists
-        shelter = getattr(creature, "shelter", {})
+        from systems.preserve_system import get_preserve
+
+        shelter = creature.shelter
+
+        # Preserve
+        location_id = shelter.get("location")
+
+        if location_id:
+            preserve = get_preserve(location_id)
+            preserve_name = preserve["name"] if preserve else location_id
+        else:
+            preserve_name = "Not Settled"
+
+        # Shelter site
+        site_name = shelter.get("site", "None")
 
         # Shelter type
         shelter_name = shelter.get("type", "Basic Shelter").replace("_", " ").title()
@@ -129,21 +142,12 @@ def setup(bot):
         # Shelter level
         shelter_level = shelter.get("level", 1)
 
-        # Number of decorations/items
-        item_count = len(shelter.get("items", []))
-
-        # Try to get preserve/site if they exist.
-        # Otherwise show defaults.
-        preserve_name = shelter.get("preserve", "Main Sanctuary")
-        shelter_site = shelter.get("site", "Central Grounds")
-
         embed.add_field(
             name=f"🏡 {creature.name}'s Shelter",
             value=(
                 f"📍 **Preserve:** {preserve_name}\n"
-                f"🌿 **Location:** {shelter_site}\n"
-                f"🏠 **Type:** {shelter_name} (Lv.{shelter_level})\n"
-                f"🪵 **Decorations:** {item_count}"
+                f"🌿 **Site:** {site_name}\n"
+                f"🏠 **Shelter:** {shelter_name} (Lv.{shelter_level})"
             ),
             inline=False
         )
