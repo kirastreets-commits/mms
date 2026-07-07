@@ -891,11 +891,23 @@ class Creature:
         creature.preferences_learned = data.get("preferences_learned", {})
         creature.recent_gifts = data.get("recent_gifts", [])
 
-        creature.shelter = {
-        "type": get_species_data(creature.species).get("shelter", "basic"),
-        "level": data.get("shelter", {}).get("level", 1),
-        "items": data.get("shelter", {}).get("items", [])
-    }
+        # ----------------------------
+        # SHELTER
+        # ----------------------------
+
+        creature.shelter = data.get("shelter", {})
+
+        # Patch older save files
+        creature.shelter.setdefault(
+            "type",
+            get_species_data(creature.species).get("shelter", "basic")
+        )
+        creature.shelter.setdefault("location", None)
+        creature.shelter.setdefault("site", None)
+        creature.shelter.setdefault("level", 1)
+        creature.shelter.setdefault("comfort", 0)
+        creature.shelter.setdefault("items", [])
+        creature.shelter.setdefault("features", [])
 
     # ----------------------------
     # MEMORY PATCH (IMPORTANT)
