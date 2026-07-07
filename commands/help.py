@@ -52,7 +52,9 @@ def setup(bot):
             value=(
                 "`!headcaretaker`\n"
                 "`!overview`\n"
-                "`!inspect <creature>`"
+                "`!inspect <creature>`\n"
+                "`!settle <creature>`\n"
+                "`!shelter <creature>`"
             ),
             inline=False
         )
