@@ -1,8 +1,11 @@
 import discord
+
 from systems.save_system import get_or_create_player
+from data.species import SPECIES_REGISTRY
 
 
-def bar(value, max_value=100, length=8):
+def bar(value, max_value=100, length=6):
+    value = max(0, min(value, max_value))
     filled = int((value / max_value) * length)
     return "█" * filled + "░" * (length - filled)
 
@@ -10,20 +13,21 @@ def bar(value, max_value=100, length=8):
 def get_status(creature):
 
     if creature.health <= 20:
-        return "🆘 Critical"
+        return "❤️ Needs Healing"
+
     if creature.hunger <= 20:
-        return "🍖 Starving"
+        return "🍖 Hungry"
+
     if creature.energy <= 20:
-        return "⚡ Exhausted"
+        return "💤 Needs Rest"
+
     if creature.happiness <= 20:
-        return "💔 Distressed"
+        return "💔 Unhappy"
 
-    if creature.happiness >= 80:
+    if creature.happiness >= 90:
         return "🌿 Thriving"
-    if creature.energy >= 80:
-        return "✨ Energetic"
 
-    return "🌱 Stable"
+    return "🌱 Doing Well"
 
 
 def setup(bot):
@@ -35,7 +39,7 @@ def setup(bot):
 
         if not player.creatures:
             await ctx.send(
-                "🏡 Your sanctuary is quiet…\n"
+                "🏡 Your sanctuary is quiet...\n"
                 "No creatures are currently in your care.\n\n"
                 "Try `!starter` or `!adopt` to begin your journey."
             )
@@ -44,32 +48,30 @@ def setup(bot):
         embed = discord.Embed(
             title="🏡 Sanctuary Overview",
             description=(
-                "The Head Caretaker observes your sanctuary from afar...\n"
-                "\"All creatures are accounted for.\""
+                f"🐾 **Creatures:** {len(player.creatures)}\n"
+                "A quick look at everyone currently living in your sanctuary."
             ),
             color=discord.Color.blurple()
         )
 
         for creature in player.creatures:
 
-            status = get_status(creature)
+            species = SPECIES_REGISTRY.get(creature.species, {})
+            emoji = species.get("emoji", "🐾")
 
             embed.add_field(
-                name=f"{creature.name} • {creature.species}",
+                name=f"{emoji} {creature.name}",
                 value=(
-                    f"{status} • 💞 Bond {creature.bond_level()}\n\n"
-
-                    f"❤️ Health   {bar(creature.health)} {creature.health}/100\n"
-                    f"⚡ Energy   {bar(creature.energy)} {creature.energy}/100\n"
-                    f"🍖 Hunger   {bar(creature.hunger)} {creature.hunger}/100\n"
-                    f"😊 Mood     {creature.mood}\n"
-                    f"🌿 Status   {status}"
+                    f"**{creature.species}** • {creature.bond_level()}\n"
+                    f"{get_status(creature)}\n\n"
+                    f"❤️ {bar(creature.health)}\n"
+                    f"🍖 {bar(creature.hunger)}"
                 ),
-                inline=False
+                inline=True
             )
 
         embed.set_footer(
-            text="Tip: Use the Head Caretaker to rename, release, or manage creatures."
+            text="Use !inspect <name> to view a creature's full profile."
         )
 
         await ctx.send(embed=embed)
