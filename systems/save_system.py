@@ -174,3 +174,11 @@ def update_sanctuary_homes(player):
             updated = True
 
     return updated
+
+def migrate_player(player):
+
+    update_sanctuary_homes(player)
+    update_old_shelters(player)
+    update_missing_inventory(player)
+
+    return player
