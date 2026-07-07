@@ -10,7 +10,13 @@ def get_preserve_capacity(player, preserve_id):
     """Calculate the current shelter capacity of a preserve."""
 
     preserve = PRESERVES[preserve_id]
-    level = player.preserves[preserve_id]["level"]
+
+    player_data = player.preserves.get(
+        preserve_id,
+        {"level": 1}
+    )
+
+    level = player_data.get("level", 1)
 
     return min(
         preserve["starting_capacity"]
