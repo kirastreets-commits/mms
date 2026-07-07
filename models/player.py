@@ -68,6 +68,20 @@ class Player:
         # Always assign it here
         self.preserves = preserves
 
+        # ----------------------------
+        # 🌿 PRESERVE SAFETY PATCH
+        # ----------------------------
+
+        if not hasattr(self, "preserves") or self.preserves is None:
+            self.preserves = {
+                preserve_id: {
+                    "level": 1,
+                    "restoration": 0,
+                    "unlocked": PRESERVES[preserve_id].get("unlock_level", 1) == 1
+                }
+                for preserve_id in PRESERVES
+            }
+
 
     # ----------------------------
     # 🐉 CREATURE MANAGEMENT
