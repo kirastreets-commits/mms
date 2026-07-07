@@ -819,8 +819,8 @@ class Creature:
         return random.choice(list(SPECIES_REGISTRY))
     
 # ----------------------------
-    # 💾 SERIALISATION (for JSON saving)
-    # ----------------------------
+        # 💾 SERIALISATION (for JSON saving)
+        # ----------------------------
 
     def to_dict(self):
         return {
@@ -829,16 +829,24 @@ class Creature:
             "trust": self.trust,
             "personality": self.personality,
             "mood": self.mood,
+
             "preferences_learned": self.preferences_learned,
             "recent_gifts": self.recent_gifts,
             "memory": self.memory,
+
             "health": self.health,
             "energy": self.energy,
             "hunger": self.hunger,
             "happiness": self.happiness,
 
+            # ----------------------------
+            # 🏡 SHELTER / PRESERVE DATA
+            # ----------------------------
             "shelter": {
-                "type": self.shelter.get("type"),
+                "type": self.shelter.get(
+                    "type",
+                    self.species_data.get("shelter", "Burrow")
+                ),
                 "location": self.shelter.get("location"),
                 "site": self.shelter.get("site"),
                 "level": self.shelter.get("level", 1),
