@@ -5,6 +5,7 @@ from models.creature import Creature
 from data.preserves import PRESERVES
 
 from systems.database import get_connection
+from data.species import SPECIES_REGISTRY
 
 
 # ----------------------------
@@ -135,3 +136,41 @@ def load_player(user_id):
 
 
     return player
+
+def update_sanctuary_homes(player):
+    """
+    Adds sanctuary homes to existing sanctuary-native creatures.
+    Only affects creatures missing a sanctuary location.
+    """
+
+    updated = False
+
+    for creature in player.creatures:
+
+        species_data = SPECIES_REGISTRY.get(
+            creature.species,
+            {}
+        )
+
+        if not species_data.get("sanctuary_native"):
+            continue
+
+        home = species_data.get("sanctuary_home")
+
+        if not home:
+            continue
+
+        # Make sure shelter exists
+        if not hasattr(creature, "shelter") or creature.shelter is None:
+            creature.shelter = {}
+
+        # Only assign if they don't already have a home
+        if not creature.shelter.get("location"):
+
+            creature.shelter["location"] = home["location"]
+            creature.shelter["site"] = home["name"]
+            creature.shelter["type"] = home["shelter"]
+
+            updated = True
+
+    return updated
