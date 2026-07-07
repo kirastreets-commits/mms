@@ -44,6 +44,7 @@ class SettleCreatureView(discord.ui.View):
 
             options.append(
                 discord.SelectOption(
+                    disabled=occupied >= capacity,
                     label=preserve["name"],
                     value=preserve_id,
                     emoji=preserve["emoji"],
