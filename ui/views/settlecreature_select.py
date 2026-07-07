@@ -10,6 +10,7 @@ from systems.preserve_system import (
 
 
 class SettleCreatureView(discord.ui.View):
+
     def __init__(
         self,
         available_preserves,
@@ -28,7 +29,10 @@ class SettleCreatureView(discord.ui.View):
 
         for preserve_id in available_preserves:
 
-            preserve = PRESERVES[preserve_id]
+            preserve = PRESERVES.get(preserve_id)
+
+            if not preserve:
+                continue
 
             capacity = get_preserve_capacity(
                 player,
@@ -44,19 +48,24 @@ class SettleCreatureView(discord.ui.View):
 
             options.append(
                 discord.SelectOption(
-                    disabled=occupied >= capacity,
                     label=preserve["name"],
                     value=preserve_id,
-                    emoji=preserve["emoji"],
+                    emoji=preserve.get("emoji", "🌿"),
                     description=f"{occupied}/{capacity} creatures"
                 )
             )
 
-        self.add_item(SettleCreatureSelect(options))
+        # Safety check
+        if options:
+            self.add_item(
+                SettleCreatureSelect(options)
+            )
 
 
 class SettleCreatureSelect(discord.ui.Select):
+
     def __init__(self, options):
+
         super().__init__(
             placeholder="Choose a preserve...",
             min_values=1,
@@ -64,28 +73,48 @@ class SettleCreatureSelect(discord.ui.Select):
             options=options
         )
 
-    async def callback(self, interaction: discord.Interaction):
+
+    async def callback(
+        self,
+        interaction: discord.Interaction
+    ):
 
         view: SettleCreatureView = self.view
 
-        # Only the original player can use this menu
+
+        # ----------------------------
+        # PLAYER CHECK
+        # ----------------------------
+
         if str(interaction.user.id) != view.user_id:
+
             return await interaction.response.send_message(
                 "This menu isn't for you.",
                 ephemeral=True
             )
 
+
         preserve_id = self.values[0]
 
-        # Check preserve capacity
+
+        # ----------------------------
+        # CAPACITY CHECK
+        # ----------------------------
+
         if not preserve_has_space(
             view.player,
             preserve_id
         ):
+
             return await interaction.response.send_message(
                 "That preserve is currently full.",
                 ephemeral=True
             )
+
+
+        # ----------------------------
+        # CONTINUE SETTLEMENT
+        # ----------------------------
 
         await view.on_select_callback(
             interaction,
