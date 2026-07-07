@@ -56,6 +56,15 @@ def setup(bot):
         else:
             color = discord.Color.blurple()
 
+        # EMOJI
+        emoji = creature.species_data.get("emoji", "🐾")
+
+        embed = discord.Embed(
+            title=f"{emoji} {creature.name}",
+            description=f"Species: **{creature.species}**",
+            color=color
+        )
+
         # ----------------------------
         # BUILD EMBED
         # ----------------------------
