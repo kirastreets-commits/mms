@@ -33,8 +33,38 @@ def setup(bot):
                 "You don't have a creature with that name."
             )
 
+
         # -------------------------
-        # Already settled
+        # Sanctuary Native Species
+        # -------------------------
+
+        species_data = SPECIES_REGISTRY.get(
+            creature.species,
+            {}
+        )
+
+        if species_data.get("sanctuary_native"):
+
+            home = species_data.get("sanctuary_home")
+
+            if home:
+
+                # Assign their permanent sanctuary home
+                creature.shelter["location"] = home["location"]
+                creature.shelter["site"] = home["name"]
+                creature.shelter["type"] = home["shelter"]
+
+                save_player(player)
+
+                return await ctx.send(
+                    f"✨ **{creature.name}** has returned to their sanctuary home!\n\n"
+                    f"🏡 **Location:** {home['name']}\n"
+                    f"🌿 **Shelter:** {home['shelter']}"
+                )
+
+
+        # -------------------------
+        # Already Settled Creature
         # -------------------------
 
         if creature.shelter.get("location"):
@@ -53,30 +83,9 @@ def setup(bot):
                 f"🏡 **{creature.name}** already lives in **{preserve_name}**."
             )
 
-        #-------------------------
-        # Sanctuary native species
-        species_data = SPECIES_REGISTRY.get(
-            creature.species,
-            {}
-        )
 
-        if species_data.get("sanctuary_native"):
-
-            home = species_data.get("sanctuary_home")
-
-            creature.shelter["location"] = home["location"]
-            creature.shelter["site"] = home["name"]
-            creature.shelter["type"] = home["shelter"]
-
-            save_player(player)
-
-            return await ctx.send(
-                f"✨ **{creature.name}** returned to their sanctuary home!\n\n"
-                f"🏡 {home['name']}\n"
-                f"🌿 {home['shelter']}"
-            )
         # -------------------------
-        # Find suitable preserves
+        # Find Suitable Preserves
         # -------------------------
 
         available = get_available_preserves(
@@ -89,13 +98,13 @@ def setup(bot):
                 "There aren't any suitable preserves available right now."
             )
 
+
         # -------------------------
-        # Called when preserve selected
+        # Preserve Selected
         # -------------------------
 
         async def choose_preserve(interaction, preserve_id):
 
-            # Check capacity again
             if not preserve_has_space(
                 player,
                 preserve_id
@@ -104,6 +113,7 @@ def setup(bot):
                     "That preserve is currently full.",
                     ephemeral=True
                 )
+
 
             available_sites = get_available_shelter_sites(
                 player,
@@ -116,23 +126,28 @@ def setup(bot):
                     ephemeral=True
                 )
 
-            # Pick first available shelter site
+
             site = available_sites[0]
+
 
             # Assign creature home
             creature.shelter["location"] = preserve_id
             creature.shelter["site"] = site
 
-            # Journal entry
+
+            # Journal
             record_settlement(
                 player,
                 creature,
                 PRESERVES[preserve_id]
             )
 
+
             save_player(player)
 
+
             preserve = PRESERVES[preserve_id]
+
 
             await interaction.response.edit_message(
                 content=(
@@ -144,8 +159,9 @@ def setup(bot):
                 view=None
             )
 
+
         # -------------------------
-        # Show preserve selection
+        # Show Preserve Selection
         # -------------------------
 
         view = SettleCreatureView(
@@ -154,6 +170,7 @@ def setup(bot):
             creature=creature,
             on_select_callback=choose_preserve,
         )
+
 
         await ctx.send(
             f"🏡 Choose where **{creature.name}** should build their shelter.",
