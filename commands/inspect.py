@@ -25,7 +25,6 @@ def setup(bot):
     async def inspect(ctx, *, creature_name: str):
 
         player = get_or_create_player(ctx.author)
-
         creature = player.get_creature(creature_name)
 
         if not creature:
@@ -57,21 +56,15 @@ def setup(bot):
         else:
             color = discord.Color.blurple()
 
+        # ----------------------------
+        # BUILD EMBED
+        # ----------------------------
+
         species = SPECIES_REGISTRY.get(creature.species, {})
         emoji = species.get("emoji", "🐾")
 
         embed = discord.Embed(
             title=f"{emoji} {creature.name}",
-            description=f"Species: **{creature.species}**",
-            color=color
-        )
-
-        # ----------------------------
-        # BUILD EMBED
-        # ----------------------------
-
-        embed = discord.Embed(
-            title=f"{creature.emoji} {creature.name}",
             description=f"Species: **{creature.species}**",
             color=color
         )
@@ -163,7 +156,7 @@ def setup(bot):
         # ----------------------------
 
         embed.add_field(
-            name="Personality",
+            name="🎭 Personality",
             value=(
                 f"**{creature.personality.title()}**\n"
                 f"*{personality_description}*"
