@@ -75,7 +75,7 @@ RESOURCES = {
     "name": "Fireplace Stone",
     "emoji": "🪨",
     "rarity": "common",
-    "type": "decoration",
+    "type": "shelter",
     "comfort": 1,
     "tags": ["warm", "stone"]
     },
@@ -93,7 +93,7 @@ RESOURCES = {
     "name": "Everwarm Coal",
     "emoji": "🔥",
     "rarity": "epic",
-    "type": "resource",
+    "type": "shelter",
     "comfort": 4,
     "tags": ["warm"]
     },
@@ -120,7 +120,7 @@ RESOURCES = {
     "name": "Wild Lavender",
     "emoji": "💜",
     "rarity": "uncommon",
-    "type": "decoration",
+    "type": "shelter",
     "comfort": 2,
     "tags": ["plants", "calming"]
     },
