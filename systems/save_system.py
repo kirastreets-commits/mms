@@ -106,6 +106,13 @@ def load_player(user_id):
         Creature
     )
 
+    updated = update_sanctuary_homes(player)
+
+    if updated:
+        save_player(player)
+
+    return player
+
 
     # ----------------------------
     # 🌿 PRESERVE MIGRATION PATCH
