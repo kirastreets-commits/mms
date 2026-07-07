@@ -53,6 +53,7 @@ def setup(bot):
                 "`!headcaretaker`\n"
                 "`!overview`\n"
                 "`!inspect <creature>`\n"
+                "`!preserves`\n"
                 "`!settle <creature>`\n"
                 "`!shelter <creature>`"
             ),
