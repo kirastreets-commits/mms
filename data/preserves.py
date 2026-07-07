@@ -426,3 +426,10 @@ def get_available_shelter_sites(player, preserve_id):
     occupied = set(player_preserve["occupied"])
 
     return [site for site in available_sites if site not in occupied]
+    
+def get_preserve_residents(player, preserve_id):
+    return [
+        creature
+        for creature in player.creatures
+        if creature.shelter.get("location") == preserve_id
+    ]
