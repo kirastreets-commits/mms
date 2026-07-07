@@ -54,6 +54,15 @@ def setup(bot):
             description=f"Species: **{creature.species}**",
             color=color
         )
+        
+        #SHELTER INFO
+        embed.add_field(
+            name="🏡 {creature.name}'s {shelter_name}",
+            value=(f"📍 **{preserve_name}**\n"
+                f"🌿 **{shelter_site}**\n\n"
+            )
+            inline=True
+        )
 
         # ----------------------------
         # VITAL STATS
@@ -124,3 +133,4 @@ def setup(bot):
         )
 
         await ctx.send(embed=embed)
+
