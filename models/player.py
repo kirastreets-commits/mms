@@ -56,7 +56,7 @@ class Player:
         if preserves is None:
             preserves = default_preserves
         else:
-            # Add any new preserves that weren't in older save files
+            # Patch old save files
             for preserve_id, default_data in default_preserves.items():
 
                 if preserve_id not in preserves:
@@ -65,7 +65,9 @@ class Player:
                     for key, value in default_data.items():
                         preserves[preserve_id].setdefault(key, value)
 
-                    self.preserves = preserves
+        # Always assign it here
+        self.preserves = preserves
+
 
     # ----------------------------
     # 🐉 CREATURE MANAGEMENT
