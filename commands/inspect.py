@@ -1,5 +1,7 @@
 import discord
+
 from systems.save_system import get_or_create_player
+from systems.preserve_system import get_preserve
 from data.personality import PERSONALITIES
 
 
@@ -11,12 +13,6 @@ def bar(value, max_value=100, length=10):
     filled = int((value / max_value) * length)
     return "█" * filled + "░" * (length - filled)
 
-#Personalities
-personality_data = PERSONALITIES.get(creature.personality, {})
-personality_description = personality_data.get(
-    "description",
-    "This creature has a unique personality."
-)
 
 # ----------------------------
 # INSPECT COMMAND
@@ -35,6 +31,15 @@ def setup(bot):
             await ctx.send(f"You don't have a creature named '{creature_name}'.")
             return
 
+        # ----------------------------
+        # PERSONALITY INFO
+        # ----------------------------
+
+        personality_data = PERSONALITIES.get(creature.personality, {})
+        personality_description = personality_data.get(
+            "description",
+            "This creature has a unique personality."
+        )
 
         # ----------------------------
         # MOOD COLOR SYSTEM
@@ -51,17 +56,43 @@ def setup(bot):
         else:
             color = discord.Color.blurple()
 
-
         # ----------------------------
         # BUILD EMBED
         # ----------------------------
 
         embed = discord.Embed(
-            title=f" {creature.name}",
+            title=creature.name,
             description=f"Species: **{creature.species}**",
             color=color
         )
 
+        # ----------------------------
+        # SHELTER INFO
+        # ----------------------------
+
+        shelter = creature.shelter
+
+        location_id = shelter.get("location")
+
+        if location_id:
+            preserve = get_preserve(location_id)
+            preserve_name = preserve["name"] if preserve else location_id
+        else:
+            preserve_name = "Not Settled"
+
+        site_name = shelter.get("site", "None")
+        shelter_name = shelter.get("type", "Basic Shelter").replace("_", " ").title()
+        shelter_level = shelter.get("level", 1)
+
+        embed.add_field(
+            name=f"🏡 {creature.name}'s Shelter",
+            value=(
+                f"**Preserve:** {preserve_name}\n"
+                f"**Site:** {site_name}\n"
+                f"**Shelter:** {shelter_name} (Lv.{shelter_level})"
+            ),
+            inline=False
+        )
 
         # ----------------------------
         # VITAL STATS
@@ -108,14 +139,18 @@ def setup(bot):
         )
 
         # ----------------------------
-        # PERSONALITY & MOOD
+        # MOOD
         # ----------------------------
 
         embed.add_field(
             name="🌦 Mood",
-            value=creature.mood,
+            value=creature.mood.title(),
             inline=True
         )
+
+        # ----------------------------
+        # PERSONALITY
+        # ----------------------------
 
         embed.add_field(
             name="🎭 Personality",
@@ -127,43 +162,6 @@ def setup(bot):
         )
 
         # ----------------------------
-        # SHELTER INFO
-        # ----------------------------
-
-        from systems.preserve_system import get_preserve
-
-        shelter = creature.shelter
-
-        # Preserve
-        location_id = shelter.get("location")
-
-        if location_id:
-            preserve = get_preserve(location_id)
-            preserve_name = preserve["name"] if preserve else location_id
-        else:
-            preserve_name = "Not Settled"
-
-        # Shelter site
-        site_name = shelter.get("site", "None")
-
-        # Shelter type
-        shelter_name = shelter.get("type", "Basic Shelter").replace("_", " ").title()
-
-        # Shelter level
-        shelter_level = shelter.get("level", 1)
-
-        embed.add_field(
-            name=f"🏡 {creature.name}'s Shelter",
-            value=(
-                f"**Preserve:** {preserve_name}\n"
-                f"**Site:** {site_name}\n"
-                f"**Shelter:** {shelter_name} (Lv.{shelter_level})"
-            ),
-            inline=False
-        )
-
-
-        # ----------------------------
         # FOOTER
         # ----------------------------
 
@@ -172,4 +170,3 @@ def setup(bot):
         )
 
         await ctx.send(embed=embed)
-
