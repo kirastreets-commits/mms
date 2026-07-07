@@ -46,7 +46,6 @@ class Player:
         default_preserves = {
             preserve_id: {
                 "level": 1,
-                "occupied": [],
                 "restoration": 0,
                 "unlocked": PRESERVES[preserve_id].get("unlock_level", 1) == 1
             }
@@ -133,6 +132,22 @@ class Player:
     
         # Keep the latest 200 entries
         self.journal_entries = self.journal_entries[-200:]
+
+    # SHELTER MANAGEMENT
+    def get_preserve(self, preserve_id):
+        return self.preserves.get(preserve_id)
+    
+    def preserve_capacity(self, preserve_id):
+        preserve = self.preserves[preserve_id]
+
+        level = preserve["level"]
+
+        data = PRESERVES[preserve_id]
+
+        return (
+            data["starting_capacity"]
+            + (level - 1) * data["capacity_per_level"]
+        )
     # ----------------------------
     # 🎒 INVENTORY SYSTEM
     # ----------------------------
