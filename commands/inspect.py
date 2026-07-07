@@ -1,6 +1,6 @@
 import discord
 from systems.save_system import get_or_create_player
-from data.personalities import PERSONALITIES
+from data.personality import PERSONALITIES
 
 
 # ----------------------------
