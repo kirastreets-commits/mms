@@ -40,6 +40,58 @@ def get_status(creature):
 
 
 # ----------------------------
+# HOME STATUS
+# ----------------------------
+
+def get_home_status(creature):
+
+    species_data = SPECIES_REGISTRY.get(
+        creature.species,
+        {}
+    )
+
+
+    # Sanctuary native creatures
+    if species_data.get("sanctuary_native"):
+
+        home = species_data.get(
+            "sanctuary_home",
+            {}
+        )
+
+        return (
+            f"✨ Native Resident\n"
+            f"🏡 {home.get('name', 'Sanctuary Home')}"
+        )
+
+
+    # Settled creatures
+    if creature.shelter.get("location"):
+
+        preserve = get_preserve(
+            creature.shelter["location"]
+        )
+
+        preserve_name = (
+            preserve["name"]
+            if preserve
+            else creature.shelter["location"]
+        )
+
+        return (
+            f"🏡 {preserve_name}\n"
+            f"🌿 {creature.shelter.get('site', 'Unknown Site')}"
+        )
+
+
+    # Needs home
+    return (
+        f"🏡 Needs Shelter\n"
+        f"⚠️ Use `!settle {creature.name}`"
+    )
+
+
+# ----------------------------
 # OVERVIEW COMMAND
 # ----------------------------
 
@@ -60,43 +112,72 @@ def setup(bot):
 
 
         # ----------------------------
-        # GROUP CREATURES BY PRESERVE
+        # GROUP CREATURES BY HOME
         # ----------------------------
 
         preserves = {}
 
         for creature in player.creatures:
 
-            location_id = creature.shelter.get("location")
+            species_data = SPECIES_REGISTRY.get(
+                creature.species,
+                {}
+            )
 
-            if location_id:
-                preserve = get_preserve(location_id)
 
-                preserve_name = (
-                    preserve["name"]
-                    if preserve
-                    else location_id
+            # Sanctuary natives get their own home grouping
+            if species_data.get("sanctuary_native"):
+
+                home = species_data.get(
+                    "sanctuary_home",
+                    {}
                 )
 
-                preserve_emoji = (
-                    preserve.get("emoji", "🏡")
-                    if preserve
-                    else "🏡"
+                preserve_name = home.get(
+                    "name",
+                    "Sanctuary Residents"
                 )
+
+                preserve_emoji = "✨"
+
 
             else:
-                preserve_name = "Unsettled Creatures"
-                preserve_emoji = "🌱"
+
+                location_id = creature.shelter.get("location")
+
+                if location_id:
+
+                    preserve = get_preserve(location_id)
+
+                    preserve_name = (
+                        preserve["name"]
+                        if preserve
+                        else location_id
+                    )
+
+                    preserve_emoji = (
+                        preserve.get("emoji", "🏡")
+                        if preserve
+                        else "🏡"
+                    )
+
+                else:
+
+                    preserve_name = "Unsettled Creatures"
+                    preserve_emoji = "🌱"
 
 
             if preserve_name not in preserves:
+
                 preserves[preserve_name] = {
                     "emoji": preserve_emoji,
                     "creatures": []
                 }
 
 
-            preserves[preserve_name]["creatures"].append(creature)
+            preserves[preserve_name]["creatures"].append(
+                creature
+            )
 
 
         # ----------------------------
@@ -114,12 +195,13 @@ def setup(bot):
 
 
         # ----------------------------
-        # DISPLAY PRESERVES
+        # DISPLAY HOMES
         # ----------------------------
 
         for preserve_name, data in preserves.items():
 
             creature_text = ""
+
 
             for creature in data["creatures"]:
 
@@ -133,10 +215,12 @@ def setup(bot):
                     "🐾"
                 )
 
+
                 creature_text += (
                     f"{emoji} **{creature.name}**\n"
                     f"{creature.species} • "
                     f"{creature.bond_level()}\n"
+                    f"{get_home_status(creature)}\n"
                     f"{get_status(creature)}\n"
                     f"❤️ {bar(creature.health)}\n"
                     f"🍖 {bar(creature.hunger)}\n\n"
