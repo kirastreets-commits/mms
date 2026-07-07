@@ -154,15 +154,15 @@ class Player:
         return self.preserves.get(preserve_id)
     
     def preserve_capacity(self, preserve_id):
-        preserve = self.preserves[preserve_id]
-
-        level = preserve["level"]
 
         data = PRESERVES[preserve_id]
 
-        return (
+        level = self.preserves[preserve_id]["level"]
+
+        return min(
             data["starting_capacity"]
-            + (level - 1) * data["capacity_per_level"]
+            + (level - 1) * data["capacity_per_level"],
+            len(data["shelter_sites"])
         )
     # ----------------------------
     # 🎒 INVENTORY SYSTEM
