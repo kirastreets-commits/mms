@@ -70,32 +70,84 @@ def setup(bot):
         )
 
         # ----------------------------
-        # SHELTER INFO
+        # HOME / SHELTER INFO
         # ----------------------------
 
         shelter = creature.shelter
 
+        species_data = SPECIES_REGISTRY.get(
+            creature.species,
+            {}
+        )
+
+        is_native = species_data.get(
+            "sanctuary_native",
+            False
+        )
+
         location_id = shelter.get("location")
 
-        if location_id:
-            preserve = get_preserve(location_id)
-            preserve_name = preserve["name"] if preserve else location_id
+
+        if is_native:
+
+            home_name = shelter.get(
+                "site",
+                "Sanctuary Home"
+            )
+
+            shelter_name = shelter.get(
+                "type",
+                "Sanctuary Habitat"
+            ).replace("_", " ").title()
+
+            embed.add_field(
+                name=f"✨ {creature.name}'s Sanctuary Home",
+                value=(
+                    f"📍 **Location:** {home_name}\n"
+                    f"🏡 **Home:** {shelter_name}"
+                ),
+                inline=False
+            )
+
+
         else:
-            preserve_name = "Not Settled"
 
-        site_name = shelter.get("site", "None")
-        shelter_name = shelter.get("type", "Basic Shelter").replace("_", " ").title()
-        shelter_level = shelter.get("level", 1)
+            if location_id:
+                preserve = get_preserve(location_id)
+                preserve_name = (
+                    preserve["name"]
+                    if preserve
+                    else location_id
+                )
+            else:
+                preserve_name = "Not Settled"
 
-        embed.add_field(
-            name=f"🏡 {creature.name}'s Shelter",
-            value=(
-                f"**Preserve:** {preserve_name}\n"
-                f"**Site:** {site_name}\n"
-                f"**Shelter:** {shelter_name} (Lv.{shelter_level})"
-            ),
-            inline=False
-        )
+
+            site_name = shelter.get(
+                "site",
+                "None"
+            )
+
+            shelter_name = shelter.get(
+                "type",
+                "Basic Shelter"
+            ).replace("_", " ").title()
+
+            shelter_level = shelter.get(
+                "level",
+                1
+            )
+
+
+            embed.add_field(
+                name=f"🏡 {creature.name}'s Shelter",
+                value=(
+                    f"📍 **Preserve:** {preserve_name}\n"
+                    f"🌿 **Site:** {site_name}\n"
+                    f"🏠 **Shelter:** {shelter_name} (Lv.{shelter_level})"
+                ),
+                inline=False
+            )
 
         # ----------------------------
         # VITAL STATS
