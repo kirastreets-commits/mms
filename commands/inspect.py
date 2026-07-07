@@ -120,22 +120,32 @@ def setup(bot):
         # SHELTER INFO
         # ----------------------------
 
+        # Get shelter data if it exists
         shelter = getattr(creature, "shelter", {})
 
-        shelter_type = shelter.get("type", "basic shelter")
+        # Shelter type
+        shelter_name = shelter.get("type", "Basic Shelter").replace("_", " ").title()
+
+        # Shelter level
         shelter_level = shelter.get("level", 1)
 
-        preserve_name = "The Sanctuary Grounds"
-        shelter_site = f"Level {shelter_level} {shelter_type.title()}"
+        # Number of decorations/items
+        item_count = len(shelter.get("items", []))
+
+        # Try to get preserve/site if they exist.
+        # Otherwise show defaults.
+        preserve_name = shelter.get("preserve", "Main Sanctuary")
+        shelter_site = shelter.get("site", "Central Grounds")
 
         embed.add_field(
             name=f"🏡 {creature.name}'s Shelter",
             value=(
-                f"📍 **{preserve_name}**\n"
-                f"🌿 **{shelter_site}**\n"
-                f"🪵 Items: {len(shelter.get('items', []))}"
+                f"📍 **Preserve:** {preserve_name}\n"
+                f"🌿 **Location:** {shelter_site}\n"
+                f"🏠 **Type:** {shelter_name} (Lv.{shelter_level})\n"
+                f"🪵 **Decorations:** {item_count}"
             ),
-            inline=True
+            inline=False
         )
 
 
