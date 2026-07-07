@@ -35,7 +35,13 @@ def update_sanctuary_homes(player):
         if not hasattr(creature, "shelter") or creature.shelter is None:
             creature.shelter = {}
 
-        if not creature.shelter.get("location"):
+        # Sanctuary-native creatures always belong to their sanctuary home
+
+        if (
+            creature.shelter.get("location") != home["location"]
+            or creature.shelter.get("site") != home["name"]
+            or creature.shelter.get("type") != home["shelter"]
+        ):
 
             creature.shelter["location"] = home["location"]
             creature.shelter["site"] = home["name"]
