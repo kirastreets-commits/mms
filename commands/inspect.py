@@ -61,7 +61,7 @@ def setup(bot):
         # ----------------------------
 
         embed = discord.Embed(
-            title=creature.name,
+            title=f"{creature.emoji} {creature.name}",
             description=f"Species: **{creature.species}**",
             color=color
         )
