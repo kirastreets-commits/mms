@@ -82,3 +82,11 @@ def record_memory(player, creature, text):
         "memory",
         text
     )
+
+def record_settlement(player, creature, preserve):
+    """Record a creature settling in a preserve."""
+    add_entry(
+        player,
+        "shelter",
+        f"{creature.name} settled in {preserve['name']}."
+    )
