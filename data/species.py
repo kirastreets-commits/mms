@@ -312,6 +312,11 @@ SPECIES_REGISTRY = {
         "Lunabloom": {
         "description": "A gentle spirit creature said to bloom wherever moonlight lingers the longest.",
         "sanctuary_native": True,
+        "sanctuary_home": {
+            "location": "sanctuary_gardens",
+            "name": "Moonlit Gardens",
+            "shelter": "Moonflower Hollow"
+        },
         "shelter": "nest",
         "shelter_preferences": [
             "plant",
@@ -345,6 +350,11 @@ SPECIES_REGISTRY = {
         " songs, and written knowledge. Their shimmering wings are said to capture echoes of conversations "
         "and preserve memories that might otherwise fade with time.",
         "sanctuary_native": True,
+        "sanctuary_home": {
+            "location": "arcanum_archive",
+            "name": "The Arcanum Archive",
+            "shelter": "Forgotten Archive Nook"
+        },
         "shelter": "nest",
         "shelter_preferences": [
             "crystal",
@@ -378,6 +388,11 @@ SPECIES_REGISTRY = {
             "fronds. They quietly tend to injured plants and resting creatures, believing "
             "every wound deserves patience and every life deserves another chance.",
             "sanctuary_native": True,
+            "sanctuary_home": {
+                "location": "healing_conservatory",
+                "name": "The Healing Conservatory",
+                "shelter": "Ancient Healing Grove"
+            },
             "shelter": "nest",
             "shelter_preferences": [
                 "plant",
@@ -411,6 +426,11 @@ SPECIES_REGISTRY = {
         "Crumblepuff": {
             "description": "Round, cheerful creatures with fluffy cream-colored fur and tiny seed-like spots across their backs. They instinctively gather fallen crumbs and fresh ingredients, keeping the Feeding Hall tidy while ensuring no creature eats alone.",
             "sanctuary_native": True,
+                    "sanctuary_home": {
+                "location": "feeding_hall",
+                "name": "The Feeding Hall",
+                "shelter": "Warm Pantry Nest"
+            },
             "shelter": "nest",
             "shelter_preferences": [
                 "cozy",
@@ -442,6 +462,11 @@ SPECIES_REGISTRY = {
         "Emberbun": {
             "description": "Small hearth spirits that resemble fluffy rabbits with glowing ember-like fur. Emberbuns are drawn to warm fireplaces and the comforting presence of others, often curling beside tired caretakers after long days.",
             "sanctuary_native": True,
+            "sanctuary_home": {
+                "location": "sanctuary_core",
+                "name": "The Grand Hearth Hall",
+                "shelter": "Hearth Nest"
+            },
             "shelter": "nest",
             "shelter_preferences": [
                 "warm",
