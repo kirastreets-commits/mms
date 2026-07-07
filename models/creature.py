@@ -836,9 +836,16 @@ class Creature:
             "energy": self.energy,
             "hunger": self.hunger,
             "happiness": self.happiness,
+
             "shelter": {
-            "level": self.shelter.get("level", 1),
-            "items": self.shelter.get("items", [])
+                "type": self.shelter.get("type"),
+                "location": self.shelter.get("location"),
+                "site": self.shelter.get("site"),
+                "level": self.shelter.get("level", 1),
+                "comfort": self.shelter.get("comfort", 0),
+                "items": self.shelter.get("items", []),
+                "features": self.shelter.get("features", []),
+                "built_day": self.shelter.get("built_day")
             }
         }
     def compare_stats(self, before):
@@ -895,19 +902,22 @@ class Creature:
         # SHELTER
         # ----------------------------
 
-        creature.shelter = data.get("shelter", {})
+        saved_shelter = data.get("shelter", {})
 
-        # Patch older save files
-        creature.shelter.setdefault(
-            "type",
-            get_species_data(creature.species).get("shelter", "basic")
-        )
-        creature.shelter.setdefault("location", None)
-        creature.shelter.setdefault("site", None)
-        creature.shelter.setdefault("level", 1)
-        creature.shelter.setdefault("comfort", 0)
-        creature.shelter.setdefault("items", [])
-        creature.shelter.setdefault("features", [])
+        creature.shelter = {
+            "type": saved_shelter.get(
+                "type",
+                get_species_data(creature.species).get("shelter", "basic")
+            ),
+            "location": saved_shelter.get("location"),
+            "site": saved_shelter.get("site"),
+            "level": saved_shelter.get("level", 1),
+            "comfort": saved_shelter.get("comfort", 0),
+            "items": saved_shelter.get("items", []),
+            "features": saved_shelter.get("features", []),
+            "built_day": saved_shelter.get("built_day")
+        }
+
 
     # ----------------------------
     # MEMORY PATCH (IMPORTANT)
