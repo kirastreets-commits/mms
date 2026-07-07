@@ -3,6 +3,7 @@ import discord
 from systems.save_system import get_or_create_player
 from systems.preserve_system import get_preserve
 from data.personality import PERSONALITIES
+from data.species import SPECIES_REGISTRY
 
 
 # ----------------------------
@@ -56,8 +57,8 @@ def setup(bot):
         else:
             color = discord.Color.blurple()
 
-        # EMOJI
-        emoji = creature.species_data.get("emoji", "🐾")
+        species = SPECIES_REGISTRY.get(creature.species, {})
+        emoji = species.get("emoji", "🐾")
 
         embed = discord.Embed(
             title=f"{emoji} {creature.name}",
