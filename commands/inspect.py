@@ -54,13 +54,27 @@ def setup(bot):
             description=f"Species: **{creature.species}**",
             color=color
         )
-        
-        #SHELTER INFO
+
+
+        # ----------------------------
+        # SHELTER INFO
+        # ----------------------------
+
+        shelter = getattr(creature, "shelter", {})
+
+        shelter_type = shelter.get("type", "basic shelter")
+        shelter_level = shelter.get("level", 1)
+
+        preserve_name = "The Sanctuary Grounds"
+        shelter_site = f"Level {shelter_level} {shelter_type.title()}"
+
         embed.add_field(
-            name="🏡 {creature.name}'s {shelter_name}",
-            value=(f"📍 **{preserve_name}**\n"
-                f"🌿 **{shelter_site}**\n\n"
-            )
+            name=f"🏡 {creature.name}'s Shelter",
+            value=(
+                f"📍 **{preserve_name}**\n"
+                f"🌿 **{shelter_site}**\n"
+                f"🪵 Items: {len(shelter.get('items', []))}"
+            ),
             inline=True
         )
 
