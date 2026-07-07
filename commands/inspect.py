@@ -153,7 +153,7 @@ def setup(bot):
         # ----------------------------
 
         embed.add_field(
-            name="🎭 Personality",
+            name="Personality",
             value=(
                 f"**{creature.personality.title()}**\n"
                 f"*{personality_description}*"
