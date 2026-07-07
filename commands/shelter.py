@@ -1,11 +1,18 @@
 import discord
 
-from systems.save_system import get_or_create_player
+from systems.save_system import (
+    get_or_create_player,
+    save_player,
+)
 from systems.shelter_system import (
     update_shelter,
     SHELTER_LEVELS,
     generate_shelter_description,
 )
+from systems.preserve_system import (
+    get_available_shelter_sites,
+)
+from data.preserves import get_preserve
 from data.resources import RESOURCES
 
 
@@ -15,15 +22,30 @@ def setup(bot):
     async def shelter(ctx, creature_name: str):
 
         player = get_or_create_player(ctx.author)
-
         creature = player.get_creature(creature_name)
 
         if not creature:
             return await ctx.send("You don't have a creature with that name.")
 
-        # -----------------------------
-        # Update Shelter
-        # -----------------------------
+        # --------------------------------------------------
+        # Upgrade older save files by assigning a shelter site
+        # --------------------------------------------------
+        if (
+            creature.shelter.get("location")
+            and creature.shelter.get("site") is None
+        ):
+            available_sites = get_available_shelter_sites(
+                player,
+                creature.shelter["location"]
+            )
+
+            if available_sites:
+                creature.shelter["site"] = available_sites[0]
+                save_player(player)
+
+        # --------------------------------------------------
+        # Update shelter
+        # --------------------------------------------------
         shelter_name = creature.shelter.get("type", "Shelter")
 
         shelter_result = update_shelter(creature)
@@ -31,38 +53,63 @@ def setup(bot):
         comfort = shelter_result["comfort"]
         level = shelter_result["new_level"]
 
+        # Save updated comfort/level
+        save_player(player)
+
         items = creature.shelter.get("items", [])
 
-        # -----------------------------
+        # --------------------------------------------------
+        # Preserve information
+        # --------------------------------------------------
+        preserve_name = "Unsettled"
+
+        if creature.shelter.get("location"):
+            preserve = get_preserve(creature.shelter["location"])
+
+            if preserve:
+                preserve_name = preserve["name"]
+
+        shelter_site = creature.shelter.get("site") or "—"
+
+        # --------------------------------------------------
         # Progress
-        # -----------------------------
+        # --------------------------------------------------
         next_level = level + 1
 
         if next_level in SHELTER_LEVELS:
-            progress = f"{comfort} / {SHELTER_LEVELS[next_level]} Comfort"
+            progress = (
+                f"{comfort} / "
+                f"{SHELTER_LEVELS[next_level]} Comfort"
+            )
         else:
             progress = "✨ Maximum Shelter Level"
 
-        # -----------------------------
+        # --------------------------------------------------
         # Embed
-        # -----------------------------
+        # --------------------------------------------------
         embed = discord.Embed(
             title=f"🏡 {creature.name}'s {shelter_name}",
             description=(
+                f"📍 **Preserve:** {preserve_name}\n"
+                f"🌿 **Shelter Site:** {shelter_site}\n\n"
                 f"⭐ **Comfort:** {comfort}\n"
                 f"🏠 **Shelter Level:** {level}"
             ),
             color=0x6BBF59
         )
 
+        # --------------------------------------------------
         # Description
+        # --------------------------------------------------
         embed.add_field(
             name="📖 Description",
             value=generate_shelter_description(creature),
             inline=False
         )
 
+        # --------------------------------------------------
         # Decorations
+        # --------------------------------------------------
         if items:
 
             favorite_items = []
@@ -106,6 +153,9 @@ def setup(bot):
                 inline=False
             )
 
+        # --------------------------------------------------
+        # Upgrade Progress
+        # --------------------------------------------------
         embed.add_field(
             name="📈 Next Upgrade",
             value=progress,
