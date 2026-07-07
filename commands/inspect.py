@@ -145,9 +145,9 @@ def setup(bot):
         embed.add_field(
             name=f"🏡 {creature.name}'s Shelter",
             value=(
-                f"📍 **Preserve:** {preserve_name}\n"
-                f"🌿 **Site:** {site_name}\n"
-                f"🏠 **Shelter:** {shelter_name} (Lv.{shelter_level})"
+                f"**Preserve:** {preserve_name}\n"
+                f"**Site:** {site_name}\n"
+                f"**Shelter:** {shelter_name} (Lv.{shelter_level})"
             ),
             inline=False
         )
