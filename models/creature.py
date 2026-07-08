@@ -1,5 +1,6 @@
 # CREATURE
 import random
+from data import species
 from data.species import SPECIES_REGISTRY, get_species_data, get_species, get_species_stat
 from data.personality import PERSONALITIES
 from systems.personality_system import apply_personality
@@ -7,6 +8,7 @@ from systems.mood_system import update_mood
 from systems.memory_system import default_memory
 from systems.memory_system import update_memory 
 from systems.memory_system import ensure_memory
+import uuid
 
 
 
@@ -23,10 +25,12 @@ class Creature:
         health: int = 20,
         energy: int = 20,
         hunger: int = 20,
-        happiness: int = 10
+        happiness: int = 10,
+        creature_id: str | None = None,
     ):
         self.name = name
         self.species = species
+        self.id = creature_id or str(uuid.uuid4())
 
         self.species_data = get_species_data(species) or {}
 
@@ -824,6 +828,7 @@ class Creature:
 
     def to_dict(self):
         return {
+            "id": self.id,
             "name": self.name,
             "species": self.species,
             "trust": self.trust,
@@ -892,6 +897,7 @@ class Creature:
     @classmethod
     def from_dict(cls, data: dict):
         creature = cls(
+        creature_id=data.get("id"),
         name=data["name"],
         species=data["species"],
         personality=data.get("personality") or random.choice(list(PERSONALITIES.keys())),
