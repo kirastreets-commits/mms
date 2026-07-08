@@ -44,7 +44,7 @@ headcaretaker.setup(bot)
 shelter.setup(bot)
 settle.setup(bot)
 preserves.setup(bot)
-dev.setup(bot)
+developer.setup(bot)
 
 from systems.tutorial_cutscene import start_intro
 
