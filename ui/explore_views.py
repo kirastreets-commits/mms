@@ -231,8 +231,15 @@ class LocationSelectMenu(discord.ui.Select):
                 discovered = False
         
                 if species_name not in player.discovered_species:
+
                     player.discovered_species.append(species_name)
-                    discovered = True
+
+                    from systems.journal_system import record_discovery
+
+                    record_discovery(
+                        player,
+                        species_name
+                    )
         
                 # 25% chance the creature needs rescuing
                 if random.random() < 0.90:
