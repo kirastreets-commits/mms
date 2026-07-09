@@ -1,4 +1,5 @@
 from systems.shelter_system import update_shelter
+from systems.journal_system import record_shelter_upgrade
 
 from data.gift_responses import (
     LOVE_MESSAGES,
@@ -126,7 +127,18 @@ def gift_creature(player, creature, item_id):
     result = give_item(creature, item_id, player.user_id)
 
     # apply world changes
-    apply_gift_outcome(creature, item_id, result)
+    apply_gift_outcome(
+        creature,
+        item_id,
+        result
+    )
+
+    if result.get("leveled_up"):
+
+        record_shelter_upgrade(
+            player,
+            creature
+        )
 
     # memory system
     update_memory(creature, "gift", result)
