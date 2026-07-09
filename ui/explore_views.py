@@ -190,15 +190,13 @@ class LocationSelectMenu(discord.ui.Select):
                 if unseen:
                     lore_entry = random.choice(unseen)
 
-                    # Mark as discovered
+                    # Add to journal
                     player.seen_lore.append(lore_entry["id"])
 
-                    # Add to journal
-                    player.journal_entries.append({
-                        "type": "lore",
-                        "id": lore_entry["id"],
-                        "text": lore_entry["text"]
-                    })
+                    player.add_journal_entry(
+                        "lore",
+                        lore_entry["text"]
+                    )
 
                     return (
                         f"📜 Lore discovered!\n\n{lore_entry['text']}",
