@@ -141,7 +141,7 @@ def setup(bot):
                 if entry.get("state") == "favorite":
                     favorite_items.append(f"🌟 {line}")
                 else:
-                    regular_items.append(f"🏡 {line}")
+                    regular_items.append(f"{line}")
 
             if favorite_items:
                 embed.add_field(
