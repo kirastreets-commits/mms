@@ -174,6 +174,8 @@ class LocationSelectMenu(discord.ui.Select):
             # 📜 Lore
             elif roll < 75:
 
+                from systems.journal_system import add_entry
+
                 lore_pool = location.get("lore", [])
 
                 if not lore_pool:
@@ -182,27 +184,27 @@ class LocationSelectMenu(discord.ui.Select):
                         None
                     )
 
-                unseen = [
-                    lore for lore in lore_pool
-                    if lore["id"] not in player.seen_lore
-                ]
+                lore_entry = random.choice(lore_pool)
 
-                if unseen:
-                    lore_entry = random.choice(unseen)
+                # check existing lore
+                already_found = any(
+                    entry.get("category") == "lore"
+                    and entry.get("text") == lore_entry
+                    for entry in player.journal_entries
+                    if isinstance(entry, dict)
+                )
 
-                    # Add to journal
-                    player.seen_lore.append(lore_entry["id"])
-
-                    player.add_journal_entry(
+                if not already_found:
+                    add_entry(
+                        player,
                         "lore",
-                        lore_entry["text"]
+                        lore_entry
                     )
 
-                    return (
-                        f"📜 Lore discovered!\n\n{lore_entry['text']}",
-                        None
-                    )
-
+                return (
+                    f"📜 Lore discovered:\n{lore_entry}",
+                    None
+                )
                 # No new lore left
                 return (
                     random.choice([
