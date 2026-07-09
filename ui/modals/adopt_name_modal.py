@@ -32,7 +32,6 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
     
         self.player.add_creature(self.creature, named=True)
         save_player(self.player)
-        from ui.explore_views import get_home_message
     
         embed = discord.Embed(
             title="✨ A New Beginning",
@@ -41,11 +40,12 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
                 f'You softly whisper, **"{new_name}."**\n\n'
                 f"They tilt their head before happily accepting the name.\n\n"
                 f"💚 **{new_name} has joined your sanctuary!**\n\n"
-                f"{get_home_message(self.creature)}"
+                f"🏡 **{new_name} doesn't have a place to call home just yet.**\n"
+                f"Use **`!settle`** to prepare a shelter and help them settle into sanctuary life."
             ),
             colour=discord.Color.green()
         )
-    
+
         await interaction.response.send_message(
             embed=embed,
             ephemeral=True
