@@ -67,9 +67,23 @@ def setup(bot):
         is_native = species_data.get("sanctuary_native", False)
 
         if is_native:
+
             preserve_name = "Moonlit Meadows Sanctuary"
-            shelter_site = creature.shelter.get("site", "Sanctuary Home")
+
+            shelter_site = shelter.get(
+                "site",
+                "Sanctuary Home"
+            )
+
+            shelter_name = shelter.get(
+                "type",
+                "Sanctuary Habitat"
+            )
+
         else:
+
+            shelter_name = creature.shelter.get("type", "Shelter")
+
             preserve_name = "Unsettled"
 
             if creature.shelter.get("location"):
