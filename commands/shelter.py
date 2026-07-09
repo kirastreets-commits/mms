@@ -64,6 +64,7 @@ def setup(bot):
         # Preserve information
         # --------------------------------------------------
         species_data = creature.species_data
+        shelter = creature.shelter
         is_native = species_data.get("sanctuary_native", False)
 
         if is_native:
