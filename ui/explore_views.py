@@ -8,6 +8,29 @@ from data.species import get_species
 from models.creature import Creature
 from ui.modals.adopt_name_modal import AdoptNameModal
 
+from data.species import SPECIES_REGISTRY
+
+
+def get_home_message(creature):
+
+    species_data = SPECIES_REGISTRY.get(
+        creature.species,
+        {}
+    )
+
+    if species_data.get("sanctuary_native"):
+
+        return (
+            f"✨ **{creature.name}** is a sanctuary-native creature.\n\n"
+            "Their special home is already waiting for them within the sanctuary."
+        )
+
+    return (
+        f"🏡 **{creature.name}** will need a safe place to call home.\n\n"
+        f"Use `!settle {creature.name}` to choose a preserve "
+        "and build their shelter."
+    )
+
 class ExploreMenuView(discord.ui.View):
     def __init__(self, player):
         super().__init__(timeout=60)
@@ -159,14 +182,36 @@ class LocationSelectMenu(discord.ui.Select):
                         None
                     )
 
-                lore_entry = random.choice(lore_pool)
+                unseen = [
+                    lore for lore in lore_pool
+                    if lore["id"] not in player.seen_lore
+                ]
 
-                # Optional: prevent duplicates
-                if lore_entry not in player.journal_entries:
-                    player.journal_entries.append(lore_entry)
+                if unseen:
+                    lore_entry = random.choice(unseen)
 
+                    # Mark as discovered
+                    player.seen_lore.append(lore_entry["id"])
+
+                    # Add to journal
+                    player.journal_entries.append({
+                        "type": "lore",
+                        "id": lore_entry["id"],
+                        "text": lore_entry["text"]
+                    })
+
+                    return (
+                        f"📜 Lore discovered!\n\n{lore_entry['text']}",
+                        None
+                    )
+
+                # No new lore left
                 return (
-                    f"📜 Lore discovered:\n{lore_entry}",
+                    random.choice([
+                        "The sanctuary feels quiet. You've already uncovered every story this place is willing to share.",
+                        "You search carefully, but no forgotten memories reveal themselves.",
+                        "The area feels familiar now. Whatever secrets it held, you've uncovered them all."
+                    ]),
                     None
                 )
         
@@ -395,8 +440,8 @@ class NameCreatureView(discord.ui.View):
         )
 
     @discord.ui.button(
-    label="🌿 Let Them Stay Wild",
-    style=discord.ButtonStyle.secondary
+        label="🌿 Let Them Stay Wild",
+        style=discord.ButtonStyle.secondary
     )
     async def keep_wild(
         self,
@@ -404,15 +449,16 @@ class NameCreatureView(discord.ui.View):
         button: discord.ui.Button
     ):
 
+        self.player.add_creature(self.creature, named=False)
+        save_player(self.player)
+
         embed = discord.Embed(
             title="🌿 A Wild Spirit",
             description=(
-                f"The **{self.creature.species}** watches you quietly for a moment.\n\n"
-                "Rather than asking it to stay, you give it the freedom to choose its own path.\n\n"
-                "The creature lets out a soft, grateful sound before disappearing back into the wilderness.\n\n"
-                "Perhaps your paths will cross again someday."
+                f"The **{self.creature.species}** chooses to remain unnamed.\n\n"
+                "Though wild at heart, it happily follows you back to Moonlit Meadows."
             ),
-            color=0x95A5A6
+            color=0x95a5a6
         )
 
         await interaction.response.edit_message(
