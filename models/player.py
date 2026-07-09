@@ -3,6 +3,9 @@ from systems.journal_system import (
     record_discovery,
 )
 
+from data.preserves import PRESERVES
+from datetime import datetime
+
 # PLAYER
 
 class Player:
@@ -15,11 +18,11 @@ class Player:
         creatures=None,
         discovered_species=None,
         journal_entries= None,
-        seen_lore=None,
         unlocked_locations=None,
         tutorial_stage=0,
         tutorial_complete=False,
-        has_starter=False
+        has_starter=False,
+        preserves=None
     ):
 
         self.user_id = user_id
@@ -29,13 +32,57 @@ class Player:
         self.creatures = creatures if isinstance(creatures, list) else []
         self.discovered_species = discovered_species if isinstance(discovered_species, list) else []
         self.journal_entries = journal_entries if isinstance(journal_entries, list) else []
-        self.seen_lore = seen_lore if isinstance(seen_lore, list) else []
         self.unlocked_locations = (unlocked_locations if isinstance(unlocked_locations, list) else ["sanctuary_core"])
+        self.seen_lore = []
 
         self.has_starter = has_starter
 
         self.tutorial_stage = tutorial_stage
         self.tutorial_complete = tutorial_complete
+
+        # ----------------------------
+        # 🌿 PRESERVES
+        # ----------------------------
+
+        default_preserves = {
+            preserve_id: {
+                "level": 1,
+                "restoration": 0,
+                "unlocked": PRESERVES[preserve_id].get("unlock_level", 1) == 1
+            }
+            for preserve_id in PRESERVES
+        }
+
+        # Load existing preserve data if available
+        if preserves is None:
+            preserves = default_preserves
+        else:
+            # Patch old save files
+            for preserve_id, default_data in default_preserves.items():
+
+                if preserve_id not in preserves:
+                    preserves[preserve_id] = default_data
+                else:
+                    for key, value in default_data.items():
+                        preserves[preserve_id].setdefault(key, value)
+
+        # Always assign it here
+        self.preserves = preserves
+
+        # ----------------------------
+        # 🌿 PRESERVE SAFETY PATCH
+        # ----------------------------
+
+        if not hasattr(self, "preserves") or self.preserves is None:
+            self.preserves = {
+                preserve_id: {
+                    "level": 1,
+                    "restoration": 0,
+                    "unlocked": PRESERVES[preserve_id].get("unlock_level", 1) == 1
+                }
+                for preserve_id in PRESERVES
+            }
+
 
     # ----------------------------
     # 🐉 CREATURE MANAGEMENT
@@ -102,6 +149,22 @@ class Player:
     
         # Keep the latest 200 entries
         self.journal_entries = self.journal_entries[-200:]
+
+    # SHELTER MANAGEMENT
+    def get_preserve(self, preserve_id):
+        return self.preserves.get(preserve_id)
+    
+    def preserve_capacity(self, preserve_id):
+
+        data = PRESERVES[preserve_id]
+
+        level = self.preserves[preserve_id]["level"]
+
+        return min(
+            data["starting_capacity"]
+            + (level - 1) * data["capacity_per_level"],
+            len(data["shelter_sites"])
+        )
     # ----------------------------
     # 🎒 INVENTORY SYSTEM
     # ----------------------------
@@ -140,11 +203,11 @@ class Player:
             "creatures": [c.to_dict() for c in self.creatures],
             "discovered_species": self.discovered_species,
             "journal_entries": self.journal_entries,
-            "seen_lore": self.seen_lore,
             "unlocked_locations": self.unlocked_locations,
             "tutorial_stage": self.tutorial_stage,
             "tutorial_complete": self.tutorial_complete,
-            "has_starter": self.has_starter
+            "has_starter": self.has_starter,
+            "preserves": self.preserves,
         }
 
     @classmethod
@@ -184,9 +247,9 @@ class Player:
             creatures=creatures,
             discovered_species=data.get("discovered_species", []),
             journal_entries=journal_entries,
-            seen_lore=data.get("seen_lore", []),
             unlocked_locations=data.get("unlocked_locations", ["sanctuary_core"]),
             tutorial_stage=data.get("tutorial_stage", 0),
             tutorial_complete=data.get("tutorial_complete", False),
-            has_starter=data.get("has_starter", False)
+            has_starter=data.get("has_starter", False),
+            preserves=data.get("preserves")
         )
