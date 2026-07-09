@@ -1,4 +1,6 @@
 from ui.journal.journal_view import JournalHomeView
+from systems.save_system import get_or_create_player
+import discord
 
 def setup(bot):
 
