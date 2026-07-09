@@ -10,6 +10,7 @@ from models.creature import Creature
 from data.species import SPECIES_REGISTRY
 from data.resources import RESOURCES
 from data.preserves import PRESERVES
+from ui.explore_views import RescueView
 
 
 def setup(bot):
@@ -749,6 +750,40 @@ def setup(bot):
         )
 
     # --------------------------------------------------
+    # !dev adopt
+    # --------------------------------------------------
+
+    @dev.command(name="adopt")
+    async def dev_adopt(
+        ctx,
+        species: str
+    ):
+
+        player = get_player(ctx)
+
+        # Make sure the species exists
+        if species not in SPECIES_REGISTRY:
+            return await ctx.send(
+                embed=error_embed(
+                    f"Unknown species: **{species}**"
+                )
+            )
+
+        embed = discord.Embed(
+            title="🐾 Rescue Encounter",
+            description=(
+                f"You discover an injured **{species}** hiding nearby.\n\n"
+                "It looks frightened, but doesn't run away..."
+            ),
+            colour=discord.Color.orange()
+        )
+
+        await ctx.send(
+            embed=embed,
+            view=RescueView(player, species)
+        )
+
+    # --------------------------------------------------
     # !dev help
     # --------------------------------------------------
 
@@ -765,6 +800,7 @@ def setup(bot):
             "`!dev creatures list`\n"
             "`!dev creatures inspect`\n"
             "`!dev creatures remove`\n"
+            "`!dev adopt`\n"
             "`!dev creatures rename`\n\n"
 
             "**Inventory**\n"
