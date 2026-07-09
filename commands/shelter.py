@@ -64,36 +64,23 @@ def setup(bot):
         # Preserve information
         # --------------------------------------------------
         species_data = creature.species_data
-        shelter = creature.shelter
         is_native = species_data.get("sanctuary_native", False)
 
+        shelter_name = creature.shelter.get("type", "Shelter")
+
         if is_native:
-
             preserve_name = "Moonlit Meadows Sanctuary"
-
-            shelter_site = shelter.get(
-                "site",
-                "Sanctuary Home"
-            )
-
-            shelter_name = shelter.get(
-                "type",
-                "Sanctuary Habitat"
-            )
-
+            shelter_site = creature.shelter.get("site", "Sanctuary Home")
         else:
-
-            shelter_name = creature.shelter.get("type", "Shelter")
-
             preserve_name = "Unsettled"
 
-            if creature.shelter.get("location"):
-                preserve = get_preserve(creature.shelter["location"])
-
+            location = creature.shelter.get("location")
+            if location:
+                preserve = get_preserve(location)
                 if preserve:
                     preserve_name = preserve["name"]
 
-            shelter_site = creature.shelter.get("site") or "—"
+            shelter_site = creature.shelter.get("site", "—")
 
         # --------------------------------------------------
         # Progress
