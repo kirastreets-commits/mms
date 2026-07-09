@@ -31,6 +31,13 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
         self.creature.name = new_name
     
         self.player.add_creature(self.creature, named=True)
+        from systems.journal_system import record_adoption
+
+        record_adoption(
+            self.player,
+            self.creature,
+            named=True
+        )
         save_player(self.player)
     
         embed = discord.Embed(
@@ -39,13 +46,11 @@ class AdoptNameModal(discord.ui.Modal, title="Name Your New Companion"):
                 f"The little **{self.creature.species}** looks up at you.\n\n"
                 f'You softly whisper, **"{new_name}."**\n\n'
                 f"They tilt their head before happily accepting the name.\n\n"
-                f"💚 **{new_name} has joined your sanctuary!**\n\n"
-                f"🏡 **{new_name} doesn't have a place to call home just yet.**\n"
-                f"Use **`!settle`** to prepare a shelter and help them settle into sanctuary life."
+                f"💚 **{new_name} has joined your sanctuary!**"
             ),
             colour=discord.Color.green()
         )
-
+    
         await interaction.response.send_message(
             embed=embed,
             ephemeral=True
