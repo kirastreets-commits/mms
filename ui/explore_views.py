@@ -404,21 +404,15 @@ class NameCreatureView(discord.ui.View):
         button: discord.ui.Button
     ):
 
-        self.player.add_creature(
-            self.creature,
-            named=False
-        )
-
-        save_player(self.player)
-
         embed = discord.Embed(
             title="🌿 A Wild Spirit",
             description=(
-                f"The **{self.creature.species}** chooses to remain unnamed.\n\n"
-                "Though wild at heart, it happily follows you back to Moonlit Meadows.\n\n"
-                f"{get_home_message(self.creature)}"
+                f"The **{self.creature.species}** watches you quietly for a moment.\n\n"
+                "Rather than asking it to stay, you give it the freedom to choose its own path.\n\n"
+                "The creature lets out a soft, grateful sound before disappearing back into the wilderness.\n\n"
+                "Perhaps your paths will cross again someday."
             ),
-            color=0x95a5a6
+            color=0x95A5A6
         )
 
         await interaction.response.edit_message(
