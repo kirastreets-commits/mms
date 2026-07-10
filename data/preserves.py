@@ -1,260 +1,260 @@
 PRESERVES = {
 
     "elderwood": {
-    "name": "Elderwood Preserve",
-    "emoji": "🌲",
-    "theme": "forest",
+        "name": "Elderwood Preserve",
+        "emoji": "🌲",
+        "theme": "forest",
 
-    "description": (
-        "One of the oldest forests within Moonlit Meadows, Elderwood Preserve "
-        "is a peaceful wilderness of towering trees, moss-covered stones, "
-        "gentle streams, and hidden clearings."
-    ),
-
-    # ---------------------------------
-    # Progression
-    # ---------------------------------
-    "starting_capacity": 3,
-    "capacity_per_level": 2,
-    "max_level": 5,
-    "unlock_level": 1,
-
-    # ---------------------------------
-    # Upgrade Projects
-    # ---------------------------------
-    "upgrade_names": {
-        2: "Restore Woodland Paths",
-        3: "Plant Ancient Saplings",
-        4: "Create Wildlife Glades",
-        5: "Awaken the Elder Grove"
-    },
-
-    "level_descriptions": {
-        1: (
-            "Only a handful of shelters have been restored. "
-            "Much of the preserve remains overgrown and forgotten."
+        "description": (
+            "One of the oldest forests within Moonlit Meadows, Elderwood Preserve "
+            "is a peaceful wilderness of towering trees, moss-covered stones, "
+            "gentle streams, and hidden clearings."
         ),
 
-        2: (
-            "Safe woodland trails wind beneath the trees, making it easier "
-            "for creatures to travel between their homes."
-        ),
+        # ---------------------------------
+        # Progression
+        # ---------------------------------
+        "starting_capacity": 3,
+        "capacity_per_level": 2,
+        "max_level": 5,
+        "unlock_level": 1,
 
-        3: (
-            "Ancient saplings and native plants have been replanted. "
-            "Birdsong fills the forest once more."
-        ),
-
-        4: (
-            "Open glades provide peaceful gathering places while wildlife "
-            "returns to every corner of the preserve."
-        ),
-
-        5: (
-            "The legendary Elder Grove has awakened. Ancient trees radiate "
-            "gentle magic that comforts every creature living here."
-        )
-    },
-
-    # ---------------------------------
-    # Upgrade Costs
-    # ---------------------------------
-    "upgrade_costs": {
-
-        2: {
-            "wood": 40,
-            "sticks": 30,
-            "moss": 20,
-            "soft_bedding": 15
+        # ---------------------------------
+        # Upgrade Projects
+        # ---------------------------------
+        "upgrade_names": {
+            2: "Restore Woodland Paths",
+            3: "Plant Ancient Saplings",
+            4: "Create Wildlife Glades",
+            5: "Awaken the Elder Grove"
         },
 
-        3: {
-            "wood": 70,
-            "berries": 40,
-            "wildflowers": 35,
-            "moss": 30
-        },
+        "level_descriptions": {
+            1: (
+                "Only a handful of shelters have been restored. "
+                "Much of the preserve remains overgrown and forgotten."
+            ),
 
-        4: {
-            "wood": 100,
-            "wildflowers": 60,
-            "berries": 50,
-            "soft_bedding": 40
-        },
+            2: (
+                "Safe woodland trails wind beneath the trees, making it easier "
+                "for creatures to travel between their homes."
+            ),
 
-        5: {
-            "wood": 150,
-            "wildflowers": 80,
-            "berries": 80,
-            "moss": 60,
-            "crystal_shard": 15
-        }
-    },
+            3: (
+                "Ancient saplings and native plants have been replanted. "
+                "Birdsong fills the forest once more."
+            ),
 
-    # ---------------------------------
-    # Bonuses
-    # ---------------------------------
-    "upgrade_bonuses": {
+            4: (
+                "Open glades provide peaceful gathering places while wildlife "
+                "returns to every corner of the preserve."
+            ),
 
-        2: {
-            "capacity": 2,
-            "comfort": 2,
-            "description": (
-                "Additional woodland shelters become available."
+            5: (
+                "The legendary Elder Grove has awakened. Ancient trees radiate "
+                "gentle magic that comforts every creature living here."
             )
         },
 
-        3: {
-            "capacity": 2,
-            "comfort": 4,
-            "resource_bonus": 10,
-            "description": (
-                "Forest plants begin naturally replenishing."
-            )
+        # ---------------------------------
+        # Upgrade Costs
+        # ---------------------------------
+        "upgrade_costs": {
+
+            2: {
+                "wood": 40,
+                "sticks": 30,
+                "moss": 20,
+                "soft_bedding": 15
+            },
+
+            3: {
+                "wood": 70,
+                "berries": 40,
+                "wildflowers": 35,
+                "moss": 30
+            },
+
+            4: {
+                "wood": 100,
+                "wildflowers": 60,
+                "berries": 50,
+                "soft_bedding": 40
+            },
+
+            5: {
+                "wood": 150,
+                "wildflowers": 80,
+                "berries": 80,
+                "moss": 60,
+                "crystal_shard": 15
+            }
         },
 
-        4: {
-            "capacity": 2,
-            "comfort": 6,
-            "resource_bonus": 20,
-            "rare_event_bonus": 5,
-            "description": (
-                "Wild creatures are drawn to the flourishing forest."
-            )
+        # ---------------------------------
+        # Bonuses
+        # ---------------------------------
+        "upgrade_bonuses": {
+
+            2: {
+                "capacity": 2,
+                "comfort": 2,
+                "description": (
+                    "Additional woodland shelters become available."
+                )
+            },
+
+            3: {
+                "capacity": 2,
+                "comfort": 4,
+                "resource_bonus": 10,
+                "description": (
+                    "Forest plants begin naturally replenishing."
+                )
+            },
+
+            4: {
+                "capacity": 2,
+                "comfort": 6,
+                "resource_bonus": 20,
+                "rare_event_bonus": 5,
+                "description": (
+                    "Wild creatures are drawn to the flourishing forest."
+                )
+            },
+
+            5: {
+                "capacity": 2,
+                "comfort": 10,
+                "resource_bonus": 30,
+                "rare_event_bonus": 10,
+                "bond_bonus": 1,
+                "description": (
+                    "The Elder Grove grants peace to every resident."
+                )
+            }
         },
 
-        5: {
-            "capacity": 2,
-            "comfort": 10,
-            "resource_bonus": 30,
-            "rare_event_bonus": 10,
-            "bond_bonus": 1,
-            "description": (
-                "The Elder Grove grants peace to every resident."
-            )
-        }
-    },
+        # ---------------------------------
+        # Passive Effects
+        # ---------------------------------
+        "passive_effects": [
 
-    # ---------------------------------
-    # Passive Effects
-    # ---------------------------------
-    "passive_effects": [
+            "Forest creatures recover +5 Energy while resting.",
 
-        "Forest creatures recover +5 Energy while resting.",
+            "Gathering has a higher chance of finding berries.",
 
-        "Gathering has a higher chance of finding berries.",
+            "Rare woodland visitors occasionally appear.",
 
-        "Rare woodland visitors occasionally appear.",
+            "Creatures living here slowly gain Trust over time."
+        ],
 
-        "Creatures living here slowly gain Trust over time."
-    ],
+        # ---------------------------------
+        # Random Events
+        # ---------------------------------
+        "events": [
 
-    # ---------------------------------
-    # Random Events
-    # ---------------------------------
-    "events": [
+            "A family of birds builds a nest nearby.",
 
-        "A family of birds builds a nest nearby.",
+            "A curious fox leaves behind a polished stone.",
 
-        "A curious fox leaves behind a polished stone.",
+            "Ancient trees softly hum beneath the moonlight.",
 
-        "Ancient trees softly hum beneath the moonlight.",
+            "A hidden spring begins flowing once again.",
 
-        "A hidden spring begins flowing once again.",
+            "Butterflies gather around a newly blooming clearing.",
 
-        "Butterflies gather around a newly blooming clearing.",
+            "A shy woodland spirit briefly watches from afar.",
 
-        "A shy woodland spirit briefly watches from afar.",
+            "Fresh berries ripen earlier than expected.",
 
-        "Fresh berries ripen earlier than expected.",
+            "Fireflies illuminate the forest after sunset."
+        ],
 
-        "Fireflies illuminate the forest after sunset."
-    ],
+        # ---------------------------------
+        # Shelter Types
+        # ---------------------------------
+        "allowed_shelters": [
+            "Burrow",
+            "Den",
+            "Nest",
+            "Tree Hollow",
+            "Hollow Log"
+        ],
 
-    # ---------------------------------
-    # Shelter Types
-    # ---------------------------------
-    "allowed_shelters": [
-        "Burrow",
-        "Den",
-        "Nest",
-        "Tree Hollow",
-        "Hollow Log"
-    ],
+        "shelter_sites": [
+            "Mossy Hollow",
+            "Old Oak Burrow",
+            "Fern Clearing",
+            "Whispering Roots",
+            "Foxglove Grove",
+            "Ancient Oak Hollow",
+            "Sunlit Knoll",
+            "Hidden Spring",
+            "Willow Thicket",
+            "Stone Moss Den",
+            "Twilight Hollow"
+        ],
 
-    "shelter_sites": [
-        "Mossy Hollow",
-        "Old Oak Burrow",
-        "Fern Clearing",
-        "Whispering Roots",
-        "Foxglove Grove",
-        "Ancient Oak Hollow",
-        "Sunlit Knoll",
-        "Hidden Spring",
-        "Willow Thicket",
-        "Stone Moss Den",
-        "Twilight Hollow"
-    ],
+        # ---------------------------------
+        # Resources
+        # ---------------------------------
+        "resources": [
+            "moss",
+            "wildflowers",
+            "berries",
+            "sticks",
+            "soft_bedding"
+        ],
 
-    # ---------------------------------
-    # Resources
-    # ---------------------------------
-    "resources": [
-        "moss",
-        "wildflowers",
-        "berries",
-        "sticks",
-        "soft_bedding"
-    ],
+        # ---------------------------------
+        # Atmosphere
+        # ---------------------------------
+        "atmosphere": [
 
-    # ---------------------------------
-    # Atmosphere
-    # ---------------------------------
-    "atmosphere": [
+            "A gentle breeze rustles through the towering trees.",
 
-        "A gentle breeze rustles through the towering trees.",
+            "Birdsong echoes throughout the preserve.",
 
-        "Birdsong echoes throughout the preserve.",
+            "Golden sunlight filters through the forest canopy.",
 
-        "Golden sunlight filters through the forest canopy.",
+            "The scent of moss and damp earth fills the air.",
 
-        "The scent of moss and damp earth fills the air.",
+            "Fireflies drift between ancient branches.",
 
-        "Fireflies drift between ancient branches.",
+            "Leaves dance gently across the woodland floor."
+        ],
 
-        "Leaves dance gently across the woodland floor."
-    ],
+        # ---------------------------------
+        # Weather
+        # ---------------------------------
+        "possible_weather": [
+            "Sunny",
+            "Light Rain",
+            "Morning Mist"
+        ],
 
-    # ---------------------------------
-    # Weather
-    # ---------------------------------
-    "possible_weather": [
-        "Sunny",
-        "Light Rain",
-        "Morning Mist"
-    ],
+        # ---------------------------------
+        # Discoveries
+        # ---------------------------------
+        "discoveries": [
 
-    # ---------------------------------
-    # Discoveries
-    # ---------------------------------
-    "discoveries": [
+            "Ancient Stone Circle",
 
-        "Ancient Stone Circle",
+            "Hidden Wildflower Patch",
 
-        "Hidden Wildflower Patch",
+            "Forgotten Woodland Shrine",
 
-        "Forgotten Woodland Shrine",
+            "Crystal Spring",
 
-        "Crystal Spring",
+            "Sleeping Guardian Tree",
 
-        "Sleeping Guardian Tree",
+            "Lost Ranger Camp",
 
-        "Lost Ranger Camp",
+            "Whispering Oak",
 
-        "Whispering Oak",
-
-        "Moonlit Pond"
-    ]
+            "Moonlit Pond"
+        ]
 },
 
     "emberlands": {
