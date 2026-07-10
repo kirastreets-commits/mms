@@ -1,14 +1,272 @@
 PRESERVES = {
 
     "elderwood": {
-        "name": "Elderwood Preserve",
-        "emoji": "🌲",
-        "theme": "forest",
+    "name": "Elderwood Preserve",
+    "emoji": "🌲",
+    "theme": "forest",
+
+    "description": (
+        "One of the oldest forests within Moonlit Meadows, Elderwood Preserve "
+        "is a peaceful wilderness of towering trees, moss-covered stones, "
+        "gentle streams, and hidden clearings."
+    ),
+
+    # ---------------------------------
+    # Progression
+    # ---------------------------------
+    "starting_capacity": 3,
+    "capacity_per_level": 2,
+    "max_level": 5,
+    "unlock_level": 1,
+
+    # ---------------------------------
+    # Upgrade Projects
+    # ---------------------------------
+    "upgrade_names": {
+        2: "Restore Woodland Paths",
+        3: "Plant Ancient Saplings",
+        4: "Create Wildlife Glades",
+        5: "Awaken the Elder Grove"
+    },
+
+    "level_descriptions": {
+        1: (
+            "Only a handful of shelters have been restored. "
+            "Much of the preserve remains overgrown and forgotten."
+        ),
+
+        2: (
+            "Safe woodland trails wind beneath the trees, making it easier "
+            "for creatures to travel between their homes."
+        ),
+
+        3: (
+            "Ancient saplings and native plants have been replanted. "
+            "Birdsong fills the forest once more."
+        ),
+
+        4: (
+            "Open glades provide peaceful gathering places while wildlife "
+            "returns to every corner of the preserve."
+        ),
+
+        5: (
+            "The legendary Elder Grove has awakened. Ancient trees radiate "
+            "gentle magic that comforts every creature living here."
+        )
+    },
+
+    # ---------------------------------
+    # Upgrade Costs
+    # ---------------------------------
+    "upgrade_costs": {
+
+        2: {
+            "wood": 40,
+            "sticks": 30,
+            "moss": 20,
+            "soft_bedding": 15
+        },
+
+        3: {
+            "wood": 70,
+            "berries": 40,
+            "wildflowers": 35,
+            "moss": 30
+        },
+
+        4: {
+            "wood": 100,
+            "wildflowers": 60,
+            "berries": 50,
+            "soft_bedding": 40
+        },
+
+        5: {
+            "wood": 150,
+            "wildflowers": 80,
+            "berries": 80,
+            "moss": 60,
+            "crystal_shard": 15
+        }
+    },
+
+    # ---------------------------------
+    # Bonuses
+    # ---------------------------------
+    "upgrade_bonuses": {
+
+        2: {
+            "capacity": 2,
+            "comfort": 2,
+            "description": (
+                "Additional woodland shelters become available."
+            )
+        },
+
+        3: {
+            "capacity": 2,
+            "comfort": 4,
+            "resource_bonus": 10,
+            "description": (
+                "Forest plants begin naturally replenishing."
+            )
+        },
+
+        4: {
+            "capacity": 2,
+            "comfort": 6,
+            "resource_bonus": 20,
+            "rare_event_bonus": 5,
+            "description": (
+                "Wild creatures are drawn to the flourishing forest."
+            )
+        },
+
+        5: {
+            "capacity": 2,
+            "comfort": 10,
+            "resource_bonus": 30,
+            "rare_event_bonus": 10,
+            "bond_bonus": 1,
+            "description": (
+                "The Elder Grove grants peace to every resident."
+            )
+        }
+    },
+
+    # ---------------------------------
+    # Passive Effects
+    # ---------------------------------
+    "passive_effects": [
+
+        "Forest creatures recover +5 Energy while resting.",
+
+        "Gathering has a higher chance of finding berries.",
+
+        "Rare woodland visitors occasionally appear.",
+
+        "Creatures living here slowly gain Trust over time."
+    ],
+
+    # ---------------------------------
+    # Random Events
+    # ---------------------------------
+    "events": [
+
+        "A family of birds builds a nest nearby.",
+
+        "A curious fox leaves behind a polished stone.",
+
+        "Ancient trees softly hum beneath the moonlight.",
+
+        "A hidden spring begins flowing once again.",
+
+        "Butterflies gather around a newly blooming clearing.",
+
+        "A shy woodland spirit briefly watches from afar.",
+
+        "Fresh berries ripen earlier than expected.",
+
+        "Fireflies illuminate the forest after sunset."
+    ],
+
+    # ---------------------------------
+    # Shelter Types
+    # ---------------------------------
+    "allowed_shelters": [
+        "Burrow",
+        "Den",
+        "Nest",
+        "Tree Hollow",
+        "Hollow Log"
+    ],
+
+    "shelter_sites": [
+        "Mossy Hollow",
+        "Old Oak Burrow",
+        "Fern Clearing",
+        "Whispering Roots",
+        "Foxglove Grove",
+        "Ancient Oak Hollow",
+        "Sunlit Knoll",
+        "Hidden Spring",
+        "Willow Thicket",
+        "Stone Moss Den",
+        "Twilight Hollow"
+    ],
+
+    # ---------------------------------
+    # Resources
+    # ---------------------------------
+    "resources": [
+        "moss",
+        "wildflowers",
+        "berries",
+        "sticks",
+        "soft_bedding"
+    ],
+
+    # ---------------------------------
+    # Atmosphere
+    # ---------------------------------
+    "atmosphere": [
+
+        "A gentle breeze rustles through the towering trees.",
+
+        "Birdsong echoes throughout the preserve.",
+
+        "Golden sunlight filters through the forest canopy.",
+
+        "The scent of moss and damp earth fills the air.",
+
+        "Fireflies drift between ancient branches.",
+
+        "Leaves dance gently across the woodland floor."
+    ],
+
+    # ---------------------------------
+    # Weather
+    # ---------------------------------
+    "possible_weather": [
+        "Sunny",
+        "Light Rain",
+        "Morning Mist"
+    ],
+
+    # ---------------------------------
+    # Discoveries
+    # ---------------------------------
+    "discoveries": [
+
+        "Ancient Stone Circle",
+
+        "Hidden Wildflower Patch",
+
+        "Forgotten Woodland Shrine",
+
+        "Crystal Spring",
+
+        "Sleeping Guardian Tree",
+
+        "Lost Ranger Camp",
+
+        "Whispering Oak",
+
+        "Moonlit Pond"
+    ]
+},
+
+    "emberlands": {
+        "name": "Emberlands Preserve",
+        "emoji": "🔥",
+        "theme": "volcanic",
 
         "description": (
-            "One of the oldest forests within Moonlit Meadows, Elderwood Preserve "
-            "is a peaceful wilderness of towering trees, moss-covered stones, "
-            "gentle streams, and hidden clearings."
+            "Fed by the warmth beneath Moonlit Meadows, Emberlands Preserve is a "
+            "rugged landscape of volcanic stone, glowing vents, obsidian cliffs "
+            "and rivers of slow-moving lava. Despite its harsh appearance, many "
+            "fire-loving creatures call these lands home."
         ),
 
         # -----------------------------
@@ -26,20 +284,20 @@ PRESERVES = {
             2: {
                 "capacity": 2,
                 "comfort": 2,
-                "description": "Additional shelter sites are restored."
+                "description": "Collapsed lava tunnels are reopened."
             },
             3: {
                 "capacity": 2,
                 "comfort": 4,
                 "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
+                "description": "Fresh geothermal vents encourage new growth."
             },
             4: {
                 "capacity": 2,
                 "comfort": 6,
                 "resource_bonus": 20,
                 "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
+                "description": "Ancient fire spirits once again roam the preserve."
             },
             5: {
                 "capacity": 2,
@@ -47,7 +305,7 @@ PRESERVES = {
                 "resource_bonus": 30,
                 "rare_event_bonus": 10,
                 "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
+                "description": "The legendary Ember Heart radiates life throughout the preserve."
             }
         },
 
@@ -55,204 +313,125 @@ PRESERVES = {
         # Upgrade Projects
         # -----------------------------
         "upgrade_names": {
-            2: "Restore Woodland Paths",
-            3: "Plant Ancient Saplings",
-            4: "Create Wildlife Glades",
-            5: "Awaken the Elder Grove"
+            2: "Clear Ashfall Trails",
+            3: "Stabilise Lava Vents",
+            4: "Restore Firestone Caverns",
+            5: "Awaken the Ember Heart"
         },
 
+        # -----------------------------
+        # Level Descriptions
+        # -----------------------------
         "level_descriptions": {
-            1: "A newly restored preserve with only a few safe shelters.",
-            2: "Well-maintained paths now connect several comfortable homes.",
-            3: "Wildlife has begun returning and the preserve feels alive.",
-            4: "The preserve flourishes with abundant life and thriving shelters.",
-            5: "One of the greatest sanctuaries in Moonlit Meadows, overflowing with life."
+            1: "Only a handful of cooled caverns offer shelter among the volcanic stone.",
+            2: "Ancient lava paths have been cleared, making travel much safer.",
+            3: "Stable geothermal vents provide warmth throughout the preserve.",
+            4: "The volcanic landscape flourishes as crystal fires and rare flora return.",
+            5: "The Ember Heart glows peacefully, creating one of Moonlit Meadows' greatest sanctuaries."
         },
 
+        # -----------------------------
+        # Upgrade Projects
+        # -----------------------------
+        "projects": {
+            2: {
+                "title": "Clear Ashfall Trails",
+                "description": (
+                    "Old lava flows and ash have buried the preserve's ancient paths. "
+                    "Clearing them allows creatures to safely reach new shelter sites."
+                ),
+                "cost": {
+                    "charcoal": 20,
+                    "stone": 30,
+                    "warm_pebbles": 15
+                },
+                "reward": (
+                    "+2 Capacity\n"
+                    "New shelter sites become available."
+                )
+            },
+
+            3: {
+                "title": "Stabilise Lava Vents",
+                "description": (
+                    "The geothermal vents have become unstable over time. Restoring "
+                    "them creates warm resting places and encourages rare resources."
+                ),
+                "cost": {
+                    "fire_crystal": 20,
+                    "ember_moss": 25,
+                    "charcoal": 25
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+10% Resource Yield"
+                )
+            },
+
+            4: {
+                "title": "Restore Firestone Caverns",
+                "description": (
+                    "Collapsed crystal caverns once sheltered generations of fire creatures. "
+                    "Rebuilding them transforms the preserve into a thriving habitat."
+                ),
+                "cost": {
+                    "obsidian": 25,
+                    "fire_crystal": 30,
+                    "stone": 40
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+20% Resource Yield\n"
+                    "Rare Events become more common."
+                )
+            },
+
+            5: {
+                "title": "Awaken the Ember Heart",
+                "description": (
+                    "Deep beneath the preserve lies an ancient crystal heart that once "
+                    "kept these lands alive. Rekindling it restores Emberlands to its "
+                    "former glory."
+                ),
+                "cost": {
+                    "fire_crystal": 50,
+                    "ember_moss": 40,
+                    "obsidian": 40
+                },
+                "reward": (
+                    "+Maximum Comfort\n"
+                    "+30% Resource Yield\n"
+                    "+Rare Events\n"
+                    "Creatures gain Bond slightly faster while living here."
+                )
+            }
+        },
 
         # -----------------------------
         # Passive Bonuses
         # -----------------------------
         "passive_effects": [
-            "Forest creatures recover extra Energy while resting.",
-            "Gathering berries is slightly more rewarding.",
-            "Occasionally attracts woodland visitors."
+            "Fire creatures recover extra Health while resting.",
+            "Warm resources appear more frequently.",
+            "Occasionally produces bonus Fire Crystals.",
+            "Volcanic shelters naturally provide additional Comfort."
         ],
 
         # -----------------------------
         # Rare Events
         # -----------------------------
         "events": [
-            "A family of birds builds a nest nearby.",
-            "A curious fox leaves behind a shiny trinket.",
-            "Ancient trees seem to hum quietly at dusk.",
-            "A hidden spring begins flowing once again."
+            "Warm embers drift peacefully through the preserve.",
+            "A dormant lava vent releases a gentle glow.",
+            "A rare Fire Crystal emerges from the volcanic rock.",
+            "The mountain rumbles softly before falling silent.",
+            "Tiny flame spirits dance around the shelters.",
+            "Fresh obsidian forms after a distant eruption."
         ],
 
         # -----------------------------
         # Shelter Types
         # -----------------------------
-        "allowed_shelters": [
-            "Burrow",
-            "Den",
-            "Nest",
-            "Tree Hollow",
-            "Hollow Log"
-        ],
-
-        # Named shelter sites
-        "shelter_sites": [
-            "Mossy Hollow",
-            "Old Oak Burrow",
-            "Fern Clearing",
-            "Whispering Roots",
-            "Foxglove Grove",
-            "Ancient Oak Hollow",
-            "Sunlit Knoll",
-            "Hidden Spring",
-            "Willow Thicket",
-            "Stone Moss Den",
-            "Twilight Hollow"
-        ],
-
-        # -----------------------------
-        # Resources
-        # -----------------------------
-        "resources": [
-            "moss",
-            "wildflowers",
-            "berries",
-            "sticks",
-            "soft_bedding"
-        ],
-
-        # -----------------------------
-        # Atmosphere
-        # -----------------------------
-        "atmosphere": [
-            "A gentle breeze rustles through the towering trees.",
-            "Birdsong echoes throughout the preserve.",
-            "Golden rays of sunlight filter through the forest canopy.",
-            "The scent of moss and damp earth fills the air."
-        ],
-
-        # -----------------------------
-        # Weather
-        # -----------------------------
-        "possible_weather": [
-            "Sunny",
-            "Light Rain",
-            "Morning Mist"
-        ],
-
-        # -----------------------------
-        # Discoveries
-        # -----------------------------
-        "discoveries": [
-            "Ancient Stone Circle",
-            "Hidden Wildflower Patch",
-            "Forgotten Woodland Shrine",
-            "Crystal Spring"
-        ],
-
-        "upgrade_costs": {
-            2: {
-                "wood": 30,
-                "stone": 20
-            },
-            3: {
-                "wood": 60,
-                "stone": 40,
-                "healing_moss": 15
-            },
-            4: {
-                "wood": 90,
-                "stone": 70,
-                "crystal_shard": 20
-            },
-            5: {
-                "wood": 120,
-                "stone": 100,
-                "moon_crystal": 30
-            }
-        },
-    },
-
-    "emberlands": {
-        "name": "Emberlands Preserve",
-        "emoji": "🔥",
-        "theme": "volcanic",
-
-        "description": (
-            "Fed by the warmth beneath Moonlit Meadows, Emberlands Preserve is a "
-            "rugged landscape of volcanic stone, glowing vents and rivers of lava."
-        ),
-
-        "starting_capacity": 3,
-        "capacity_per_level": 2,
-        "max_level": 5,
-        "unlock_level": 1,
-
-        "level_descriptions": {
-            1: "A handful of cooled caverns provide safe shelter among the volcanic stone.",
-            2: "Old lava paths have been cleared, making travel much safer.",
-            3: "Warm crystal vents return, filling the preserve with gentle heat.",
-            4: "The volcanic landscape is thriving with life adapted to the fire.",
-            5: "The legendary Ember Heart burns peacefully, making this a haven for fire creatures."
-        },
-
-        # -----------------------------
-        # Upgrade Bonuses
-        # -----------------------------
-        "upgrade_bonuses": {
-            2: {
-                "capacity": 2,
-                "comfort": 2,
-                "description": "Additional shelter sites are restored."
-            },
-            3: {
-                "capacity": 2,
-                "comfort": 4,
-                "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
-            },
-            4: {
-                "capacity": 2,
-                "comfort": 6,
-                "resource_bonus": 20,
-                "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
-            },
-            5: {
-                "capacity": 2,
-                "comfort": 10,
-                "resource_bonus": 30,
-                "rare_event_bonus": 10,
-                "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
-            }
-        },
-
-        "upgrade_names": {
-        2: "Clear Ashfall Trails",
-        3: "Stabilise Lava Vents",
-        4: "Restore Firestone Caverns",
-        5: "Awaken the Ember Heart"
-    },
-
-    "passive_effects": [
-        "Fire creatures recover more Health while resting.",
-        "Warm resources appear more often.",
-        "Rare fire crystals occasionally emerge."
-    ],
-
-    "events": [
-        "Warm embers drift gently through the preserve.",
-        "A dormant lava vent briefly glows.",
-        "Fire crystals erupt from the stone.",
-        "The mountain lets out a peaceful rumble."
-    ],
-
         "allowed_shelters": [
             "Stone Den",
             "Den",
@@ -266,7 +445,7 @@ PRESERVES = {
             "Basalt Burrow",
             "Lava Tube",
             "Scorched Ridge",
-            "Smoldering Cavern",
+            "Smouldering Cavern",
             "Firestone Hollow",
             "Molten Pass",
             "Obsidian Shelter",
@@ -274,53 +453,50 @@ PRESERVES = {
             "Blazing Crag"
         ],
 
+        # -----------------------------
+        # Resources
+        # -----------------------------
         "resources": [
             "warm_pebbles",
             "charcoal",
             "ember_moss",
-            "fire_crystal"
+            "fire_crystal",
+            "obsidian"
         ],
 
+        # -----------------------------
+        # Atmosphere
+        # -----------------------------
         "atmosphere": [
-            "Warm air rises from the earth.",
-            "Tiny embers drift lazily through the preserve.",
-            "The distant rumble of the volcano echoes softly.",
-            "Heat radiates from the black stone beneath your feet."
+            "Warm air rises gently from the earth.",
+            "Tiny embers drift lazily across the preserve.",
+            "The distant volcano rumbles peacefully.",
+            "Heat radiates from the black volcanic stone.",
+            "Orange light flickers across the cliffs.",
+            "The scent of ash and minerals lingers in the air."
         ],
 
+        # -----------------------------
+        # Weather
+        # -----------------------------
         "possible_weather": [
             "Clear",
             "Ashfall",
-            "Heat Haze"
+            "Heat Haze",
+            "Warm Winds"
         ],
 
+        # -----------------------------
+        # Discoveries
+        # -----------------------------
         "discoveries": [
             "Ancient Lava Shrine",
             "Fire Crystal Vein",
-            "Hidden Lava Tube"
-        ],
-
-        "upgrade_costs": {
-            2: {
-                "wood": 30,
-                "stone": 20
-            },
-            3: {
-                "wood": 60,
-                "stone": 40,
-                "healing_moss": 15
-            },
-            4: {
-                "wood": 90,
-                "stone": 70,
-                "crystal_shard": 20
-            },
-            5: {
-                "wood": 120,
-                "stone": 100,
-                "moon_crystal": 30
-            }
-        },
+            "Hidden Lava Tube",
+            "The Ember Heart",
+            "Forgotten Forge",
+            "Sleeping Fire Spirit"
+        ]
     },
 
     "frostwild": {
@@ -330,74 +506,188 @@ PRESERVES = {
 
         "description": (
             "Blanketed in snow throughout the year, Frostwild Preserve is a peaceful "
-            "land of frozen forests, icy lakes and sparkling glaciers."
+            "expanse of frozen forests, crystal lakes and towering glaciers. Though "
+            "cold, it offers remarkable tranquility to the creatures that call it home."
         ),
 
+        # ---------------------------------
+        # Progression
+        # ---------------------------------
         "starting_capacity": 3,
         "capacity_per_level": 2,
         "max_level": 5,
         "unlock_level": 1,
 
-        "level_descriptions": {
-            1: "Only a few sheltered snow dens have been restored.",
-            2: "Safe trails now connect the frozen shelters.",
-            3: "Ancient glaciers sparkle with renewed life.",
-            4: "Auroras regularly dance across the night sky.",
-            5: "Frostwild has become a peaceful kingdom of snow and ice."
+        # ---------------------------------
+        # Upgrade Projects
+        # ---------------------------------
+        "upgrade_names": {
+            2: "Strengthen Snow Paths",
+            3: "Restore Frozen Springs",
+            4: "Raise Crystal Ice Shelters",
+            5: "Blessing of the Aurora"
         },
 
-        # -----------------------------
-        # Upgrade Bonuses
-        # -----------------------------
-        "upgrade_bonuses": {
+        "restoration_milestones": {
+            2: "Snow Paths",
+            3: "Frozen Springs",
+            4: "Crystal Shelters",
+            5: "Aurora Shrine"
+        },
+
+        # ---------------------------------
+        # Level Descriptions
+        # ---------------------------------
+        "level_descriptions": {
+            1: (
+                "Only a few snow burrows protect creatures from the bitter cold. "
+                "The preserve remains quiet and isolated."
+            ),
+
+            2: (
+                "Safe snow paths connect the shelters, making travel through the "
+                "blizzards much easier."
+            ),
+
+            3: (
+                "Ancient frozen springs once buried beneath the ice now flow again, "
+                "bringing life back to Frostwild."
+            ),
+
+            4: (
+                "Beautiful crystal ice shelters shimmer beneath the sunlight while "
+                "majestic glaciers provide safety and comfort."
+            ),
+
+            5: (
+                "The Aurora Shrine awakens. Every night brilliant lights dance across "
+                "the sky, filling the preserve with peaceful magic."
+            )
+        },
+
+        # ---------------------------------
+        # Upgrade Costs
+        # ---------------------------------
+        "upgrade_costs": {
+
             2: {
-                "capacity": 2,
-                "comfort": 2,
-                "description": "Additional shelter sites are restored."
+                "wood": 30,
+                "sticks": 25,
+                "ice_crystal": 20,
+                "snowberries": 15
             },
+
             3: {
-                "capacity": 2,
-                "comfort": 4,
-                "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
+                "ice_crystal": 40,
+                "frost_flower": 25,
+                "snowberries": 30,
+                "fresh_water": 15
             },
+
             4: {
-                "capacity": 2,
-                "comfort": 6,
-                "resource_bonus": 20,
-                "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
+                "ice_crystal": 70,
+                "crystal_shard": 20,
+                "wood": 50,
+                "frost_flower": 40
             },
+
             5: {
-                "capacity": 2,
-                "comfort": 10,
-                "resource_bonus": 30,
-                "rare_event_bonus": 10,
-                "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
+                "ice_crystal": 120,
+                "crystal_shard": 40,
+                "glow_mushroom": 20,
+                "frost_flower": 60,
+                "snowberries": 70
             }
         },
 
-        "upgrade_names": {
-        2: "Strengthen Snow Paths",
-        3: "Restore Frozen Springs",
-        4: "Raise Ice Shelters",
-        5: "Blessing of the Aurora"
-    },
+        # ---------------------------------
+        # Upgrade Bonuses
+        # ---------------------------------
+        "upgrade_bonuses": {
 
+            2: {
+                "capacity": 2,
+                "comfort": 2,
+                "description": (
+                    "Snow paths make travel easier for every resident."
+                )
+            },
+
+            3: {
+                "capacity": 2,
+                "comfort": 4,
+                "energy_bonus": 5,
+                "resource_bonus": 10,
+                "description": (
+                    "Frozen springs provide fresh water and renewed energy."
+                )
+            },
+
+            4: {
+                "capacity": 2,
+                "comfort": 7,
+                "energy_bonus": 10,
+                "resource_bonus": 20,
+                "rare_event_bonus": 5,
+                "description": (
+                    "Crystal shelters greatly improve creature comfort."
+                )
+            },
+
+            5: {
+                "capacity": 2,
+                "comfort": 12,
+                "energy_bonus": 15,
+                "resource_bonus": 30,
+                "rare_event_bonus": 10,
+                "well_rested_bonus": 1,
+                "description": (
+                    "The Aurora blesses every creature with peaceful rest."
+                )
+            }
+        },
+
+        # ---------------------------------
+        # Passive Effects
+        # ---------------------------------
         "passive_effects": [
-            "Cold creatures lose less Energy.",
-            "Ice resources become more common.",
-            "Snowstorms reveal hidden treasures."
+
+            "Creatures recover additional Energy while resting.",
+
+            "The Rest command restores slightly more Energy.",
+
+            "Ice resources are gathered more frequently.",
+
+            "Sleeping creatures occasionally awaken Well Rested.",
+
+            "Cold-loving creatures slowly gain Happiness."
         ],
 
+        # ---------------------------------
+        # Preserve Events
+        # ---------------------------------
         "events": [
-            "An aurora illuminates the night sky.",
-            "Fresh snow blankets every shelter.",
-            "Ice crystals form beautiful patterns.",
-            "A glacier softly cracks in the distance."
-    ],
 
+            "An aurora paints the night sky with brilliant colours.",
+
+            "Fresh snow quietly blankets every shelter.",
+
+            "A frozen spring bubbles beneath crystal-clear ice.",
+
+            "Ice crystals bloom across the nearby lake.",
+
+            "A family of snow foxes races through the preserve.",
+
+            "Snowbirds build a tiny nest atop an icy cliff.",
+
+            "Gentle winds carry sparkling snowflakes through the forest.",
+
+            "A distant glacier echoes softly across the valley."
+        ],
+
+        # ---------------------------------
+        # Shelter Types
+        # ---------------------------------
         "allowed_shelters": [
             "Snow Burrow",
             "Den",
@@ -419,171 +709,64 @@ PRESERVES = {
             "Shimmering Glacier"
         ],
 
+        # ---------------------------------
+        # Resources
+        # ---------------------------------
         "resources": [
             "ice_crystal",
             "snowberries",
             "frost_flower"
         ],
 
+        # ---------------------------------
+        # Atmosphere
+        # ---------------------------------
         "atmosphere": [
-            "Snowflakes drift silently through the air.",
-            "The crisp air sparkles beneath the sunlight.",
-            "Everything is wonderfully quiet.",
-            "A shimmering aurora dances overhead."
+
+            "Snowflakes drift silently through the crisp air.",
+
+            "Everything is peaceful beneath a blanket of white.",
+
+            "The frozen lake sparkles like glass.",
+
+            "Icicles shimmer beneath the pale sunlight.",
+
+            "A cool breeze carries sparkling snow across the preserve.",
+
+            "The silence is broken only by distant birds."
         ],
 
+        # ---------------------------------
+        # Weather
+        # ---------------------------------
         "possible_weather": [
             "Snow",
+            "Gentle Snowfall",
             "Blizzard",
-            "Clear Skies"
+            "Clear Skies",
+            "Aurora Night"
         ],
 
+        # ---------------------------------
+        # Discoveries
+        # ---------------------------------
         "discoveries": [
+
             "Frozen Waterfall",
-            "Ice Crystal Cavern",
-            "Ancient Frost Totem"
-        ],
 
-        "upgrade_costs": {
-            2: {
-                "wood": 30,
-                "stone": 20
-            },
-            3: {
-                "wood": 60,
-                "stone": 40,
-                "healing_moss": 15
-            },
-            4: {
-                "wood": 90,
-                "stone": 70,
-                "crystal_shard": 20
-            },
-            5: {
-                "wood": 120,
-                "stone": 100,
-                "moon_crystal": 30
-            }
-        },
-    },
+            "Crystal Ice Cavern",
 
-    "crystal_reach": {
-        "name": "Crystal Reach",
-        "emoji": "💎",
-        "theme": "crystal",
+            "Ancient Frost Totem",
 
-        "description": (
-            "Towering crystal formations fill the landscape with shimmering light."
-        ),
+            "Aurora Shrine",
 
-        "starting_capacity": 3,
-        "capacity_per_level": 2,
-        "max_level": 5,
-        "unlock_level": 1,
+            "Glacial Mirror Lake",
 
-        # Crystal Reach
-        "level_descriptions": {
-            1: "Only a handful of crystal caverns have been made safe for creatures.",
-            2: "Ancient crystal bridges shimmer once more between the towering formations.",
-            3: "The great crystal spires resonate with gentle magical energy.",
-            4: "Radiant caverns illuminate the preserve day and night.",
-            5: "Crystal Reach has become a legendary sanctuary of light and living crystal."
-        },
+            "Sleeping Ice Guardian",
 
-        # -----------------------------
-        # Upgrade Bonuses
-        # -----------------------------
-        "upgrade_bonuses": {
-            2: {
-                "capacity": 2,
-                "comfort": 2,
-                "description": "Additional shelter sites are restored."
-            },
-            3: {
-                "capacity": 2,
-                "comfort": 4,
-                "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
-            },
-            4: {
-                "capacity": 2,
-                "comfort": 6,
-                "resource_bonus": 20,
-                "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
-            },
-            5: {
-                "capacity": 2,
-                "comfort": 10,
-                "resource_bonus": 30,
-                "rare_event_bonus": 10,
-                "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
-            }
-        },
+            "Snow Owl Nest",
 
-        "upgrade_names": {
-            2: "Restore Crystal Bridges",
-            3: "Polish Ancient Formations",
-            4: "Illuminate the Crystal Caves",
-            5: "Heart of the Reach"
-        },
-
-        "passive_effects": [
-            "Crystal creatures gain additional Happiness.",
-            "Crystal resources are more abundant.",
-            "Rare gems occasionally appear."
-        ],
-
-        "events": [
-            "Sunlight scatters through thousands of crystals.",
-            "A hidden chamber begins glowing.",
-            "Crystal chimes echo softly.",
-            "Tiny gemstones emerge overnight."
-        ],
-
-        "allowed_shelters": [
-            "Crystal Hollow",
-            "Crystal Den",
-            "Cave",
-            "Stone Den"
-        ],
-
-        "shelter_sites": [
-            "Amethyst Hollow",
-            "Crystal Cavern",
-            "Shimmering Grotto",
-            "Quartz Ridge",
-            "Prism Hollow",
-            "Glittering Cavern",
-            "Moonstone Den",
-            "Crystal Garden",
-            "Gemstone Pass",
-            "Radiant Hollow",
-            "Echo Crystal Cave"
-        ],
-
-        "resources": [
-            "crystal_shard",
-            "glow_mushroom",
-            "crystal_dust"
-        ],
-
-        "atmosphere": [
-            "Crystals sparkle in every direction.",
-            "Soft light dances across the cavern walls.",
-            "Tiny fragments shimmer beneath your feet."
-        ],
-
-        "possible_weather": [
-            "Clear",
-            "Crystal Rain"
-        ],
-
-        "discoveries": [
-            "Heart Crystal",
-            "Glowing Cavern",
-            "Ancient Crystal Altar"
+            "Hidden Ice Garden"
         ]
     },
 
@@ -593,22 +776,18 @@ PRESERVES = {
         "theme": "grassland",
 
         "description": (
-            "Rolling meadows filled with colourful wildflowers stretch beneath open skies."
+            "Rolling meadows carpeted in colourful wildflowers stretch beneath open skies. "
+            "Gentle breezes, buzzing bees and wandering butterflies make Sunpetal Prairie "
+            "one of the most peaceful preserves within Moonlit Meadows."
         ),
 
+        # -----------------------------
+        # Progression
+        # -----------------------------
         "starting_capacity": 3,
         "capacity_per_level": 2,
         "max_level": 5,
         "unlock_level": 1,
-
-        # Sunpetal Prairie
-        "level_descriptions": {
-            1: "A few peaceful meadows provide safe shelter among the wildflowers.",
-            2: "Blooming flower fields stretch further across the prairie.",
-            3: "Bees and butterflies return in great numbers, bringing life to every corner.",
-            4: "Golden meadows sway beneath endless skies, alive with colour.",
-            5: "Sunpetal Prairie has become a breathtaking sea of flowers and thriving wildlife."
-        },
 
         # -----------------------------
         # Upgrade Bonuses
@@ -617,20 +796,20 @@ PRESERVES = {
             2: {
                 "capacity": 2,
                 "comfort": 2,
-                "description": "Additional shelter sites are restored."
+                "description": "Flower fields spread across the preserve."
             },
             3: {
                 "capacity": 2,
                 "comfort": 4,
                 "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
+                "description": "Pollinators return, enriching the prairie."
             },
             4: {
                 "capacity": 2,
                 "comfort": 6,
                 "resource_bonus": 20,
                 "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
+                "description": "The meadows bloom with incredible life."
             },
             5: {
                 "capacity": 2,
@@ -638,10 +817,13 @@ PRESERVES = {
                 "resource_bonus": 30,
                 "rare_event_bonus": 10,
                 "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
+                "description": "Sunpetal Prairie blossoms into an endless sea of flowers."
             }
         },
 
+        # -----------------------------
+        # Upgrade Projects
+        # -----------------------------
         "upgrade_names": {
             2: "Expand Flower Fields",
             3: "Restore Bee Gardens",
@@ -649,19 +831,120 @@ PRESERVES = {
             5: "Bloom of the Endless Prairie"
         },
 
+        # -----------------------------
+        # Level Descriptions
+        # -----------------------------
+        "level_descriptions": {
+            1: "Only a few colourful meadows have begun to recover.",
+            2: "Wildflower fields now spread across much of the preserve.",
+            3: "Bees and butterflies return, bringing life to every corner.",
+            4: "Rolling hills burst into bloom throughout every season.",
+            5: "A breathtaking sea of flowers stretches to the horizon, attracting creatures from across Moonlit Meadows."
+        },
+
+        # -----------------------------
+        # Upgrade Projects
+        # -----------------------------
+        "projects": {
+            2: {
+                "title": "Expand Flower Fields",
+                "description": (
+                    "Years of neglect have left much of the prairie overgrown. "
+                    "Planting native flowers restores shelter and feeding grounds "
+                    "for many peaceful creatures."
+                ),
+                "cost": {
+                    "wildflowers": 30,
+                    "soft_grass": 25,
+                    "seeds": 20
+                },
+                "reward": (
+                    "+2 Capacity\n"
+                    "New shelter sites become available."
+                )
+            },
+
+            3: {
+                "title": "Restore Bee Gardens",
+                "description": (
+                    "Special gardens filled with nectar-rich blossoms encourage "
+                    "bees and other pollinators to return, strengthening the "
+                    "entire ecosystem."
+                ),
+                "cost": {
+                    "wildflowers": 40,
+                    "herbs": 25,
+                    "seeds": 30
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+10% Resource Yield"
+                )
+            },
+
+            4: {
+                "title": "Create Butterfly Sanctuaries",
+                "description": (
+                    "Protected flower groves provide safe breeding grounds for "
+                    "butterflies, bringing colour and life back to the prairie."
+                ),
+                "cost": {
+                    "wildflowers": 50,
+                    "soft_grass": 35,
+                    "herbs": 30
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+20% Resource Yield\n"
+                    "Rare Events become more common."
+                )
+            },
+
+            5: {
+                "title": "Bloom of the Endless Prairie",
+                "description": (
+                    "With one final restoration effort, the prairie awakens into a "
+                    "legendary landscape where flowers bloom throughout every season."
+                ),
+                "cost": {
+                    "wildflowers": 75,
+                    "seeds": 50,
+                    "herbs": 40
+                },
+                "reward": (
+                    "+Maximum Comfort\n"
+                    "+30% Resource Yield\n"
+                    "+Rare Events\n"
+                    "Creatures gain Bond slightly faster while living here."
+                )
+            }
+        },
+
+        # -----------------------------
+        # Passive Bonuses
+        # -----------------------------
         "passive_effects": [
-            "Grassland creatures become happier while resting.",
-            "Flowers grow more frequently.",
-            "Butterflies occasionally guide you to resources."
+            "Grassland creatures recover extra Happiness while resting.",
+            "Flowers and herbs are gathered more frequently.",
+            "Butterflies occasionally reveal hidden resources.",
+            "Open meadows naturally improve shelter Comfort."
         ],
 
+        # -----------------------------
+        # Rare Events
+        # -----------------------------
         "events": [
-            "Butterflies gather across the meadow.",
-            "Rare flowers bloom overnight.",
-            "A rainbow appears after gentle rain.",
-            "Honeybees create a thriving hive."
+            "Thousands of butterflies gather across the meadow.",
+            "Rare wildflowers bloom overnight.",
+            "A rainbow stretches across the prairie after gentle rain.",
+            "Honeybees establish a thriving new hive.",
+            "A herd of peaceful creatures grazes nearby.",
+            "The wind carries glowing flower seeds across the hills."
         ],
 
+        # -----------------------------
+        # Shelter Types
+        # -----------------------------
         "allowed_shelters": [
             "Burrow",
             "Nest",
@@ -682,52 +965,50 @@ PRESERVES = {
             "Lavender Hollow"
         ],
 
+        # -----------------------------
+        # Resources
+        # -----------------------------
         "resources": [
             "wildflowers",
             "soft_grass",
             "seeds",
-            "herbs"
+            "herbs",
+            "nectar"
         ],
 
+        # -----------------------------
+        # Atmosphere
+        # -----------------------------
         "atmosphere": [
             "Wildflowers sway gently in the breeze.",
-            "Butterflies drift between colourful blossoms.",
-            "The warm sun bathes the prairie in golden light."
+            "Butterflies drift from blossom to blossom.",
+            "Warm sunlight bathes the rolling meadows.",
+            "Bees buzz peacefully among colourful flowers.",
+            "Tall grass ripples like gentle waves.",
+            "The air carries the sweet scent of blooming petals."
         ],
 
+        # -----------------------------
+        # Weather
+        # -----------------------------
         "possible_weather": [
             "Sunny",
             "Cloudy",
-            "Spring Shower"
+            "Spring Shower",
+            "Rainbow"
         ],
 
+        # -----------------------------
+        # Discoveries
+        # -----------------------------
         "discoveries": [
             "Rare Flower Patch",
             "Butterfly Grove",
-            "Hidden Meadow"
-        ],
-
-        "upgrade_costs": {
-            2: {
-                "wood": 30,
-                "stone": 20
-            },
-            3: {
-                "wood": 60,
-                "stone": 40,
-                "healing_moss": 15
-            },
-            4: {
-                "wood": 90,
-                "stone": 70,
-                "crystal_shard": 20
-            },
-            5: {
-                "wood": 120,
-                "stone": 100,
-                "moon_crystal": 30
-            }
-        },
+            "Hidden Meadow",
+            "Ancient Bee Shrine",
+            "Golden Sunflower Field",
+            "The Endless Bloom"
+        ]
     },
 
     "mistfen": {
@@ -736,22 +1017,18 @@ PRESERVES = {
         "theme": "wetland",
 
         "description": (
-            "A peaceful wetland of winding streams, reeds and quiet ponds."
+            "A peaceful network of winding streams, quiet ponds and ancient marshes. "
+            "Mistfen Preserve is rich with reeds, lilies and crystal-clear waters, "
+            "providing a tranquil refuge for creatures who thrive beside the water."
         ),
 
+        # -----------------------------
+        # Progression
+        # -----------------------------
         "starting_capacity": 3,
         "capacity_per_level": 2,
         "max_level": 5,
         "unlock_level": 1,
-
-       # Mistfen
-        "level_descriptions": {
-            1: "A quiet marsh with only a few restored nesting grounds.",
-            2: "Safe boardwalks now weave through the mist-covered wetlands.",
-            3: "The ponds and reeds teem with returning wildlife.",
-            4: "Crystal-clear springs nourish every corner of the preserve.",
-            5: "Mistfen has become a tranquil sanctuary where water and wildlife flourish together."
-        },
 
         # -----------------------------
         # Upgrade Bonuses
@@ -760,20 +1037,20 @@ PRESERVES = {
             2: {
                 "capacity": 2,
                 "comfort": 2,
-                "description": "Additional shelter sites are restored."
+                "description": "Boardwalks reconnect the wetlands."
             },
             3: {
                 "capacity": 2,
                 "comfort": 4,
                 "resource_bonus": 10,
-                "description": "Wild resources flourish throughout the preserve."
+                "description": "Protected ponds flourish with life."
             },
             4: {
                 "capacity": 2,
                 "comfort": 6,
                 "resource_bonus": 20,
                 "rare_event_bonus": 5,
-                "description": "The preserve attracts many wandering creatures."
+                "description": "The marsh becomes a sanctuary for rare wildlife."
             },
             5: {
                 "capacity": 2,
@@ -781,10 +1058,13 @@ PRESERVES = {
                 "resource_bonus": 30,
                 "rare_event_bonus": 10,
                 "bond_bonus": 1,
-                "description": "The preserve has become a sanctuary of exceptional beauty."
+                "description": "Mistfen becomes one of the most peaceful wetlands in Moonlit Meadows."
             }
         },
 
+        # -----------------------------
+        # Upgrade Projects
+        # -----------------------------
         "upgrade_names": {
             2: "Restore Boardwalks",
             3: "Protect Lily Ponds",
@@ -792,19 +1072,119 @@ PRESERVES = {
             5: "Heart of the Marsh"
         },
 
+        # -----------------------------
+        # Level Descriptions
+        # -----------------------------
+        "level_descriptions": {
+            1: "Only a handful of ponds remain safe for creatures to rest.",
+            2: "Wooden walkways reconnect the scattered marshlands.",
+            3: "The restored ponds teem with fish, lilies and aquatic life.",
+            4: "Rare birds and peaceful wildlife have returned to the wetlands.",
+            5: "Mistfen has become a thriving sanctuary where crystal waters nourish every living thing."
+        },
+
+        # -----------------------------
+        # Upgrade Projects
+        # -----------------------------
+        "projects": {
+            2: {
+                "title": "Restore Boardwalks",
+                "description": (
+                    "Old wooden paths have collapsed into the marsh. Rebuilding them "
+                    "allows caretakers and creatures to safely explore the preserve."
+                ),
+                "cost": {
+                    "reeds": 30,
+                    "sticks": 30,
+                    "smooth_stones": 20
+                },
+                "reward": (
+                    "+2 Capacity\n"
+                    "New shelter sites become available."
+                )
+            },
+
+            3: {
+                "title": "Protect Lily Ponds",
+                "description": (
+                    "Healthy lily ponds support countless forms of life. Restoring "
+                    "them provides food, shelter and clean water throughout the preserve."
+                ),
+                "cost": {
+                    "water_lily": 25,
+                    "fresh_water": 40,
+                    "reeds": 20
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+10% Resource Yield"
+                )
+            },
+
+            4: {
+                "title": "Expand Wetlands",
+                "description": (
+                    "Allowing the marshlands to spread naturally creates new habitats "
+                    "for rare aquatic creatures and strengthens the ecosystem."
+                ),
+                "cost": {
+                    "water_lily": 35,
+                    "smooth_stones": 35,
+                    "fresh_water": 40
+                },
+                "reward": (
+                    "+Comfort\n"
+                    "+20% Resource Yield\n"
+                    "Rare Events become more common."
+                )
+            },
+
+            5: {
+                "title": "Heart of the Marsh",
+                "description": (
+                    "At the centre of Mistfen lies an ancient spring said to have "
+                    "given life to the wetlands. Restoring it allows the preserve to "
+                    "flourish once more."
+                ),
+                "cost": {
+                    "fresh_water": 60,
+                    "water_lily": 40,
+                    "smooth_stones": 40
+                },
+                "reward": (
+                    "+Maximum Comfort\n"
+                    "+30% Resource Yield\n"
+                    "+Rare Events\n"
+                    "Creatures gain Bond slightly faster while living here."
+                )
+            }
+        },
+
+        # -----------------------------
+        # Passive Bonuses
+        # -----------------------------
         "passive_effects": [
-            "Wetland creatures recover additional Energy.",
-            "Water resources become more common.",
-            "Peaceful wildlife visits more often."
+            "Wetland creatures recover extra Energy while resting.",
+            "Water resources appear more frequently.",
+            "Healing plants grow more abundantly.",
+            "Shelters near the water naturally provide additional Comfort."
         ],
 
+        # -----------------------------
+        # Rare Events
+        # -----------------------------
         "events": [
             "Morning mist blankets the preserve.",
-            "Dragonflies dance over the water.",
-            "A family of frogs returns.",
-            "A hidden spring is discovered."
+            "Dragonflies dance across the still water.",
+            "A family of frogs returns to the marsh.",
+            "A hidden spring bubbles up from beneath the reeds.",
+            "A graceful heron lands beside the pond.",
+            "Lotus flowers bloom overnight."
         ],
 
+        # -----------------------------
+        # Shelter Types
+        # -----------------------------
         "allowed_shelters": [
             "Reed Nest",
             "Burrow",
@@ -825,51 +1205,49 @@ PRESERVES = {
             "Hidden Lagoon"
         ],
 
+        # -----------------------------
+        # Resources
+        # -----------------------------
         "resources": [
             "reeds",
             "water_lily",
             "smooth_stones",
-            "fresh_water"
+            "fresh_water",
+            "healing_reeds"
         ],
 
+        # -----------------------------
+        # Atmosphere
+        # -----------------------------
         "atmosphere": [
             "A blanket of mist hangs over the water.",
-            "The gentle croaking of frogs echoes through the marsh.",
-            "Dragonflies skim across the still ponds."
+            "Dragonflies skim silently across the ponds.",
+            "The gentle croaking of frogs echoes through the reeds.",
+            "Soft ripples spread across the still marsh.",
+            "The scent of fresh rain fills the cool air.",
+            "Birdsong drifts through the willow trees."
         ],
 
+        # -----------------------------
+        # Weather
+        # -----------------------------
         "possible_weather": [
             "Fog",
-            "Rain",
-            "Sunny"
+            "Light Rain",
+            "Sunny",
+            "Morning Mist"
         ],
 
+        # -----------------------------
+        # Discoveries
+        # -----------------------------
         "discoveries": [
             "Ancient Boardwalk",
             "Hidden Pond",
-            "Rare Water Lily"
-        ],
-
-        "upgrade_costs": {
-            2: {
-                "wood": 30,
-                "stone": 20
-            },
-            3: {
-                "wood": 60,
-                "stone": 40,
-                "healing_moss": 15
-            },
-            4: {
-                "wood": 90,
-                "stone": 70,
-                "crystal_shard": 20
-            },
-            5: {
-                "wood": 120,
-                "stone": 100,
-                "moon_crystal": 30
-            }
-        },
-    }
+            "Rare Water Lily",
+            "Crystal Spring",
+            "Forgotten Fisher's Hut",
+            "Heart of the Marsh"
+        ]
+    },
 }
